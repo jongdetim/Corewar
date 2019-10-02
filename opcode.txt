@@ -1,0 +1,16 @@
+1: live
+2: ld
+3: st
+4: add
+5: sub
+6: and
+7: or
+8: xor
+9: zjmp
+10: ldi
+11: sti
+12: fork
+13: lld
+14: lldi
+15: lfork
+16: aff
