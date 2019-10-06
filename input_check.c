@@ -12,23 +12,6 @@
 
 #include "corewar.h"
 
-void		input_error(char *arg, int choice)
-{
-	if (arg)
-		ft_printf("Error at argument: \"%s\"\n", arg);
-	if (choice == 0)
-		ft_printf("Champion can only be .cor file.\n");
-	if (choice == 1)
-		ft_printf("Incorrect flag. Need help? ./corewar -help.\n");
-	if (choice == 2)
-		ft_printf("Too many champions (max. 4).\n");
-	if (choice == 3)
-		ft_printf("Invalid argument. Need help? ./corewar -help\n");
-	if (choice == 4)
-		ft_printf("No valid number for the flag\n");
-	exit(1);
-}
-
 int			check_for_champion(char *arg)
 {
 	char 		*temp;
@@ -43,58 +26,94 @@ int			check_for_champion(char *arg)
 	return (1);
 }
 
-void		check_number_for_flag(char **argv, int argc, int i)
+void		check_number_for_flag(t_vm *vm, int i)
 {
 	int			j;
+	static int 	n_flag = 0;
 
 	j = 0;
-	if (i + 1 == argc)
-		input_error(argv[i], 4);
-	while (argv[i + 1][j])
+	if (NO_NUMBER_AFTER_FLAG)
+		input_error(vm->argv[i], 4);
+	while (vm->argv[i + 1][j])
 	{
-		if (!ft_isdigit(argv[i + 1][j]))
-			input_error(argv[i], 4);
+		if (!ft_isdigit(vm->argv[i + 1][j]))
+			input_error(vm->argv[i], 4);
 		j++;
+	}
+	if (!ft_strcmp("-n", vm->argv[i]))
+	{
+		vm->n_flag[n_flag] = ft_atoi(vm->argv[i + 1]);
+		if (vm->n_flag[n_flag] < 1 || vm->n_flag[n_flag] > 4)
+			input_error(vm->argv[i], 4);
+		n_flag++;
 	}
 	return ;
 }
 
-int			check_for_flag(char **argv, int argc, int i)
+int			check_for_flag(t_vm *vm, int i)
 {
 	int			j;
 
 	j = 0;
-	if (argv[i][0] != '-')
-		input_error(argv[i], 3);
-	if (!ft_strcmp("-n", argv[i]))
-		check_number_for_flag(argv, argc, i);
-	else if (!ft_strcmp("-dump", argv[i]))
-		check_number_for_flag(argv, argc, i);
+	if (vm->argv[i][0] != '-')
+		input_error(vm->argv[i], 3);
+	if (!ft_strcmp("-n", vm->argv[i]))
+	{
+		check_number_for_flag(vm, i);
+		if (NO_CHAMP_AFTER_N_FLAG)
+			input_error(vm->argv[i], 5);
+	}
+	else if (!ft_strcmp("-dump", vm->argv[i]))
+		check_number_for_flag(vm, i);
 	else
-		input_error(argv[i], 1);
+		input_error(vm->argv[i], 1);
 	return (1);
 }
 
-void		check_arguments(int argc, char **argv)
+void		check_duplicate_n_flags(t_vm *vm)
+{
+	int			i;
+	int			j;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (vm->n_flag[i] > vm->champion_count)
+			input_error("-n", 6);
+		j = 0;
+		while (j < 4)
+		{
+			if (vm->n_flag[j] == vm->n_flag[i] &&
+							vm->n_flag[i] > 0 && i != j)
+				input_error("-n", 7);
+			j++;
+		}
+		i++;
+	}
+	return ;
+}
+
+void		check_arguments(t_vm *vm)
 {
 	int				i;
-	int				champion_count;
 
 	i = 1;
-	champion_count = 0;
-	if (argc == 1)
+	if (vm->argc == 1)
 		display_help();
-	while (i < argc)
+	while (i < vm->argc)
 	{
-		if (!ft_strcmp("-help", argv[i]))
+		if (!ft_strcmp("-help", vm->argv[i]))
 			display_help();
-		else if (check_for_champion(argv[i]))
-			champion_count++;
-		else if (check_for_flag(argv, argc, i))
+		else if (check_for_champion(vm->argv[i]))
+			vm->champion_count++;
+		else if (check_for_flag(vm, i))
 			i++;
 		i++;
 	}
-	if (champion_count > 4)
+	check_duplicate_n_flags(vm);
+	if (vm->champion_count > 4)
+		input_error(NULL, 2);
+	if (!vm->champion_count)
 		input_error(NULL, 2);
 	return ;
 }

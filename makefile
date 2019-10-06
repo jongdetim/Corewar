@@ -12,7 +12,7 @@
 
 CW_NAME =		corewar
 
-CW_FILES =		corewar input_check
+CW_FILES =		corewar input_check error init_champion
 
 CW_SRC =		$(CW_FILES:%=%.c)
 
