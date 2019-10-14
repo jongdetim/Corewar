@@ -1,19 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    makefile                                           :+:    :+:             #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/04 13:29:01 by jheeresm       #+#    #+#                 #
-#    Updated: 2019/10/14 17:27:38 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/10/14 18:53:39 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CW_NAME =		corewar
 
 CW_FILES =		corewar input_check error init_champion exec_cursor read_operation \
-				save_arguments init_cursors load_champs endianness
+				save_arguments init_cursors load_champs endianness dump
 
 CW_SRC =		$(CW_FILES:%=%.c)
 

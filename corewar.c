@@ -86,18 +86,99 @@ void		init_vm(t_vm *vm, int argc, char **argv)
 	return ;
 }
 
+/*
+** DECREASE_CYCLES_TO_DIE
+** If the amount of lives exected is >= 21. We decrease cycles to die by 50.
+** Everytime the amount of lives is < 21, we increment check by 1.
+** If check = 10, we decrease cycles to die by 50 and set check back to 0.
+** If after decreasing cycles to die, it becomes less than 0, we set it to 1.
+** This means there will be just 1 cycle before death.
+*/
+
+void		decrease_cycles_to_die(t_game *game, int *cycles)
+{
+	if (game->nbr_live >= NBR_LIVE)
+		game->cycles_to_die -= CYCLE_DELTA;
+	else
+	{
+		if (game->check == 10)
+		{
+			game->cycles_to_die -= CYCLE_DELTA;
+			game->check = 0;
+		}
+		game->check += 1;
+	}
+	if (game->cycles_to_die < 0)
+		game->cycles_to_die = 1;
+	*cycles = game->cycles_to_die;
+	return ;
+}
+
+void		check_dead_cursor_or_players(t_vm *vm)
+{
+	int			i;
+	t_cursor 	*cursor;
+
+	i = 0;
+	cursor = vm->cursors;
+	while (i < vm->champion_count)
+	{
+		if (vm->champions[i].last_live <= vm->game.cycles - vm->game.cycles_to_die)
+			vm->champions[i].last_live = -1;
+		i++;
+	}
+	while (cursor)
+	{
+		if (cursor->last_live <= vm->game.cycles - vm->game.cycles_to_die)
+			cursor->last_live = -1;
+		cursor = cursor->next;
+	}
+	return ;
+}
+
+int			alive_champ_and_cursor(t_vm *vm)
+{
+	int			i;
+	int			champ;
+	int			n_cursor;
+	t_cursor	*cursor;
+
+	i = 0;
+	n_cursor = 0;
+	champ = 0;
+	cursor = vm->cursors;
+	while (i < vm->champion_count)
+	{
+		if (vm->champions[i].last_live != -1)
+			champ += 1;
+		i++;
+	}
+	while (cursor)
+	{
+		if (cursor->last_live > vm->game.cycles - vm->game.cycles_to_die)
+			n_cursor += 1;
+		cursor = cursor->next;
+	}
+	if (!champ || !n_cursor)
+		return (0);
+	return (1);
+}
+
 void		game(t_vm *vm, t_game *game)
 {
-	while (game->cycles_to_die)
+	int			cycles_to_die;
+
+	cycles_to_die = game->cycles_to_die;
+	while (cycles_to_die && dump_check(*vm) && alive_champ_and_cursor(vm))
 	{
 		exec_cursor_list(vm, vm->cursors);
-		game->cycles_to_die -= 1;
-		if (game->cycles_to_die == 0)
+		cycles_to_die -= 1;
+		game->cycles += 1;
+		if (cycles_to_die == 0)
 		{
-			ft_printf("we'll be doing the check for dead cursors and players\n");
-			ft_printf("we also do the check if cycles to die need to be decreased\n");
+			check_dead_cursor_or_players(vm);
+			decrease_cycles_to_die(game, &cycles_to_die);
 		}
-		
 	}
 	return ;
 }
@@ -117,12 +198,9 @@ int			main(int argc, char **argv)
 		ft_printf("id = %d, filename = %s\n", vm.champions[i].id, vm.champions[i].filename);
 		i++;
 	}
-	while (vm.cursors)
-	{
-		ft_printf("id = %d, starting position = %d\n", vm.cursors->id, vm.cursors->position);
-		vm.cursors = vm.cursors->next;
-	}
 	game(&vm, &vm.game);
+	if (dump_check(vm))
+		dump(vm.memory);
 	// while (1)
 	// {
 	// 	exec_cursor(&vm, cursor);

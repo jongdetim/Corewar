@@ -49,7 +49,7 @@ void		check_number_for_flag(t_vm *vm, int i)
 	}
 	if (!ft_strcmp("-dump", vm->argv[i]))
 		vm->dump_flag = ft_atoi(vm->argv[i + 1]);
-	if (vm->dump_flag > INT32_MAX || vm->dump_flag < 0)
+	if (!ft_isint(vm->argv[i + 1], -1) || vm->dump_flag < 0)
 		input_error(vm->argv[i], 4);
 	return ;
 }

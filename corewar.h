@@ -43,6 +43,7 @@ typedef struct 		s_champion
 	char			*comment;
 	int				id;
 	int				size;
+	int				last_live;
 }					t_champion;
 
 typedef struct 		s_operation
@@ -124,6 +125,13 @@ short				reverse16(short value);
 int					reverse32(int value);
 
 int					save_arguments(t_vm *vm, t_cursor *cursor);
+
+/*
+** dump.c
+*/
+int					dump_check(t_vm vm);
+void				dump(unsigned char *mem);
+
 #endif
 
 
