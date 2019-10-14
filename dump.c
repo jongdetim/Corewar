@@ -29,9 +29,9 @@ void		dump(unsigned char *mem)
 	while (i < MEM_SIZE)
 	{
 		ft_printf("%02X", mem[i]);
-		if ((i + 1) % 8 == 0)
+		if ((i + 1) % 16 == 0)
 			ft_putstr(" #\n# ");
-		else if ((i + 1) % 4 == 0)
+		else if ((i + 1) % 8 == 0)
 			ft_putchar('	');
 		else
 			ft_putchar(' ');
