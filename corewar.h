@@ -42,7 +42,7 @@ typedef struct 		s_champion
 	char			*name;
 	char			*comment;
 	int				id;
-	char			*exec;
+	int				size;
 }					t_champion;
 
 typedef struct 		s_operation
@@ -119,6 +119,9 @@ void				exec_cursor_list(t_vm *vm, t_cursor *cursor);
 */
 int					read_operation(t_vm *vm, t_cursor *cursor);
 
+void				load_champs(t_vm *vm);
+short				reverse16(short value);
+int					reverse32(int value);
 
 int					save_arguments(t_vm *vm, t_cursor *cursor);
 #endif

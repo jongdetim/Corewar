@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   corewar.c                     	                    :+:    :+:            */
+/*   corewar.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/07/21 12:25:51 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/07/21 12:25:52 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
+/*   Updated: 2019/10/14 17:18:48 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,8 @@ int			main(int argc, char **argv)
 	init_vm(&vm, argc, argv);
 	check_argv(&vm);
 	init_champions(&vm);
+	load_champs(&vm);
 	init_cursors(&vm);
-	vm.memory[0] = 2;
-	vm.memory[1] = 144;
-	vm.memory[2] = 0x20;
-	vm.memory[3] = 0x2;
-	vm.memory[4] = 0x0;
-	vm.memory[5] = 0x2;
-	vm.memory[6] = 0x2;
 	int i = 0;
 	while (i < vm.champion_count)
 	{
