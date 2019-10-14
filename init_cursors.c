@@ -20,6 +20,9 @@
 
 void		initialize_reg_and_operation(t_cursor *cursor)
 {
+	int			i;
+
+	i = 1;
 	cursor->operation.arg[0] = 0;
 	cursor->operation.arg[1] = 0;
 	cursor->operation.arg[2] = 0;
@@ -28,21 +31,11 @@ void		initialize_reg_and_operation(t_cursor *cursor)
 	cursor->operation.check[2] = 0;
 	cursor->operation.check[3] = 0;
 	cursor->reg[0] = cursor->id;
-	cursor->reg[1] = 0;
-	cursor->reg[2] = 0;
-	cursor->reg[3] = 0;
-	cursor->reg[4] = 0;
-	cursor->reg[5] = 0;
-	cursor->reg[6] = 0;
-	cursor->reg[7] = 0;
-	cursor->reg[8] = 0;
-	cursor->reg[9] = 0;
-	cursor->reg[10] = 0;
-	cursor->reg[11] = 0;
-	cursor->reg[12] = 0;
-	cursor->reg[13] = 0;
-	cursor->reg[14] = 0;
-	cursor->reg[15] = 0;
+	while (i < REG_NUMBER)
+	{
+		cursor->reg[i] = 0l;
+		i++;
+	}
 	return ;
 }
 

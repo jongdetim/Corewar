@@ -81,6 +81,7 @@ void		init_vm(t_vm *vm, int argc, char **argv)
 	vm->game.check = 0;
 	vm->game.cycles_to_die = CYCLE_TO_DIE;
 	vm->game.nbr_live = 0;
+	vm->game.last_alive_champ = 0;
 	init_wait_cycles(vm);
 	init_t_dir_and_n_flag(vm);
 	return ;

@@ -60,7 +60,7 @@ typedef struct 		s_cursor
 	int				last_live;
 	int				wait_cycles;
 	int				position;
-	int				reg[16];
+	int				reg[REG_NUMBER];
 	t_operation		operation;
 	void			*next;
 }					t_cursor;
@@ -71,6 +71,7 @@ typedef struct 		s_game
 	int				cycles_to_die;
 	int				check;
 	int				nbr_live;
+	int				last_alive_champ;
 }					t_game;
 
 typedef struct 		s_vm
