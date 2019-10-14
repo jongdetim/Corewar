@@ -166,5 +166,6 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_strcount(const char *s, char c);
 void				ft_lstprintelemsizes(t_list *lst);
+int					ft_isint(char *s, int len);
 
 #endif

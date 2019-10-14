@@ -28,7 +28,7 @@ SOURCES =	atoi bzero digcount isalnum isalpha isascii isdigit isprint \
 			putllnbr putullnbr ftoa strtoupper getnum chararrfree abs sqrt \
 			power pythagoras printf conv_csp conv_di conv_u conv_o conv_x \
 			conv_prcnt conv_f conv_x2 conv_o2 conv_di2 parsing dispatcher \
-			hashing primes error get_substr
+			hashing primes error get_substr isint
 
 CFILE =		$(SOURCES:%=ft_%.c)
 

@@ -42,7 +42,7 @@ typedef struct 		s_champion
 	char			*name;
 	char			*comment;
 	int				id;
-	char			*exec;
+	int				size;
 	int				last_live;
 }					t_champion;
 
@@ -121,8 +121,18 @@ void				exec_cursor_list(t_vm *vm, t_cursor *cursor);
 */
 int					read_operation(t_vm *vm, t_cursor *cursor);
 
+void				load_champs(t_vm *vm);
+short				reverse16(short value);
+int					reverse32(int value);
 
 int					save_arguments(t_vm *vm, t_cursor *cursor);
+
+/*
+** dump.c
+*/
+int					dump_check(t_vm vm);
+void				dump(unsigned char *mem);
+
 #endif
 
 

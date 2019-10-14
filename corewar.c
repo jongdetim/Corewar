@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   corewar.c                     	                    :+:    :+:            */
+/*   corewar.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/07/21 12:25:51 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/07/21 12:25:52 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
+/*   Updated: 2019/10/14 17:18:48 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void		game(t_vm *vm, t_game *game)
 	int			cycles_to_die;
 
 	cycles_to_die = game->cycles_to_die;
-	while (cycles_to_die && alive_champ_and_cursor(vm))
+	while (cycles_to_die && dump_check(*vm) && alive_champ_and_cursor(vm))
 	{
 		exec_cursor_list(vm, vm->cursors);
 		cycles_to_die -= 1;
@@ -180,7 +180,6 @@ void		game(t_vm *vm, t_game *game)
 			check_dead_cursor_or_players(vm);
 			decrease_cycles_to_die(game, &cycles_to_die);
 		}
-		
 	}
 	return ;
 }
@@ -192,14 +191,8 @@ int			main(int argc, char **argv)
 	init_vm(&vm, argc, argv);
 	check_argv(&vm);
 	init_champions(&vm);
+	load_champs(&vm);
 	init_cursors(&vm);
-	vm.memory[0] = 2;
-	vm.memory[1] = 144;
-	vm.memory[2] = 0x20;
-	vm.memory[3] = 0x2;
-	vm.memory[4] = 0x0;
-	vm.memory[5] = 0x2;
-	vm.memory[6] = 0x2;
 	int i = 0;
 	while (i < vm.champion_count)
 	{
@@ -207,6 +200,8 @@ int			main(int argc, char **argv)
 		i++;
 	}
 	game(&vm, &vm.game);
+	if (dump_check(vm))
+		dump(vm.memory);
 	// while (1)
 	// {
 	// 	exec_cursor(&vm, cursor);
