@@ -169,7 +169,7 @@ void		game(t_vm *vm, t_game *game)
 	int			cycles_to_die;
 
 	cycles_to_die = game->cycles_to_die;
-	while (cycles_to_die && alive_champ_and_cursor(vm))
+	while (cycles_to_die && dump_check(*vm) && alive_champ_and_cursor(vm))
 	{
 		exec_cursor_list(vm, vm->cursors);
 		cycles_to_die -= 1;
@@ -179,7 +179,6 @@ void		game(t_vm *vm, t_game *game)
 			check_dead_cursor_or_players(vm);
 			decrease_cycles_to_die(game, &cycles_to_die);
 		}
-		
 	}
 	return ;
 }
@@ -206,6 +205,8 @@ int			main(int argc, char **argv)
 		i++;
 	}
 	game(&vm, &vm.game);
+	if (dump_check(vm))
+		dump(vm.memory);
 	// while (1)
 	// {
 	// 	exec_cursor(&vm, cursor);

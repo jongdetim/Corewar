@@ -122,6 +122,13 @@ int					read_operation(t_vm *vm, t_cursor *cursor);
 
 
 int					save_arguments(t_vm *vm, t_cursor *cursor);
+
+/*
+** dump.c
+*/
+int					dump_check(t_vm vm);
+void				dump(unsigned char *mem);
+
 #endif
 
 
