@@ -94,13 +94,11 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 	{
 		if (read_operation(vm, cursor))
 		{
-			// We should exec oper here.
 			ft_printf("exec operation\n");
 			ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", cursor->operation.arg[0], cursor->operation.arg[1], cursor->operation.arg[2]);
 		}
 		else
 			ft_printf("operation, encoding byte or arguments were incorrect\n");
-		//exec_operation(vm, cursor);
 		move_to_next_operation(vm, cursor);
 		cursor->opcode = 0;
 	}
@@ -109,15 +107,16 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 
 /*
 ** EXEC_CURSOR_LIST
-** This function will loop through linked list of cursor and call exec_cursor for all of them.
-** That is all it does.
+** This function will loop through linked list of cursor every cycle.
+** If a cursor's last_live is not -1 (this means it's dead), it will go to exec_cursor.
 */
 
 void		exec_cursor_list(t_vm *vm, t_cursor *cursor)
 {
 	while (cursor)
 	{
-		exec_cursor(vm, cursor);
+		if (cursor->last_live != -1)
+			exec_cursor(vm, cursor);
 		cursor = cursor->next; 
 	}
 	return ;

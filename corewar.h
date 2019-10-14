@@ -43,6 +43,7 @@ typedef struct 		s_champion
 	char			*comment;
 	int				id;
 	char			*exec;
+	int				last_live;
 }					t_champion;
 
 typedef struct 		s_operation
