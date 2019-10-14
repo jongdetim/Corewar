@@ -36,7 +36,7 @@ void		give_champion_n_flag_id(t_vm *vm, int id)
 		if (vm->argv[i] && vm->argv[i][0] - '0' == id)
 		{
 			vm->champions[id - 1].filename = ft_strdup(vm->argv[i + 1]);
-			vm->champions[id - 1].id = id;
+			vm->champions[id - 1].id = -id;
 			vm->argv[i + 1] = NULL;
 			return ;
 		}
@@ -55,7 +55,7 @@ void		give_champion_id(t_vm *vm, int id)
 		if (vm->argv[i] && ft_strstr(vm->argv[i], ".cor"))
 		{
 			vm->champions[id - 1].filename = ft_strdup(vm->argv[i]);
-			vm->champions[id - 1].id = id;
+			vm->champions[id - 1].id = -id;
 			vm->argv[i] = NULL;
 			return ;
 		}
@@ -67,17 +67,19 @@ void		give_champion_id(t_vm *vm, int id)
 void		give_champion_id_and_set_filename(t_vm *vm)
 {
 	int			i;
-	int			id;
 
 	i = 0;
-	id = 1;
 	while (i < vm->champion_count)
 	{
-		if (check_n_flag_for_id(vm, id))
-			give_champion_n_flag_id(vm , id);
-		else
-			give_champion_id(vm , id);
-		id++;
+		if (check_n_flag_for_id(vm, i + 1))
+			give_champion_n_flag_id(vm , i+ 1);
+		i++;
+	}
+	i = 0;
+	while (i < vm->champion_count)
+	{
+		if (!check_n_flag_for_id(vm, i + 1))
+			give_champion_id(vm , i + 1);
 		i++;
 	}
 	return ;
@@ -85,7 +87,7 @@ void		give_champion_id_and_set_filename(t_vm *vm)
 
 void		init_champions(t_vm *vm)
 {
-	vm->champions = malloc(sizeof(t_champion) * vm->champion_count);
+	vm->champions = ft_memalloc(sizeof(t_champion) * vm->champion_count);
 	give_champion_id_and_set_filename(vm);
 	return ;
 }

@@ -43,10 +43,14 @@ void		check_number_for_flag(t_vm *vm, int i)
 	if (!ft_strcmp("-n", vm->argv[i]))
 	{
 		vm->n_flag[n_flag] = ft_atoi(vm->argv[i + 1]);
-		if (vm->n_flag[n_flag] < 1 || vm->n_flag[n_flag] > 4)
+		if (!(vm->n_flag[n_flag] >= 1 || vm->n_flag[n_flag] <= 4))
 			input_error(vm->argv[i], 4);
 		n_flag++;
 	}
+	if (!ft_strcmp("-dump", vm->argv[i]))
+		vm->dump_flag = ft_atoi(vm->argv[i + 1]);
+	if (vm->dump_flag > INT32_MAX || vm->dump_flag < 0)
+		input_error(vm->argv[i], 4);
 	return ;
 }
 
@@ -69,6 +73,12 @@ int			check_for_flag(t_vm *vm, int i)
 		input_error(vm->argv[i], 1);
 	return (1);
 }
+
+/*
+** CHECK_DUPLICATE_N_FLAGS
+** 
+**
+*/
 
 void		check_duplicate_n_flags(t_vm *vm)
 {
@@ -93,7 +103,7 @@ void		check_duplicate_n_flags(t_vm *vm)
 	return ;
 }
 
-void		check_arguments(t_vm *vm)
+void		check_argv(t_vm *vm)
 {
 	int				i;
 
