@@ -79,10 +79,26 @@ void		init_vm(t_vm *vm, int argc, char **argv)
 	vm->cursors = NULL;
 	vm->game.cycles = 0;
 	vm->game.check = 0;
-	vm->game.cycles_to_die = 0;
+	vm->game.cycles_to_die = CYCLE_TO_DIE;
 	vm->game.nbr_live = 0;
 	init_wait_cycles(vm);
 	init_t_dir_and_n_flag(vm);
+	return ;
+}
+
+void		game(t_vm *vm, t_game *game)
+{
+	while (game->cycles_to_die)
+	{
+		exec_cursor_list(vm, vm->cursors);
+		game->cycles_to_die -= 1;
+		if (game->cycles_to_die == 0)
+		{
+			ft_printf("we'll be doing the check for dead cursors and players\n");
+			ft_printf("we also do the check if cycles to die need to be decreased\n");
+		}
+		
+	}
 	return ;
 }
 
@@ -112,6 +128,7 @@ int			main(int argc, char **argv)
 		ft_printf("id = %d, starting position = %d\n", vm.cursors->id, vm.cursors->position);
 		vm.cursors = vm.cursors->next;
 	}
+	game(&vm, &vm.game);
 	// while (1)
 	// {
 	// 	exec_cursor(&vm, cursor);

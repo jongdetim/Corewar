@@ -106,6 +106,7 @@ void				init_champions(t_vm *vm);
 /*
 ** init_cursor.c
 */
+int					calc_starting_position(t_vm *vm, int player_id);
 void				init_cursors(t_vm *vm);
 
 /*

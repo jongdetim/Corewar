@@ -72,13 +72,12 @@ t_cursor	*malloc_cursor(int player_id)
 ** This functions calculates the starting position. The calculation is from the cookbook.
 */
 
-void		set_starting_position(t_vm *vm, t_cursor *cursor)
+int		calc_starting_position(t_vm *vm, int player_id)
 {
 	int			divided_memory;
 
 	divided_memory = MEM_SIZE / vm->champion_count;
-	cursor->position = divided_memory * (abs(cursor->id) - 1);
-	return ;
+	return (divided_memory * (abs(player_id) - 1));
 }
 
 /*
@@ -117,7 +116,7 @@ void		init_cursors(t_vm *vm)
 	while (i < vm->champion_count)
 	{
 		new_cursor = malloc_cursor(vm->champions[i].id);
-		set_starting_position(vm, new_cursor);
+		new_cursor->position = calc_starting_position(vm, new_cursor->id);
 		add_to_cursor_list(vm, new_cursor);
 		i++;
 	}
