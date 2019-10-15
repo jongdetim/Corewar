@@ -204,12 +204,5 @@ int			main(int argc, char **argv)
 	game(&vm, &vm.game);
 	if (dump_check(vm))
 		dump_flag(vm.memory);
-	// while (1)
-	// {
-	// 	exec_cursor(&vm, cursor);
-	// 	if (cursor->wait_cycles == 0)
-	// 		break ;
-	// }
-	// exec_cursor(&vm, cursor);
 	return (1);
 }
