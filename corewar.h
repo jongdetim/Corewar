@@ -108,6 +108,7 @@ void				init_champions(t_vm *vm);
 /*
 ** init_cursor.c
 */
+void				add_to_cursor_list(t_vm *vm, t_cursor *new);
 int					calc_starting_position(t_vm *vm, int player_id);
 void				init_cursors(t_vm *vm);
 
@@ -134,6 +135,13 @@ int					save_arguments(t_vm *vm, t_cursor *cursor);
 int					dump_check(t_vm vm);
 void				dump_flag(unsigned char *mem);
 
+/*
+** operations
+*/
+void				copy_cursor_variables(t_cursor *cursor, t_cursor *fork);
+t_cursor			*duplicate_cursor(t_cursor *cursor, int position);
+void				forkk(t_vm *vm, t_cursor *cursor);
+void				lfork(t_vm *vm, t_cursor *cursor);
 #endif
 
 

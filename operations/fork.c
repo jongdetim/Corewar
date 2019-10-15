@@ -42,13 +42,14 @@ t_cursor		*duplicate_cursor(t_cursor *cursor, int position)
 	return (fork);
 }
 
-void			fork(t_vm *vm, t_cursor *cursor)
+void			forkk(t_vm *vm, t_cursor *cursor)
 {
 	t_cursor		*fork;
 	int				position;
 
 	position = (cursor->operation.arg[0] % IDX_MOD) + cursor->position;
 	fork = duplicate_cursor(cursor, position);
+	printf("fork pos = %d\n", fork->position);
 	add_to_cursor_list(vm, fork);
 	return ;
 }

@@ -106,8 +106,11 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 	{
 		if (read_operation(vm, cursor))
 		{
-			ft_printf("exec operation = [%d]\n", cursor->opcode);
-			ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", cursor->operation.arg[0], cursor->operation.arg[1], cursor->operation.arg[2]);
+			if (cursor->opcode == 12)
+				forkk(vm, cursor);
+
+			//ft_printf("exec operation = [%d]\n", cursor->opcode);
+			//ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", cursor->operation.arg[0], cursor->operation.arg[1], cursor->operation.arg[2]);
 		}
 		else
 			ft_printf("operation, encoding byte or arguments were incorrect\n");
@@ -128,6 +131,7 @@ void		exec_cursor_list(t_vm *vm, t_cursor *cursor)
 {
 	while (cursor)
 	{
+		printf("cursor_id = %d, position = %d\n", cursor->id, cursor->position);
 		if (cursor->last_live != -1)
 			exec_cursor(vm, cursor);
 		cursor = cursor->next; 
