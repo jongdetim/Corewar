@@ -47,7 +47,10 @@ void			forkk(t_vm *vm, t_cursor *cursor)
 	t_cursor		*fork;
 	int				position;
 
+	printf("argument = %d\n", cursor->operation.arg[0]);
+	printf("idx_modded = %d\n", cursor->operation.arg[0] % IDX_MOD);
 	position = (cursor->operation.arg[0] % IDX_MOD) + cursor->position;
+	position = modulo(position, MEM_SIZE);
 	fork = duplicate_cursor(cursor, position);
 	printf("fork pos = %d\n", fork->position);
 	add_to_cursor_list(vm, fork);

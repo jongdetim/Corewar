@@ -126,6 +126,7 @@ int					read_operation(t_vm *vm, t_cursor *cursor);
 void				load_champs(t_vm *vm);
 short				reverse16(short value);
 int					reverse32(int value);
+int					modulo(int a, int b);
 
 int					save_arguments(t_vm *vm, t_cursor *cursor);
 
@@ -142,6 +143,7 @@ void				copy_cursor_variables(t_cursor *cursor, t_cursor *fork);
 t_cursor			*duplicate_cursor(t_cursor *cursor, int position);
 void				forkk(t_vm *vm, t_cursor *cursor);
 void				lfork(t_vm *vm, t_cursor *cursor);
+void				zjmp(t_cursor *cursor);
 #endif
 
 

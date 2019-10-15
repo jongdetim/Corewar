@@ -13,7 +13,8 @@
 CW_NAME =		corewar
 
 CW_FILES =		main check_arguments input_error init_champion exec_cursor_list read_operation \
-				save_arguments init_cursors load_champs endianness dump_flag operations/fork
+				save_arguments init_cursors load_champs endianness dump_flag operations/fork \
+				operations/lfork operations/zjmp
 
 CW_SRC =		$(CW_FILES:%=%.c)
 
