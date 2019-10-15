@@ -14,15 +14,19 @@
 
 int			check_for_champion(char *arg)
 {
-	char 		*temp;
+	int			i;
 
-	temp = arg;
-	while (*arg && *arg != '.')
-		arg++;
-	if (*arg != '.')
+	i = 0;
+	while (arg[i])
+	{
+		if (arg[i] == '.' && arg[i + 1] == 'c')
+			break ;
+		i++;
+	}
+	if (arg[i] != '.')
 		return (0);
-	if (*arg == '.' && ft_strncmp(arg, ".cor", 4))
-		input_error(temp, 0);
+	if (arg[i] == '.' && ft_strncmp(arg + i, ".cor", 4))
+		input_error(arg, 0);
 	return (1);
 }
 
@@ -103,7 +107,7 @@ void		check_duplicate_n_flags(t_vm *vm)
 	return ;
 }
 
-void		check_argv(t_vm *vm)
+void		check_arguments(t_vm *vm)
 {
 	int				i;
 

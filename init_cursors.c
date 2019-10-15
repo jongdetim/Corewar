@@ -23,17 +23,11 @@ void		initialize_reg_and_operation(t_cursor *cursor)
 	int			i;
 
 	i = 1;
-	cursor->operation.arg[0] = 0;
-	cursor->operation.arg[1] = 0;
-	cursor->operation.arg[2] = 0;
-	cursor->operation.check[0] = 0;
-	cursor->operation.check[1] = 0;
-	cursor->operation.check[2] = 0;
-	cursor->operation.check[3] = 0;
+	reset_operation(cursor);
 	cursor->reg[0] = cursor->id;
 	while (i < REG_NUMBER)
 	{
-		cursor->reg[i] = 0l;
+		cursor->reg[i] = 0;
 		i++;
 	}
 	return ;

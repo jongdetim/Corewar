@@ -20,7 +20,7 @@
 
 # define CHECK_LIVE(x) (x[0] == 2 && !x[1] && !x[2])
 # define CHECK_LD(x) (x[0] > 1 && x[1] == 1 && !x[2])
-# define CHECK_ST(x) (x[0] == 1 && (x[1] == 1 || x[1] == 3) && !x)
+# define CHECK_ST(x) (x[0] == 1 && (x[1] == 2 || x[1] == 3) && !x[2])
 # define CHECK_ADD(x) (x[0] == 1 && x[1] == 1 && x[2] == 1)
 # define CHECK_SUB(x) (x[0] == 1 && x[1] == 1 && x[2] == 1)
 # define CHECK_AND(x) (x[0] > 0 && x[1] > 0 && x[2] == 1)
@@ -114,6 +114,7 @@ void				init_cursors(t_vm *vm);
 /*
 ** exec_cursor.c
 */
+void				reset_operation(t_cursor *cursor);
 void				exec_cursor_list(t_vm *vm, t_cursor *cursor);
 
 /*

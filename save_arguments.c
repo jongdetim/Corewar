@@ -57,7 +57,8 @@ int			get_readsize(t_vm *vm, t_cursor *cursor, int n_arg)
 int			get_value_of_arg(t_vm *vm, int pos, int read_size)
 {
 	int				i;
-	unsigned int	value;
+	signed int		value;
+	signed short	shorty;
 
 	i = 0;
 	value = 0;
@@ -65,8 +66,8 @@ int			get_value_of_arg(t_vm *vm, int pos, int read_size)
 		value = vm->memory[pos];
 	if (read_size == 2)
 	{
-		value = (vm->memory[pos] << 8 | vm->memory[pos + 1]);
-		return (value);
+		shorty = (vm->memory[pos] << 8 | vm->memory[pos + 1]);
+		return ((int)shorty);
 	}
 	if (read_size == 4)
 		value = vm->memory[pos] << 24 | vm->memory[pos + 1] << 16 |

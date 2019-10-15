@@ -73,7 +73,7 @@ void		init_vm(t_vm *vm, int argc, char **argv)
 	vm->memory = malloc(sizeof(unsigned char) * MEM_SIZE + 1);
 	vm->champion_count = 0;
 	vm->champions = NULL;
-	vm->dump_flag = 0;
+	vm->dump_flag = -1;
 	vm->argc = argc;
 	vm->argv = argv;
 	vm->cursors = NULL;
@@ -170,11 +170,13 @@ void		game(t_vm *vm, t_game *game)
 	int			cycles_to_die;
 
 	cycles_to_die = game->cycles_to_die;
-	while (cycles_to_die && dump_check(*vm) && alive_champ_and_cursor(vm))
+	while (cycles_to_die && !dump_check(*vm) && alive_champ_and_cursor(vm))
 	{
 		exec_cursor_list(vm, vm->cursors);
 		cycles_to_die -= 1;
 		game->cycles += 1;
+		if (vm->dump_flag > 0)
+			vm->dump_flag -= 1;
 		if (cycles_to_die == 0)
 		{
 			check_dead_cursor_or_players(vm);
@@ -189,7 +191,7 @@ int			main(int argc, char **argv)
 	t_vm		vm;
 
 	init_vm(&vm, argc, argv);
-	check_argv(&vm);
+	check_arguments(&vm);
 	init_champions(&vm);
 	load_champs(&vm);
 	init_cursors(&vm);

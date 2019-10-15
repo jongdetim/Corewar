@@ -14,10 +14,10 @@
 
 int			dump_check(t_vm vm)
 {
-	if (vm.dump_flag == 0 || vm.game.cycles < vm.dump_flag)
-		return (0);
-	else
+	if (vm.dump_flag == 0)
 		return (1);
+	else
+		return (0);
 }
 
 void		dump(unsigned char *mem)
@@ -25,16 +25,15 @@ void		dump(unsigned char *mem)
 	int i;
 
 	i = 0;
-	ft_putstr("# ");
+	ft_printf("0x0000 : ");
 	while (i < MEM_SIZE)
 	{
-		ft_printf("%02X", mem[i]);
-		if ((i + 1) % 16 == 0)
-			ft_putstr(" #\n# ");
-		else if ((i + 1) % 8 == 0)
-			ft_putchar('	');
-		else
-			ft_putchar(' ');
+		ft_printf("%02x ", mem[i]);
+		if ((i + 1) % 32 == 0 && i + 1 != MEM_SIZE)
+		{
+			ft_putstr("\n");
+			ft_printf("%#.4x : ", i);
+		}
 		i++;
 	}
 	ft_putchar('\n');
