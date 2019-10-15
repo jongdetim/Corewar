@@ -106,7 +106,9 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 	{
 		if (read_operation(vm, cursor))
 		{
-			if (cursor->opcode == 4)
+			if (cursor->opcode == 2)
+				ld_op(vm, cursor);
+			else if (cursor->opcode == 4)
 				add_op(cursor);
 			else if (cursor->opcode == 5)
 				sub_op(cursor);
