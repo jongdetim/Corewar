@@ -42,7 +42,7 @@ t_cursor		*duplicate_cursor(t_cursor *cursor, int position)
 	return (fork);
 }
 
-void			forkk(t_vm *vm, t_cursor *cursor)
+void			fork(t_vm *vm, t_cursor *cursor)
 {
 	t_cursor		*fork;
 	int				position;
