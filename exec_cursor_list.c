@@ -119,9 +119,7 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 			else if (cursor->opcode == 8)
 				xor_op(cursor);
 			else if (cursor->opcode == 12)
-				forkk(vm, cursor);
-			else if (cursor->opcode == 12)
-				forkk(vm, cursor);
+				fork_op(vm, cursor);
 
 			//ft_printf("exec operation = [%d]\n", cursor->opcode);
 			//ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", cursor->operation.arg[0], cursor->operation.arg[1], cursor->operation.arg[2]);

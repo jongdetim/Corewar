@@ -12,12 +12,13 @@
 
 #include "../corewar.h"
 
-void		lfork(t_vm *vm, t_cursor *cursor)
+void		lfork_op(t_vm *vm, t_cursor *cursor)
 {
 	t_cursor		*fork;
 	int				position;
 
-	position = (cursor->operation.arg[0] % MEM_SIZE) + cursor->position;
+	position = cursor->operation.arg[0] + cursor->position;
+	position = modulo(position, MEM_SIZE);
 	fork = duplicate_cursor(cursor, position);
 	add_to_cursor_list(vm, fork);
 	return ;
