@@ -11,3 +11,13 @@
 /* ************************************************************************** */
 
 #include "../corewar.h"
+
+void			or_op(t_cursor *cursor)
+{
+	cursor->reg[cursor->operation.arg[2]] =
+	cursor->operation.arg[0] | cursor->operation.arg[1];
+	if (cursor->reg[cursor->operation.arg[2]] == 0)
+		cursor->carry = 1;
+	else
+		cursor->carry = 0;
+}

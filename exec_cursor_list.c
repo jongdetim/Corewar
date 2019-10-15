@@ -106,7 +106,19 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 	{
 		if (read_operation(vm, cursor))
 		{
-			if (cursor->opcode == 12)
+			if (cursor->opcode == 4)
+				add_op(cursor);
+			else if (cursor->opcode == 5)
+				sub_op(cursor);
+			else if (cursor->opcode == 6)
+				and_op(cursor);
+			else if (cursor->opcode == 7)
+				or_op(cursor);
+			else if (cursor->opcode == 8)
+				xor_op(cursor);
+			else if (cursor->opcode == 12)
+				forkk(vm, cursor);
+			else if (cursor->opcode == 12)
 				forkk(vm, cursor);
 
 			//ft_printf("exec operation = [%d]\n", cursor->opcode);
