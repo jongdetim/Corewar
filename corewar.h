@@ -143,16 +143,11 @@ void				copy_cursor_variables(t_cursor *cursor, t_cursor *fork);
 t_cursor			*duplicate_cursor(t_cursor *cursor, int position);
 void				forkk(t_vm *vm, t_cursor *cursor);
 void				lfork(t_vm *vm, t_cursor *cursor);
-<<<<<<< HEAD
 void				add_op(t_cursor *cursor);
 void				sub_op(t_cursor *cursor);
 void				and_op(t_cursor *cursor);
 void				or_op(t_cursor *cursor);
 void				xor_op(t_cursor *cursor);
-=======
 void				zjmp(t_cursor *cursor);
-#endif
-
->>>>>>> c24b48038a8c832185119f9b670ae1ac8f125ea4
 
 #endif
