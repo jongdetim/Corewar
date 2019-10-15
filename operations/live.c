@@ -21,6 +21,8 @@
 ** 2. If cursor's r1 == Argument1, set player and cursor as last reported alive.
 */
 
+//wasn't tested!
+
 void    live(t_vm *vm, t_cursor *cursor)
 {
     int i;
