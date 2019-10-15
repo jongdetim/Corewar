@@ -32,7 +32,7 @@ int			set_opcode(t_vm *vm, t_cursor *cursor)
 	{
 		cursor->opcode = opcode;
 		cursor->wait_cycles = 0;
-		cursor->position += 1;
+		cursor->position = modulo(cursor->position + 1, MEM_SIZE);
 		return (0);
 	}
 	cursor->opcode = opcode;
@@ -84,7 +84,7 @@ void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
 		}
 		i++;
 	}
-	cursor->position += jump;
+	cursor->position = modulo(cursor->position + jump, MEM_SIZE);
 	return ;
 }
 
@@ -106,8 +106,25 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 	{
 		if (read_operation(vm, cursor))
 		{
-			ft_printf("exec operation = [%d]\n", cursor->opcode);
-			ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", cursor->operation.arg[0], cursor->operation.arg[1], cursor->operation.arg[2]);
+			if (cursor->opcode == 2)
+				ld_op(vm, cursor);
+			else if (cursor->opcode == 4)
+				add_op(cursor);
+			else if (cursor->opcode == 5)
+				sub_op(cursor);
+			else if (cursor->opcode == 6)
+				and_op(cursor);
+			else if (cursor->opcode == 7)
+				or_op(cursor);
+			else if (cursor->opcode == 8)
+				xor_op(cursor);
+			else if (cursor->opcode == 12)
+				forkk(vm, cursor);
+			else if (cursor->opcode == 12)
+				forkk(vm, cursor);
+
+			//ft_printf("exec operation = [%d]\n", cursor->opcode);
+			//ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", cursor->operation.arg[0], cursor->operation.arg[1], cursor->operation.arg[2]);
 		}
 		else
 			ft_printf("operation, encoding byte or arguments were incorrect\n");
@@ -128,6 +145,7 @@ void		exec_cursor_list(t_vm *vm, t_cursor *cursor)
 {
 	while (cursor)
 	{
+		printf("cursor_id = %d, position = %d\n", cursor->id, cursor->position);
 		if (cursor->last_live != -1)
 			exec_cursor(vm, cursor);
 		cursor = cursor->next; 

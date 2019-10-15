@@ -186,6 +186,18 @@ void		game(t_vm *vm, t_game *game)
 	return ;
 }
 
+int			modulo(int a, int b)
+{
+	int		result;
+
+	if (b < 0)
+		return (modulo(-a, -b));
+	result = a % b;
+	if (result >= 0)
+		return (result);
+	return (result + b);
+}
+
 int			main(int argc, char **argv)
 {
 	t_vm		vm;
@@ -204,12 +216,5 @@ int			main(int argc, char **argv)
 	game(&vm, &vm.game);
 	if (dump_check(vm))
 		dump_flag(vm.memory);
-	// while (1)
-	// {
-	// 	exec_cursor(&vm, cursor);
-	// 	if (cursor->wait_cycles == 0)
-	// 		break ;
-	// }
-	// exec_cursor(&vm, cursor);
 	return (1);
 }
