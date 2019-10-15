@@ -186,6 +186,18 @@ void		game(t_vm *vm, t_game *game)
 	return ;
 }
 
+int			modulo(int a, int b)
+{
+	int		result;
+
+	if (b < 0)
+		return (modulo(-a, -b));
+	result = a % b;
+	if (result >= 0)
+		return (result);
+	return (result + b);
+}
+
 int			main(int argc, char **argv)
 {
 	t_vm		vm;
