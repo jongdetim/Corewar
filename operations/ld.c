@@ -16,7 +16,6 @@ void		ld_op(t_vm *vm, t_cursor *cursor)
 {
 	int value;
 
-
 	if ((char)cursor->opcode & 0b01000000 > 0)
 		value = vm->memory[cursor->position +
 		modulo(cursor->operation.arg[0], IDX_MOD)];
