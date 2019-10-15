@@ -115,6 +115,16 @@ void		decrease_cycles_to_die(t_game *game, int *cycles)
 	return ;
 }
 
+/*
+** can a player die? (?:AYU)
+**	while (cursor)
+**	{
+**		if (cursor->live == 0)
+**		{
+**			delete_cursor
+**		}
+**	}
+*/
 void		check_dead_cursor_or_players(t_vm *vm)
 {
 	int			i;
