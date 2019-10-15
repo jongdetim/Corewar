@@ -25,6 +25,7 @@ int			check_for_champion(char *arg)
 	}
 	if (arg[i] != '.')
 		return (0);
+// ! i would replace this with ft_strcmp, because then it also works in cases like: file.cor.bat.gif :-)
 	if (arg[i] == '.' && ft_strncmp(arg + i, ".cor", 4))
 		input_error(arg, 0);
 	return (1);

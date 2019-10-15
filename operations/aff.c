@@ -11,3 +11,8 @@
 /* ************************************************************************** */
 
 #include "../corewar.h"
+
+void		aff(t_cursor *cursor)
+{
+	ft_printf("%c", (char)(cursor->reg[cursor->operation.arg[0]]));
+}
