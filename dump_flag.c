@@ -20,7 +20,7 @@ int			dump_check(t_vm vm)
 		return (0);
 }
 
-void		dump(unsigned char *mem)
+void		dump_flag(unsigned char *mem)
 {
 	int i;
 

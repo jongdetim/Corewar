@@ -98,7 +98,7 @@ void				input_error(char *arg, int choice);
 /*
 ** input_check.c
 */
-void				check_argv(t_vm *vm);
+void				check_arguments(t_vm *vm);
 
 /*
 ** init_champions.c
@@ -132,7 +132,7 @@ int					save_arguments(t_vm *vm, t_cursor *cursor);
 ** dump.c
 */
 int					dump_check(t_vm vm);
-void				dump(unsigned char *mem);
+void				dump_flag(unsigned char *mem);
 
 #endif
 

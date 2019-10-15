@@ -203,7 +203,7 @@ int			main(int argc, char **argv)
 	}
 	game(&vm, &vm.game);
 	if (dump_check(vm))
-		dump(vm.memory);
+		dump_flag(vm.memory);
 	// while (1)
 	// {
 	// 	exec_cursor(&vm, cursor);
