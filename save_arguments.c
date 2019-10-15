@@ -106,6 +106,8 @@ int			get_argument(t_vm *vm, t_cursor *cursor, int *jump, int n)
 	cursor->operation.arg[n] = get_value_of_arg(vm, pos + *jump, read_size);
 	if (cursor->operation.check[n] == 1 && !VALID_REG(cursor->operation.arg[n]))
 		return (0);
+	if (cursor->operation.check[3] != 0)
+		return (0);
 	if (cursor->operation.check[n] == 3)
 	{
 		pos = cursor->position + (cursor->operation.arg[n] % IDX_MOD);
