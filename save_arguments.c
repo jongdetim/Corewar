@@ -108,6 +108,12 @@ int			get_argument(t_vm *vm, t_cursor *cursor, int *jump, int n)
 		return (0);
 	if (cursor->operation.check[3] != 0)
 		return (0);
+	if (cursor->operation.check[n] == 3)
+	{
+		pos += (cursor->operation.arg[n] % IDX_MOD);
+		pos = modulo(pos, MEM_SIZE);
+		cursor->operation.arg[n] = get_value_at_address(vm, pos);
+	}	
 	*jump += read_size;
 	return (1);
 }

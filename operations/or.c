@@ -12,9 +12,8 @@
 
 #include "../corewar.h"
 
-void			or_op(t_vm *vm, t_cursor *cursor)
+void			or_op(t_cursor *cursor)
 {
-	get_value_at_indirect(vm, cursor);
 	cursor->reg[cursor->operation.arg[2]] =
 	cursor->operation.arg[0] | cursor->operation.arg[1];
 	if (cursor->reg[cursor->operation.arg[2]] == 0)
