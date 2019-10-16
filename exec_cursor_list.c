@@ -113,11 +113,11 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 			else if (cursor->opcode == 5)
 				sub_op(cursor);
 			else if (cursor->opcode == 6)
-				and_op(cursor);
+				and_op(vm, cursor);
 			else if (cursor->opcode == 7)
-				or_op(cursor);
+				or_op(vm, cursor);
 			else if (cursor->opcode == 8)
-				xor_op(cursor);
+				xor_op(vm, cursor);
 			else if (cursor->opcode == 12)
 				fork_op(vm, cursor);
 

@@ -17,6 +17,7 @@
 					cursor->opcode == 16
 # define VALID_OPCODE(x) (x >= 1 && x <= 16)
 # define VALID_REG(x) (x >= 1 && x <= REG_NUMBER)
+# define MOD(x) modulo(x, MEM_SIZE)
 
 # define CHECK_LIVE(x) (x[0] == 2 && !x[1] && !x[2])
 # define CHECK_LD(x) (x[0] > 1 && x[1] == 1 && !x[2])
@@ -128,6 +129,10 @@ short				reverse16(short value);
 int					reverse32(int value);
 int					modulo(int a, int b);
 
+/*
+** save_arguments.c
+*/
+int					get_value_at_address(t_vm *vm, int pos);
 int					save_arguments(t_vm *vm, t_cursor *cursor);
 
 /*
@@ -146,9 +151,9 @@ void				fork_op(t_vm *vm, t_cursor *cursor);
 void				lfork_op(t_vm *vm, t_cursor *cursor);
 void				add_op(t_cursor *cursor);
 void				sub_op(t_cursor *cursor);
-void				and_op(t_cursor *cursor);
-void				or_op(t_cursor *cursor);
-void				xor_op(t_cursor *cursor);
+void				and_op(t_vm *vm, t_cursor *cursor);
+void				or_op(t_vm *vm, t_cursor *cursor);
+void				xor_op(t_vm *vm, t_cursor *cursor);
 void				zjmp_op(t_cursor *cursor);
 
 #endif

@@ -63,15 +63,15 @@ int			get_value_of_arg(t_vm *vm, int pos, int read_size)
 	i = 0;
 	value = 0;
 	if (read_size == 1)
-		value = vm->memory[pos];
+		value = vm->memory[MOD(pos)];
 	if (read_size == 2)
 	{
-		shorty = (vm->memory[pos] << 8 | vm->memory[pos + 1]);
+		shorty = (vm->memory[MOD(pos)] << 8 | vm->memory[MOD(pos + 1)]);
 		return ((int)shorty);
 	}
 	if (read_size == 4)
-		value = vm->memory[pos] << 24 | vm->memory[pos + 1] << 16 |
-				vm->memory[pos + 2] << 8 | vm->memory[pos + 3];
+		value = vm->memory[MOD(pos)] << 24 | vm->memory[MOD(pos + 1)] << 16 |
+				vm->memory[MOD(pos + 2)] << 8 | vm->memory[MOD(pos + 3)];
 	return (value);
 }
 
@@ -79,8 +79,8 @@ int			get_value_at_address(t_vm *vm, int pos)
 {
 	int			value;
 
-	value = vm->memory[pos] << 24 | vm->memory[pos + 1] << 16 |
-				vm->memory[pos + 2] << 8 | vm->memory[pos + 3];
+	value = vm->memory[MOD(pos)] << 24 | vm->memory[MOD(pos + 1)] << 16 |
+				vm->memory[MOD(pos + 2)] << 8 | vm->memory[MOD(pos + 3)];
 	return (value);
 }
 
@@ -108,11 +108,6 @@ int			get_argument(t_vm *vm, t_cursor *cursor, int *jump, int n)
 		return (0);
 	if (cursor->operation.check[3] != 0)
 		return (0);
-	if (cursor->operation.check[n] == 3)
-	{
-		pos = cursor->position + (cursor->operation.arg[n] % IDX_MOD);
-		cursor->operation.arg[n] = get_value_at_address(vm, pos);
-	}
 	*jump += read_size;
 	return (1);
 }
