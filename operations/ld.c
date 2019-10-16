@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   load.c                              	            :+:    :+:            */
+/*   ld.c                                               :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
+/*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/07/21 12:25:51 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/07/21 12:25:52 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/10/16 19:44:14 by tide-jon       #+#    #+#                */
+/*   Updated: 2019/10/16 19:53:10 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,8 @@ void		ld_op(t_vm *vm, t_cursor *cursor)
 {
 	int value;
 
-	if ((char)cursor->opcode & 0b01000000 > 0)
-		value = vm->memory[cursor->position +
-		modulo(cursor->operation.arg[0], IDX_MOD)];
-	else
-		value = cursor->reg[cursor->operation.arg[0]];
-	cursor->reg[cursor->operation.arg[1]] = value;
+	value = modulo(cursor->operation.arg[0], IDX_MOD);
+	cursor->reg[cursor->operation.arg[1] - 1] = value;
 	if (value == 0)
 		cursor->carry = 1;
 	else

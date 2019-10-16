@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   setindex.c                         	            :+:    :+:            */
+/*   sti.c                                              :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
+/*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/07/21 12:25:51 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/07/21 12:25:52 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/10/16 19:57:37 by tide-jon       #+#    #+#                */
+/*   Updated: 2019/10/16 19:57:43 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,20 @@ void		sti(t_vm *vm, t_cursor *cursor)
 	int	i;
 
 	first_arg = cursor->reg[cursor->operation.arg[0] - 1];
-	if (cursor->operation.check[1] == T_REG)
+	if (cursor->operation.check[1] == REG_CODE)
 		second_arg = cursor->reg[cursor->operation.arg[1] - 1];
-	else if (cursor->operation.check[1] == T_DIR)
+	else
 		second_arg = cursor->operation.arg[1];
-	else if (cursor->operation.check[1] == T_IND)
-		second_arg = vm->memory[modulo(cursor->position +
-		(cursor->operation.arg[1] % IDX_MOD), MEM_SIZE)];
-	if (cursor->operation.check[2] == T_REG)
+	if (cursor->operation.check[2] == REG_CODE)
 		third_arg = cursor->reg[cursor->operation.arg[2]];
-	else if (cursor->operation.check[2] == T_DIR)
+	else if (cursor->operation.check[2] == DIR_CODE)
 		third_arg = cursor->operation.arg[2];
 	i = 0;
 	while (i < 4)
 	{
 		vm->memory[modulo(cursor->position +
-		((second_arg + third_arg) % IDX_MOD) + i, MEM_SIZE)] = (char)first_arg;
+		(modulo(second_arg + third_arg, IDX_MOD)) + i, MEM_SIZE)] =
+													(char)first_arg;
 		first_arg >> 8;
 		i++;
 	}
