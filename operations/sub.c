@@ -20,5 +20,6 @@ void			sub_op(t_cursor *cursor)
 		cursor->carry = 1;
 	else
 		cursor->carry = 0;
+	return ;
 }
 
