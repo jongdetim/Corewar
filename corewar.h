@@ -144,10 +144,7 @@ void				dump_flag(unsigned char *mem);
 /*
 ** operations
 */
-<<<<<<< HEAD
 void   				live_op(t_vm *vm, t_cursor *cursor);
-=======
->>>>>>> 458ad14c041df0c13c2157a2be5de84eea3858f5
 void				ld_op(t_vm *vm, t_cursor *cursor);
 void				copy_cursor_variables(t_cursor *cursor, t_cursor *fork);
 t_cursor			*duplicate_cursor(t_cursor *cursor, int position);
