@@ -1,0 +1,45 @@
+
+An operation is made from the following components.
+- Operation code (for example: 01 for live)
+- Encoding byte:
+	01 = registery (1 byte)
+	10 = Direct value size (2 or 4 bytes)
+	11 = indirect value (2 bytes)
+	add (op-code 04) would be 01010100 (registry, registry, registry, followed by 2 zero's)
+	This encoding will tell us exactly how to use the variables that come after the encoding byte. 
+
+For the encoding byte:
+Perhaps we want to make a function that reads the encodingbyte and saves the type of arguments in an int[3] (max is 3 arguments).
+(0 for no argument, 1 for registry, 2 for direct, 3 for indirect)
+This will be used so we can read the right amount of bytes for an argument.
+The bytes will be big endian so we need to reverse them still. 
+
+struct operation
+{
+	int operation;
+	int arg1;
+	int arg2;
+	int arg3;
+
+	If something is a short, just typecast to int. This way we can just use ints.
+
+}
+
+Cursor is on a certain part of code (or not). 
+1. read operation and put into (int) operation;
+2. read encoding byte to see how many bytes to read per argument.
+3. read arguments into arg1 to arg3 (typecast short to int if needed)
+4. exectute operation with the variables.
+
+Within struct cursor we have struct operation for easy reading and using of argument variables
+
+Process of executing operation (wait cycles must be 0)
+1.1 If operationcode is valid code -> continue;
+1.2 If operation code is invalid (move to next byte). //this also means that messing up your champion and the commands will make you loose the cursor.
+2	Check encoding byte and validate all arguments
+	- If registries -> validate registries.
+	- For all operations, check if the gives arguments are right.
+	If encoding byte is invalid, skip amount of bytes in encodingbyte. To next operation.
+
+
+
