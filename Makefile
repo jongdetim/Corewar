@@ -6,7 +6,7 @@
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/04 13:29:01 by jheeresm       #+#    #+#                 #
-#    Updated: 2019/10/17 16:29:15 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/10/17 19:40:13 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,11 @@ $(LIBFT) :
 				@ gcc $(FLAGS) $< -c -o $@
 
 clean :
-				@ make clean -C ./libft/ && rm -f $(CW_OBJ)
+				@ if [ `ls -1 *.o 2>/dev/null | wc -l ` -gt 0 ] || \
+				[ `ls -1 libft/*.o 2>/dev/null | wc -l ` -gt 0 ]; then \
+				make clean -C ./libft/; \
+				rm -f $(CW_OBJ); else\
+				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 
 fclean :
 				@ make fclean -C ./libft/ && rm -f $(CW_NAME) && \
