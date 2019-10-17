@@ -106,10 +106,7 @@ void		decrease_cycles_to_die(t_game *game, int *cycles)
 		{
 			game->cycles_to_die -= CYCLE_DELTA;
 			game->check = 0;
-<<<<<<< HEAD
 			return ;
-=======
->>>>>>> 458ad14c041df0c13c2157a2be5de84eea3858f5
 		}
 		game->check += 1;
 	}
