@@ -29,9 +29,9 @@ void		st(t_vm *vm, t_cursor *cursor)
 		buff = cursor->reg[first_arg - 1];
 		while (i < 4)
 		{
-			vm->memory[modulo(cursor->position + (modulo(second_arg,IDX_MOD))
+			vm->memory[modulo(cursor->position + (second_arg % IDX_MOD)
 												+ i, MEM_SIZE)] = (char)buff;
-			buff >> 8;
+			buff = buff >> 8;
 			i++;
 		}
 	}

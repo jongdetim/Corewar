@@ -6,7 +6,7 @@
 #    By: tide-jon <tide-jon@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/03/28 18:20:08 by tide-jon       #+#    #+#                 #
-#    Updated: 2019/10/05 16:19:05 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/10/17 18:45:40 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,10 @@ $(NAME): $(OBJECTS)
 		@ $(CC) $(CFLAGS) $< -o $@
 
 clean:
-		@ rm -f $(OBJECTS)
-		@ echo "\033[33mCLEAN COMPLETED\033[0m"
+		@ if [ `ls -1 *.o 2>/dev/null | wc -l ` -gt 0 ]; then \
+		rm -f $(OBJECTS); \
+		echo "\033[33mCLEAN COMPLETED\033[0m"; else\
+		echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 
 fclean: clean
 		@rm -f $(NAME)

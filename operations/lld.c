@@ -6,13 +6,13 @@
 /*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/16 19:50:59 by tide-jon       #+#    #+#                */
-/*   Updated: 2019/10/16 20:12:49 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/10/17 16:19:55 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
 
-void		lld(t_vm *vm, t_cursor *cursor)
+void		lld(t_cursor *cursor)
 {
 	int value;
 

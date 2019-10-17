@@ -6,7 +6,7 @@
 /*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/16 19:57:37 by tide-jon       #+#    #+#                */
-/*   Updated: 2019/10/16 19:57:43 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/10/17 16:20:42 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void		sti(t_vm *vm, t_cursor *cursor)
 	while (i < 4)
 	{
 		vm->memory[modulo(cursor->position +
-		(modulo(second_arg + third_arg, IDX_MOD)) + i, MEM_SIZE)] =
+		((second_arg + third_arg) % IDX_MOD) + i, MEM_SIZE)] =
 													(char)first_arg;
-		first_arg >> 8;
+		first_arg = first_arg >> 8;
 		i++;
 	}
 }

@@ -28,7 +28,7 @@ void		ldi(t_vm *vm, t_cursor *cursor)
 		second_arg = cursor->reg[cursor->operation.arg[1] - 1];
 	else
 		second_arg = cursor->operation.arg[1];
-	pos = cursor->position + (modulo(first_arg + second_arg, IDX_MOD));
+	pos = cursor->position + ((first_arg + second_arg) % IDX_MOD);
 	(cursor->reg[third_arg - 1]) =
 	vm->memory[modulo(pos, MEM_SIZE)] << 24 |
 	vm->memory[modulo(pos + 1, MEM_SIZE)] << 16 |
