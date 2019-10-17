@@ -25,7 +25,6 @@
 **	wasn't tested!
 **
 ** vm->game.last_alive_champ = vm->champions[i].id;//champ_reported alive
-** vm->champions[i].last_live = vm->game.cycles_to_die;//do we need it?(?:AYU)
 **
 **	//cursor reported alive in current cycle
 **	cursor->last_live = vm->game.cycles;
