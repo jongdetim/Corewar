@@ -58,7 +58,7 @@ void		reset_operation(t_cursor *cursor)
 ** jump is initialized at 2 because of opcode and encoding byte.
 ** It will go into loop and check what kind of argument there is using operation.check[4]
 ** It will add the right byte value depending on the type of argument.
-** If there is only 1 argument, it will stop after 1 loop 
+** If there is only 1 argument, it will stop after 1 loop
 ** Also we will decrease jump by 1 because of missing encoding byte (if single arg op)
 */
 
@@ -88,7 +88,6 @@ void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
 	return ;
 }
 
-<<<<<<< HEAD
 void	exec_operation(t_vm *vm, t_cursor *cursor)
 {
 	if (cursor->opcode == 1)
@@ -109,8 +108,6 @@ void	exec_operation(t_vm *vm, t_cursor *cursor)
 		fork_op(vm, cursor);
 }
 
-=======
->>>>>>> 458ad14c041df0c13c2157a2be5de84eea3858f5
 /*
 ** EXEC_CURSOR
 ** If set_opcode returns (0), we stop this function. The opcode was wrong at that memory adress.
@@ -129,25 +126,7 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 	{
 		if (read_operation(vm, cursor))
 		{
-<<<<<<< HEAD
 			exec_operation(vm, cursor);
-=======
-			if (cursor->opcode == 2)
-				ld_op(vm, cursor);
-			else if (cursor->opcode == 4)
-				add_op(cursor);
-			else if (cursor->opcode == 5)
-				sub_op(cursor);
-			else if (cursor->opcode == 6)
-				and_op(cursor);
-			else if (cursor->opcode == 7)
-				or_op(cursor);
-			else if (cursor->opcode == 8)
-				xor_op(cursor);
-			else if (cursor->opcode == 12)
-				fork_op(vm, cursor);
-
->>>>>>> 458ad14c041df0c13c2157a2be5de84eea3858f5
 			//ft_printf("exec operation = [%d]\n", cursor->opcode);
 			//ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", cursor->operation.arg[0], cursor->operation.arg[1], cursor->operation.arg[2]);
 		}
@@ -173,7 +152,7 @@ void		exec_cursor_list(t_vm *vm, t_cursor *cursor)
 		printf("cursor_id = %d, position = %d\n", cursor->id, cursor->position);
 		if (cursor->last_live != -1)
 			exec_cursor(vm, cursor);
-		cursor = cursor->next; 
+		cursor = cursor->next;
 	}
 	return ;
 }
