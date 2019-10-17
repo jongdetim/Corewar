@@ -88,6 +88,7 @@ void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
 	return ;
 }
 
+<<<<<<< HEAD
 void	exec_operation(t_vm *vm, t_cursor *cursor)
 {
 	if (cursor->opcode == 1)
@@ -108,6 +109,8 @@ void	exec_operation(t_vm *vm, t_cursor *cursor)
 		fork_op(vm, cursor);
 }
 
+=======
+>>>>>>> 458ad14c041df0c13c2157a2be5de84eea3858f5
 /*
 ** EXEC_CURSOR
 ** If set_opcode returns (0), we stop this function. The opcode was wrong at that memory adress.
@@ -126,7 +129,25 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 	{
 		if (read_operation(vm, cursor))
 		{
+<<<<<<< HEAD
 			exec_operation(vm, cursor);
+=======
+			if (cursor->opcode == 2)
+				ld_op(vm, cursor);
+			else if (cursor->opcode == 4)
+				add_op(cursor);
+			else if (cursor->opcode == 5)
+				sub_op(cursor);
+			else if (cursor->opcode == 6)
+				and_op(cursor);
+			else if (cursor->opcode == 7)
+				or_op(cursor);
+			else if (cursor->opcode == 8)
+				xor_op(cursor);
+			else if (cursor->opcode == 12)
+				fork_op(vm, cursor);
+
+>>>>>>> 458ad14c041df0c13c2157a2be5de84eea3858f5
 			//ft_printf("exec operation = [%d]\n", cursor->opcode);
 			//ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", cursor->operation.arg[0], cursor->operation.arg[1], cursor->operation.arg[2]);
 		}

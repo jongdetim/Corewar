@@ -106,7 +106,10 @@ void		decrease_cycles_to_die(t_game *game, int *cycles)
 		{
 			game->cycles_to_die -= CYCLE_DELTA;
 			game->check = 0;
+<<<<<<< HEAD
 			return ;
+=======
+>>>>>>> 458ad14c041df0c13c2157a2be5de84eea3858f5
 		}
 		game->check += 1;
 	}
@@ -147,9 +150,13 @@ void		check_dead_cursor_or_players(t_vm *vm)
 	}
 	return ;
 }
+<<<<<<< HEAD
 /*
  ** remove champ check
  */
+=======
+
+>>>>>>> 458ad14c041df0c13c2157a2be5de84eea3858f5
 int			alive_champ_and_cursor(t_vm *vm)
 {
 	int			i;
@@ -230,4 +237,8 @@ int			main(int argc, char **argv)
 	if (dump_check(vm))
 		dump_flag(vm.memory);
 	return (1);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 458ad14c041df0c13c2157a2be5de84eea3858f5
