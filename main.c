@@ -150,13 +150,11 @@ void		check_dead_cursor_or_players(t_vm *vm)
 	}
 	return ;
 }
-<<<<<<< HEAD
+
 /*
  ** remove champ check
  */
-=======
-
->>>>>>> 458ad14c041df0c13c2157a2be5de84eea3858f5
+ 
 int			alive_champ_and_cursor(t_vm *vm)
 {
 	int			i;
