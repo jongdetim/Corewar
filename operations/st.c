@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   set.c                               	            :+:    :+:            */
+/*   st.c                                               :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
+/*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/07/21 12:25:51 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/07/21 12:25:52 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/10/23 19:31:43 by tide-jon       #+#    #+#                */
+/*   Updated: 2019/10/23 20:38:34 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
 
-void		st(t_vm *vm, t_cursor *cursor)
+void		st_op(t_vm *vm, t_cursor *cursor)
 {
 	int	first_arg;
 	int second_arg;
@@ -29,9 +29,10 @@ void		st(t_vm *vm, t_cursor *cursor)
 		buff = cursor->reg[first_arg - 1];
 		while (i < 4)
 		{
+			ft_printf("%i\n\n", second_arg);
 			vm->memory[modulo(cursor->position + (second_arg % IDX_MOD)
-												+ i, MEM_SIZE)] = (char)buff;
-			buff = buff >> 8;
+											+ i, MEM_SIZE)] = (char)buff;
+			buff = buff << 8;
 			i++;
 		}
 	}
