@@ -37,6 +37,7 @@ int			set_opcode(t_vm *vm, t_cursor *cursor)
 	}
 	cursor->opcode = opcode;
 	cursor->wait_cycles = vm->wait[opcode - 1];
+	printf("-------------------\ncursor_id = %d, new opcode = %d, wait cycles = %d\n", cursor->id, cursor->opcode, cursor->wait_cycles);
 	return (1);
 }
 
@@ -90,22 +91,32 @@ void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
 
 void	exec_operation(t_vm *vm, t_cursor *cursor)
 {
+	//printf("position before operations = %d\n", cursor->position);
 	if (cursor->opcode == 1)
+	{
 		live_op(vm, cursor);
-	if (cursor->opcode == 2)
-		ld_op(cursor);
+		//printf("live done by player = %d\n", vm->game.last_alive_champ);
+	}
+	else if (cursor->opcode == 2)
+		ld_op(vm, cursor);
 	else if (cursor->opcode == 4)
 		add_op(cursor);
 	else if (cursor->opcode == 5)
 		sub_op(cursor);
 	else if (cursor->opcode == 6)
-		and_op(cursor);
+		and_op(vm, cursor);
 	else if (cursor->opcode == 7)
-		or_op(cursor);
+		or_op(vm, cursor);
 	else if (cursor->opcode == 8)
-		xor_op(cursor);
+		xor_op(vm, cursor);
+	else if (cursor->opcode == 9)
+		zjmp_op(vm, cursor);
 	else if (cursor->opcode == 12)
+	{
 		fork_op(vm, cursor);
+		printf("fork done!\n");
+	}
+	//printf("position after operation = %d\n", cursor->position);
 }
 
 /*
@@ -126,15 +137,16 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 	{
 		if (read_operation(vm, cursor))
 		{
-			exec_operation(vm, cursor);
 			//ft_printf("exec operation = [%d]\n", cursor->opcode);
 			//ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", cursor->operation.arg[0], cursor->operation.arg[1], cursor->operation.arg[2]);
+			exec_operation(vm, cursor);
 		}
-		else
-			ft_printf("operation, encoding byte or arguments were incorrect\n");
-		move_to_next_operation(vm, cursor);
+		// else = operation, argument of encoding byte was wrong.
+		if (cursor->opcode != 9)
+			move_to_next_operation(vm, cursor);
 		reset_operation(cursor);
 		cursor->opcode = 0;
+		printf("position of cursor = %d\n", cursor->position);
 	}
 	return ;
 }
@@ -149,9 +161,9 @@ void		exec_cursor_list(t_vm *vm, t_cursor *cursor)
 {
 	while (cursor)
 	{
-		printf("cursor_id = %d, position = %d\n", cursor->id, cursor->position);
 		if (cursor->last_live != -1)
 			exec_cursor(vm, cursor);
+		//printf("id = [%d], cursor->position = %d\n", cursor->id, cursor->position);
 		cursor = cursor->next;
 	}
 	return ;

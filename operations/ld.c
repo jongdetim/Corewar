@@ -12,14 +12,17 @@
 
 #include "../corewar.h"
 
-void		ld_op(t_cursor *cursor)
+void		ld_op(t_vm *vm, t_cursor *cursor)
 {
 	int value;
 
-	value = cursor->operation.arg[0] % IDX_MOD;
+	get_indirect_arg_idx_mod(vm, cursor);
+	value = cursor->operation.arg[0];
 	cursor->reg[cursor->operation.arg[1] - 1] = value;
+	printf("value at registry[%d]: [%d]\n", cursor->operation.arg[1], cursor->reg[cursor->operation.arg[1] - 1]);
 	if (value == 0)
 		cursor->carry = 1;
 	else
 		cursor->carry = 0;
+	return ;
 }

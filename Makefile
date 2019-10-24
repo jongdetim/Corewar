@@ -18,7 +18,7 @@ CW_FILES =		main check_arguments input_error init_champion exec_cursor_list \
 				operations/zjmp operations/add operations/aff operations/and \
 				operations/ld operations/ldi operations/live operations/lld \
 				operations/lldi operations/or operations/st operations/sti \
-				operations/sub operations/xor
+				operations/sub operations/xor operations/operation_help
 
 CW_SRC =		$(CW_FILES:%=%.c)
 

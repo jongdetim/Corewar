@@ -110,7 +110,7 @@ int			get_argument(t_vm *vm, t_cursor *cursor, int *jump, int n)
 	read_size = get_readsize(vm, cursor, n);
 	pos = cursor->position;
 	cursor->operation.arg[n] = get_value_of_arg(vm, pos + *jump, read_size);
-	if (cursor->operation.check[n] == 1 && !VALID_REG(cursor->operation.arg[n]))
+	if (cursor->operation.check[n] == REG_CODE && !VALID_REG(cursor->operation.arg[n]))
 		return (0);
 	if (cursor->operation.check[3] != 0)
 		return (0);

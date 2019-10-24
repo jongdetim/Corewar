@@ -38,18 +38,20 @@ void		initialize_reg_and_operation(t_cursor *cursor)
 ** Just a function that mallocs the cursor and sets all the variables.
 */
 
-t_cursor	*malloc_cursor(int player_id)
+t_cursor	*malloc_cursor(void)
 {
 	t_cursor		*cursor;
+	static int		id;
 
 	cursor = malloc(sizeof(t_cursor));
-	cursor->id = player_id;
+	cursor->id = id;
 	cursor->carry = 0;
 	cursor->opcode = 0;
 	cursor->last_live = 0;
 	cursor->wait_cycles = 0;
 	cursor->next = NULL;
 	initialize_reg_and_operation(cursor);
+	id += 1;
 	return (cursor);
 }
 
@@ -102,8 +104,8 @@ void		init_cursors(t_vm *vm)
 	i = 0;
 	while (i < vm->champion_count)
 	{
-		new_cursor = malloc_cursor(vm->champions[i].id);
-		new_cursor->position = calc_starting_position(vm, new_cursor->id);
+		new_cursor = malloc_cursor();
+		new_cursor->position = calc_starting_position(vm, vm->champions[i].id);
 		add_to_cursor_list(vm, new_cursor);
 		i++;
 	}

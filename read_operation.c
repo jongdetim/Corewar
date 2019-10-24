@@ -39,11 +39,11 @@ void		read_encodingbyte(t_cursor *cursor, unsigned char byte)
 			cursor->operation.check[x] = 2;
 		else if (BYTE(byte, (i - 1)) == 1 && BYTE(byte, i) == 1)
 			cursor->operation.check[x] = 3;
-		ft_printf("[%d]", cursor->operation.check[x]);
+		//printf("[%d] ", cursor->operation.check[x]);
 		x++;
 		i += 2;
 	}
-	ft_printf("\n");
+	//printf("\n");
 	return ;
 }
 
@@ -109,6 +109,7 @@ int			read_operation(t_vm *vm, t_cursor *cursor)
 {
 	if (!read_and_check_encoding(cursor, vm->memory[cursor->position + 1]))
 		return (0);
+	//printf("encoding is correct\n");
 	if (!save_arguments(vm, cursor))
 		return (0);
 	return (1);

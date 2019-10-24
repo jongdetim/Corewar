@@ -113,6 +113,7 @@ void		decrease_cycles_to_die(t_game *game, int *cycles)
 	if (game->cycles_to_die < 0)
 		game->cycles_to_die = 1;
 	*cycles = game->cycles_to_die;
+	printf("decreased cycles to die\n");
 	return ;
 }
 
@@ -126,7 +127,7 @@ void		decrease_cycles_to_die(t_game *game, int *cycles)
 **		}
 **	}
 */
-void		check_dead_cursor_or_players(t_vm *vm)
+void		check_dead_cursor(t_vm *vm)
 {
 	t_cursor 	*cursor;
 
@@ -140,7 +141,7 @@ void		check_dead_cursor_or_players(t_vm *vm)
 	return ;
 }
  
-int			alive_champ_and_cursor(t_vm *vm)
+int			alive_cursor(t_vm *vm)
 {
 	t_cursor	*cursor;
 
@@ -163,21 +164,39 @@ void		increase_cycles(int *cycles_to_die, t_vm *vm)
 	return ;
 }
 
+void		declare_winner(t_vm *vm)
+{
+	int			i;
+
+	i = 0;
+	while (i < vm->champion_count)
+	{
+		if (vm->champions[i].id == vm->game.last_alive_champ)
+		{
+			ft_printf("-------------------------------------\n");
+			ft_printf("THE WINNER IS: [%s]\n", vm->champions[i].name);
+		}
+		i++;
+	}
+	return ;
+}
+
 void		game(t_vm *vm, t_game *game)
 {
 	int			cycles_to_die;
 
 	cycles_to_die = game->cycles_to_die;
-	while (cycles_to_die && !dump_check(*vm) && alive_champ_and_cursor(vm))
+	while (cycles_to_die && !dump_check(*vm) && alive_cursor(vm))
 	{
 		exec_cursor_list(vm, vm->cursors);
 		increase_cycles(&cycles_to_die, vm);
 		if (cycles_to_die == 0)
 		{
-			check_dead_cursor_or_players(vm);
+			check_dead_cursor(vm);
 			decrease_cycles_to_die(game, &cycles_to_die);
 		}
 	}
+	declare_winner(vm);
 	return ;
 }
 
@@ -208,6 +227,7 @@ int			main(int argc, char **argv)
 		ft_printf("id = %d, filename = %s\n", vm.champions[i].id, vm.champions[i].filename);
 		i++;
 	}
+	dump_flag(vm.memory);
 	game(&vm, &vm.game);
 	if (dump_check(vm))
 		dump_flag(vm.memory);

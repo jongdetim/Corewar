@@ -22,11 +22,10 @@ void			copy_cursor_variables(t_cursor *cursor, t_cursor *fork)
 		fork->reg[i] = cursor->reg[i];
 		i++;
 	}
-	fork->id = cursor->id;
 	fork->carry = cursor->carry;
 	fork->opcode = 0;
 	fork->last_live = cursor->last_live;
-	fork->wait_cycles = cursor->wait_cycles;
+	fork->wait_cycles = 0;
 	reset_operation(fork);
 	fork->next = NULL;
 	return ;
@@ -35,10 +34,13 @@ void			copy_cursor_variables(t_cursor *cursor, t_cursor *fork)
 t_cursor		*duplicate_cursor(t_cursor *cursor, int position)
 {
 	t_cursor 		*fork;
+	static int		id = 4;
 
 	fork = malloc(sizeof(t_cursor));
 	copy_cursor_variables(cursor, fork);
+	fork->id = id;
 	fork->position = position;
+	id += 1;
 	return (fork);
 }
 

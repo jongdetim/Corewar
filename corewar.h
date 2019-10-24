@@ -21,7 +21,7 @@
 
 # define CHECK_LIVE(x) (x[0] == 2 && !x[1] && !x[2])
 # define CHECK_LD(x) (x[0] > 1 && x[1] == 1 && !x[2])
-# define CHECK_ST(x) (x[0] == 1 && (x[1] == 2 || x[1] == 3) && !x[2])
+# define CHECK_ST(x) (x[0] == 1 && (x[1] == 1 || x[1] == 3) && !x[2])
 # define CHECK_ADD(x) (x[0] == 1 && x[1] == 1 && x[2] == 1)
 # define CHECK_SUB(x) (x[0] == 1 && x[1] == 1 && x[2] == 1)
 # define CHECK_AND(x) (x[0] > 0 && x[1] > 0 && x[2] == 1)
@@ -117,6 +117,7 @@ void				init_cursors(t_vm *vm);
 ** exec_cursor.c
 */
 void				reset_operation(t_cursor *cursor);
+void				move_to_next_operation(t_vm *vm, t_cursor *cursor);
 void				exec_cursor_list(t_vm *vm, t_cursor *cursor);
 
 /*
@@ -144,7 +145,7 @@ void				dump_flag(unsigned char *mem);
 /*
 ** operations
 */
-void				ld_op(t_cursor *cursor);
+void				ld_op(t_vm *vm, t_cursor *cursor);
 void   				live_op(t_vm *vm, t_cursor *cursor);
 void				copy_cursor_variables(t_cursor *cursor, t_cursor *fork);
 t_cursor			*duplicate_cursor(t_cursor *cursor, int position);
@@ -152,9 +153,12 @@ void				fork_op(t_vm *vm, t_cursor *cursor);
 void				lfork_op(t_vm *vm, t_cursor *cursor);
 void				add_op(t_cursor *cursor);
 void				sub_op(t_cursor *cursor);
-void				and_op(t_cursor *cursor);
-void				or_op(t_cursor *cursor);
-void				xor_op(t_cursor *cursor);
-void				zjmp_op(t_cursor *cursor);
+void				and_op(t_vm *vm, t_cursor *cursor);
+void				or_op(t_vm *vm, t_cursor *cursor);
+void				xor_op(t_vm *vm, t_cursor *cursor);
+void				zjmp_op(t_vm *vm, t_cursor *cursor);
+void				get_indirect_arg_idx_mod(t_vm *vm, t_cursor *cursor);
+void				get_indirect_arg_mem_size(t_vm *vm, t_cursor *cursor);
+void				get_registry_argument(t_cursor *cursor);
 
 #endif

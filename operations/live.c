@@ -44,9 +44,12 @@ void    live_op(t_vm *vm, t_cursor *cursor)
 		if (cursor->operation.arg[0] == vm->champions[i].id)
 		{
 			vm->game.last_alive_champ = vm->champions[i].id;
+			
 		}
 		i++;
 	}
 	cursor->last_live = vm->game.cycles;
 	vm->game.nbr_live++;
+	printf("last_live = cycle[%d]\n", cursor->last_live);
+	printf("amount of lives = %d\n", vm->game.nbr_live);
 }
