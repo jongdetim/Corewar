@@ -28,7 +28,7 @@ int			is_single_arg_op(t_cursor *cursor)
 
 /*
 ** SAVE_SINGLE_ARGUMENT
-** If the operation has only 1 argument, we save the corresponding code in check[0].
+** If the operation has only 1 argument, we save the correct code in check[0].
 ** This will register (1) for opcode 16 and the rest is direct (2).
 */
 
@@ -45,7 +45,8 @@ void		save_single_arg(t_cursor *cursor)
 /*
 ** GET_READSIZE
 ** Find the proper readsize in the operation.check.
-** Returns (1) for register, returns (size of t_dir) for direct, returns (2) for indirect.
+** Returns (1) for register, returns (size of t_dir) for direct,
+** returns (2) for indirect.
 */
 
 int			get_readsize(t_vm *vm, t_cursor *cursor, int n_arg)
@@ -61,8 +62,10 @@ int			get_readsize(t_vm *vm, t_cursor *cursor, int n_arg)
 
 /*
 ** GET_VALUE_OF_ARG
-** This function will read the bytes into a short or integer using the order of BIG-endian
-** If read_size is 2 bytes, we will convert it into a short and return it typecasted as an int.
+** This function will read the bytes into a short or integer using
+** the order of BIG-endian
+** If read_size is 2 bytes, we will convert it into a short and return
+** it typecasted as an int.
 ** Otherwise, we just return (int)value.
 ** The return of this function will be put in operation.arg[x].
 ** This int array is used as the arguments for operations later on.
@@ -100,14 +103,17 @@ int			get_value_at_address(t_vm *vm, int pos)
 
 /*
 ** GET_ARGUMENT
-** First we get the readsize, so we know how many bytes to read from memory for this argument.
+** First we get the readsize, so we know how many bytes to read from memory
+** for this argument.
 ** Then we get the value for this argument with get_value_of_arg.
-** If the argument is a register and the value is not valid (x < 1 || x > 16), we return (0).
-** With the variables jump we keep track of which bytes are already read. 
+** If the argument is a register and the value is not valid (x < 1 || x > 16),
+** we return (0).
+** With the variables jump we keep track of which bytes are already read.
 **
-** For example: If we read a indirect argument, we read 2 bytes. After succesfully reading,
-** we increase jump by 2. The next time we get to get_argument, it will start reading from the right
-** position in memory.
+** For example: If we read a indirect argument, we read 2 bytes.
+** After succesfully reading, we increase jump by 2.
+** The next time we get to get_argument, it will start
+** reading from the right position in memory.
 */
 
 int			get_argument(t_vm *vm, t_cursor *cursor, int *jump, int n)
@@ -134,18 +140,24 @@ int			get_argument(t_vm *vm, t_cursor *cursor, int *jump, int n)
 
 /*
 ** SAVE_ARGUMENTS
-** Jump is the variables used to keep track of what position in memory we are reading from.
+** Jump is the variables used to keep track of what position in memory we are
+** reading from.
 ** More information on this in the comments of function: get_argument.
-** Jump is initialize at 2 (opcode + encoding byte). If the argument has no encoding byte, jump will be 1 (just opcode).
-** 
-** If the opcode is is_single_arg_op(cursor) (only one argument) we save it's argument code (1: reg, 2: dir, 3:ind) to check[0].
+** Jump is initialize at 2 (opcode + encoding byte). If the argument has no
+** encoding byte, jump will be 1 (just opcode).
+**
+** If the opcode is is_single_arg_op(cursor) (only one argument) we save it's
+** argument code (1: reg, 2: dir, 3:ind) to check[0].
 ** This is needed for the get_argument function.
 **
-** If check[i] != 0, we check and save the value of the argument in get_argument. 
-** If get_argument returns (0) this means the argument type was register but the value was incorrect (not VALID_REG (1 - 16))
+** If check[i] != 0,
+** we check and save the value of the argument in get_argument.
+** If get_argument returns (0) this means the argument type was register but
+** the value was incorrect (not VALID_REG (1 - 16))
 ** This will stop the saving of arguments: return (0).
 **
-** The last if (is_single_arg_op(cursor)) just breaks the loop because we only have to get 1 argument.
+** The last if (is_single_arg_op(cursor)) just breaks the loop because we only
+** have to get 1 argument.
 **
 ** Return (1) means we succesfully got a argument.
 */
