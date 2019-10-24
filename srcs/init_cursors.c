@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_cursor.c                 	                    :+:    :+:            */
+/*   init_cursors.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/07/21 12:25:51 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/07/21 12:25:52 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
+/*   Updated: 2019/10/24 21:58:17 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		initialize_reg_and_operation(t_cursor *cursor)
 
 	i = 1;
 	reset_operation(cursor);
-	cursor->reg[0] = cursor->id;
+	cursor->reg[0] = (cursor->id * -1) - 1;
 	while (i < REG_NUMBER)
 	{
 		cursor->reg[i] = 0;

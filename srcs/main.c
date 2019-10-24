@@ -6,7 +6,7 @@
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/10/17 19:01:34 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/10/24 21:25:39 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ int			main(int argc, char **argv)
 		vm.champions[i].id, vm.champions[i].filename);
 		i++;
 	}
-	dump_flag(vm.memory);
 	game(&vm, &vm.game);
 	if (dump_check(vm))
 		dump_flag(vm.memory);
