@@ -11,9 +11,11 @@ for arg do
   n=$((n - 1))
 done
 
-if [ ! -f $1 ]; then
-	echo "error: file $1 does not exist" ; exit 1
-fi
+for arg do
+	if [ ! -f $arg ]; then
+		echo "error: file $arg does not exist" ; exit 1
+	fi
+done
 
 re='^[0-9]+$'
 if ! [[ $CYCLES =~ $re ]]; then
