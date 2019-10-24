@@ -94,16 +94,17 @@ int			get_value_of_arg(t_vm *vm, int pos, int read_size)
 
 /*
 ** GET_VALUE_AT_ADDRESS
-** Reads 4 bytes from a certain position in memory. 
-** Stores these 4 bytes into an integer. The bytes are read as big endian and stored in little endian.
+** Reads 4 bytes from a certain position in memory.
+** Stores these 4 bytes into an integer.
+** The bytes are read as big endian and stored in little endian.
 */
 
 int			get_value_at_address(t_vm *vm, int pos)
 {
 	int			value;
 
-	value = (int) vm->memory[MOD(pos)] << 24 | vm->memory[MOD(pos + 1)] << 16 |
-				vm->memory[MOD(pos + 2)] << 8 | vm->memory[MOD(pos + 3)];
+	value = (int)(vm->memory[MOD(pos)] << 24 | vm->memory[MOD(pos + 1)] << 16 |
+				vm->memory[MOD(pos + 2)] << 8 | vm->memory[MOD(pos + 3)]);
 	return (value);
 }
 

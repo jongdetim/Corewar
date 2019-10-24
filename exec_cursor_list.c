@@ -14,10 +14,14 @@
 
 /*
 ** SET_OPCODE
-** If the cursor already has an opcode and it's still the same, it returns (1) and exec_cursor will continue.
-** If the opcode read from memory is not valid it will set waitcycles to 0 and save value.
-** Also it will increase cursor position by 1 and return (0). This ends exec_cursor.
-** If opcode is correct it will set the opcode and set wait_cycles according to opcode
+** If the cursor already has an opcode and it's still the same,
+** it returns (1) and exec_cursor will continue.
+** If the opcode read from memory is not valid it will set waitcycles to 0 and
+** save value.
+** Also it will increase cursor position by 1 and return (0).
+** This ends exec_cursor.
+** If opcode is correct it will set the opcode and
+** set wait_cycles according to opcode
 ** vm->wait[opcode - 1] is because opcode 1 is wait[0] and so on.
 */
 
@@ -56,10 +60,10 @@ void		reset_operation(t_cursor *cursor)
 ** MOVE_TO_NEXT_OPERATION (This might be good only if operation is succesfull)
 ** jump is the amount of bytes the cursor will jump.
 ** jump is initialized at 2 because of opcode and encoding byte.
-** It will go into loop and check what kind of argument there is using operation.check[4]
+** It will go into loop and check the kind of argument with operation.check[4]
 ** It will add the right byte value depending on the type of argument.
 ** If there is only 1 argument, it will stop after 1 loop
-** Also we will decrease jump by 1 because of missing encoding byte (if single arg op)
+** We will decrease jump by 1 because of missing enc byte (if single arg op)
 */
 
 void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
@@ -88,7 +92,7 @@ void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
 	return ;
 }
 
-void	exec_operation(t_vm *vm, t_cursor *cursor)
+void		exec_operation(t_vm *vm, t_cursor *cursor)
 {
 	if (cursor->opcode == 1)
 		live_op(vm, cursor);
@@ -110,10 +114,11 @@ void	exec_operation(t_vm *vm, t_cursor *cursor)
 
 /*
 ** EXEC_CURSOR
-** If set_opcode returns (0), we stop this function. The opcode was wrong at that memory adress.
+** If set_opcode returns (0), we stop this function.
+** The opcode was wrong at that memory adress.
 ** If wait cycles > 0, wait cycles -= 1.
 ** If wait cycles == 0, we read the code and execute it.
-** After succesfully executing we go to the next operation and opcode is set to 0
+** After succesfully executing we go to the next operation and opcode 0
 */
 
 void		exec_cursor(t_vm *vm, t_cursor *cursor)

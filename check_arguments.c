@@ -34,7 +34,7 @@ int			check_for_champion(char *arg)
 void		check_number_for_flag(t_vm *vm, int i)
 {
 	int			j;
-	static int 	n_flag = 0;
+	static int	n_flag = 0;
 
 	j = 0;
 	if (NO_NUMBER_AFTER_FLAG)
@@ -81,8 +81,6 @@ int			check_for_flag(t_vm *vm, int i)
 
 /*
 ** CHECK_DUPLICATE_N_FLAGS
-** 
-**
 */
 
 void		check_duplicate_n_flags(t_vm *vm)

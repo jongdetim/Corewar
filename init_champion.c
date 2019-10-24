@@ -72,7 +72,7 @@ void		give_champion_id_and_set_filename(t_vm *vm)
 	while (i < vm->champion_count)
 	{
 		if (check_n_flag_for_id(vm, i + 1))
-			give_champion_n_flag_id(vm, i+ 1);
+			give_champion_n_flag_id(vm, i + 1);
 		i++;
 	}
 	i = 0;

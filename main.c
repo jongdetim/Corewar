@@ -126,9 +126,10 @@ void		decrease_cycles_to_die(t_game *game, int *cycles)
 **		}
 **	}
 */
+
 void		check_dead_cursor_or_players(t_vm *vm)
 {
-	t_cursor 	*cursor;
+	t_cursor	*cursor;
 
 	cursor = vm->cursors;
 	while (cursor)
@@ -139,7 +140,7 @@ void		check_dead_cursor_or_players(t_vm *vm)
 	}
 	return ;
 }
- 
+
 int			alive_champ_and_cursor(t_vm *vm)
 {
 	t_cursor	*cursor;
@@ -159,7 +160,7 @@ void		increase_cycles(int *cycles_to_die, t_vm *vm)
 	*cycles_to_die -= 1;
 	vm->game.cycles += 1;
 	if (vm->dump_flag > 0)
-			vm->dump_flag -= 1;
+		vm->dump_flag -= 1;
 	return ;
 }
 
@@ -195,17 +196,19 @@ int			modulo(int a, int b)
 
 int			main(int argc, char **argv)
 {
-	t_vm		vm;
+	t_vm	vm;
+	int		i;
 
 	init_vm(&vm, argc, argv);
 	check_arguments(&vm);
 	init_champions(&vm);
 	load_champs(&vm);
 	init_cursors(&vm);
-	int i = 0;
+	i = 0;
 	while (i < vm.champion_count)
 	{
-		ft_printf("id = %d, filename = %s\n", vm.champions[i].id, vm.champions[i].filename);
+		ft_printf("id = %d, filename = %s\n",
+		vm.champions[i].id, vm.champions[i].filename);
 		i++;
 	}
 	game(&vm, &vm.game);

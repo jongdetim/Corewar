@@ -56,10 +56,11 @@ t_cursor	*malloc_cursor(int player_id)
 /*
 ** SET_STARTING_POSITION
 ** Starting position is calculated depending on the amount of champions.
-** This functions calculates the starting position. The calculation is from the cookbook.
+** This functions calculates the starting position.
+** The calculation is from the cookbook.
 */
 
-int		calc_starting_position(t_vm *vm, int player_id)
+int			calc_starting_position(t_vm *vm, int player_id)
 {
 	int			divided_memory;
 

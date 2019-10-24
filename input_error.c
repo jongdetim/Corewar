@@ -12,11 +12,12 @@
 
 #include "corewar.h"
 
+// display_help should be changed into the actual help.
 
 void		display_help(void)
 {
-	// This should be changed into the actual help.
-	ft_printf("Usage: 	./corewar champion1.cor champion2.cor champion3.cor \n");
+	ft_printf("Usage: 	./corewar champion1.cor ");
+	ft_printf("champion2.cor champion3.cor \n");
 	ft_printf("	--help for flags.\n");
 	return ;
 }
