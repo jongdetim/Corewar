@@ -6,7 +6,7 @@
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/10/17 18:55:59 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/10/24 21:14:36 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,11 @@ void		exec_operation(t_vm *vm, t_cursor *cursor)
 {
 	//printf("position before operations = %d\n", cursor->position);
 	if (cursor->opcode == 1)
-	{
 		live_op(vm, cursor);
-		//printf("live done by player = %d\n", vm->game.last_alive_champ);
-	}
-	else if (cursor->opcode == 2)
+	if (cursor->opcode == 2)
 		ld_op(vm, cursor);
+	if (cursor->opcode == 3)
+		st_op(vm, cursor);
 	else if (cursor->opcode == 4)
 		add_op(cursor);
 	else if (cursor->opcode == 5)

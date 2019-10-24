@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/24 11:55:05 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/10/24 11:55:07 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/10/24 11:55:05 by jheeresm       #+#    #+#                */
+/*   Updated: 2019/10/24 21:11:29 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,5 +183,6 @@ void				zjmp_op(t_vm *vm, t_cursor *cursor);
 void				get_indirect_arg_idx_mod(t_vm *vm, t_cursor *cursor);
 void				get_indirect_arg_mem_size(t_vm *vm, t_cursor *cursor);
 void				get_registry_argument(t_cursor *cursor);
+void				st_op(t_vm *vm, t_cursor *cursor);
 
 #endif
