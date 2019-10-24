@@ -6,7 +6,7 @@
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/04 13:29:01 by jheeresm       #+#    #+#                 #
-#    Updated: 2019/10/23 19:02:57 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/10/23 19:08:32 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all : $(CW_NAME)
 
 $(CW_NAME) : $(CW_OBJ) $(LIBFT)
 				@ gcc $(FLAGS) -o $@ $(CW_OBJ) -L ./libft/ -lft
-				@ echo "\033[32mCorewar READY\033[0m"
+				@ echo "\033[32mCOREWAR READY\033[0m"
 
 $(LIBFT) :
 	 			@ make -C ./libft/

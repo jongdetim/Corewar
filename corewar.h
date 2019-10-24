@@ -156,5 +156,6 @@ void				and_op(t_cursor *cursor);
 void				or_op(t_cursor *cursor);
 void				xor_op(t_cursor *cursor);
 void				zjmp_op(t_cursor *cursor);
+void				st_op(t_vm *vm, t_cursor *cursor);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   dump.c                                             :+:    :+:            */
+/*   dump_flag.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/14 15:12:13 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/10/14 15:12:14 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/10/14 15:12:13 by jheeresm       #+#    #+#                */
+/*   Updated: 2019/10/24 18:25:55 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void		dump_flag(unsigned char *mem)
 	while (i < MEM_SIZE)
 	{
 		ft_printf("%02x ", mem[i]);
-		if ((i + 1) % 32 == 0 && i + 1 != MEM_SIZE)
+		if ((i + 1) % 64 == 0 && i + 1 != MEM_SIZE)
 		{
 			ft_putstr("\n");
-			ft_printf("%#.4x : ", i);
+			ft_printf("%#.4x : ", i + 1);
 		}
 		i++;
 	}

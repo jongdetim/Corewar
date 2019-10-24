@@ -6,7 +6,7 @@
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/10/17 18:55:59 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/10/23 19:56:50 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	exec_operation(t_vm *vm, t_cursor *cursor)
 		live_op(vm, cursor);
 	if (cursor->opcode == 2)
 		ld_op(cursor);
+	if (cursor->opcode == 3)
+		st_op(vm, cursor);
 	else if (cursor->opcode == 4)
 		add_op(cursor);
 	else if (cursor->opcode == 5)
