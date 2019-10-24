@@ -61,9 +61,6 @@ void		check_number_for_flag(t_vm *vm, int i)
 
 int			check_for_flag(t_vm *vm, int i)
 {
-	int			j;
-
-	j = 0;
 	if (vm->argv[i][0] != '-')
 		input_error(vm->argv[i], 3);
 	if (!ft_strcmp("-n", vm->argv[i]))
