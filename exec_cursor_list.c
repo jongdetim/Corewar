@@ -13,50 +13,6 @@
 #include "corewar.h"
 
 /*
-** SET_OPCODE
-** If the cursor already has an opcode and it's still the same,
-** it returns (1) and exec_cursor will continue.
-** If the opcode read from memory is not valid it will set waitcycles to 0 and
-** save value.
-** Also it will increase cursor position by 1 and return (0).
-** This ends exec_cursor.
-** If opcode is correct it will set the opcode and
-** set wait_cycles according to opcode
-** vm->wait[opcode - 1] is because opcode 1 is wait[0] and so on.
-*/
-
-int			set_opcode(t_vm *vm, t_cursor *cursor)
-{
-	int			opcode;
-
-	opcode = vm->memory[cursor->position];
-	if (cursor->opcode == opcode && VALID_OPCODE(opcode))
-		return (1);
-	if (!VALID_OPCODE(opcode))
-	{
-		cursor->opcode = opcode;
-		cursor->wait_cycles = 0;
-		cursor->position = ft_modulo(cursor->position + 1, MEM_SIZE);
-		return (0);
-	}
-	cursor->opcode = opcode;
-	cursor->wait_cycles = vm->wait[opcode - 1];
-	return (1);
-}
-
-void		reset_operation(t_cursor *cursor)
-{
-	cursor->operation.arg[0] = 0;
-	cursor->operation.arg[1] = 0;
-	cursor->operation.arg[2] = 0;
-	cursor->operation.check[0] = 0;
-	cursor->operation.check[1] = 0;
-	cursor->operation.check[2] = 0;
-	cursor->operation.check[3] = 0;
-	return ;
-}
-
-/*
 ** MOVE_TO_NEXT_OPERATION (This might be good only if operation is succesfull)
 ** jump is the amount of bytes the cursor will jump.
 ** jump is initialized at 2 because of opcode and encoding byte.
@@ -110,6 +66,38 @@ void		exec_operation(t_vm *vm, t_cursor *cursor)
 		xor_op(cursor);
 	else if (cursor->opcode == 12)
 		fork_op(vm, cursor);
+}
+
+/*
+** SET_OPCODE
+** If the cursor already has an opcode and it's still the same,
+** it returns (1) and exec_cursor will continue.
+** If the opcode read from memory is not valid it will set waitcycles to 0 and
+** save value.
+** Also it will increase cursor position by 1 and return (0).
+** This ends exec_cursor.
+** If opcode is correct it will set the opcode and
+** set wait_cycles according to opcode
+** vm->wait[opcode - 1] is because opcode 1 is wait[0] and so on.
+*/
+
+int			set_opcode(t_vm *vm, t_cursor *cursor)
+{
+	int			opcode;
+
+	opcode = vm->memory[cursor->position];
+	if (cursor->opcode == opcode && VALID_OPCODE(opcode))
+		return (1);
+	if (!VALID_OPCODE(opcode))
+	{
+		cursor->opcode = opcode;
+		cursor->wait_cycles = 0;
+		cursor->position = ft_modulo(cursor->position + 1, MEM_SIZE);
+		return (0);
+	}
+	cursor->opcode = opcode;
+	cursor->wait_cycles = vm->wait[opcode - 1];
+	return (1);
 }
 
 /*

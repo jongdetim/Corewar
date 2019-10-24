@@ -13,6 +13,20 @@
 #include "corewar.h"
 
 /*
+** IS_SINGLE_ARG_OP
+** determines if the operation has a single argument or not.
+** Unfortuntly this did not fit in a #define.
+*/
+
+int			is_single_arg_op(t_cursor *cursor)
+{
+	if (cursor->opcode == 1 || cursor->opcode == 9 ||
+	cursor->opcode == 12 || cursor->opcode == 15 || cursor->opcode == 16)
+		return (1);
+	return (0);
+}
+
+/*
 ** READ_ENCODINGBYTE
 ** The byte has 8 bits, we read per 2 bits.
 ** 01 = register, 10 is direct, 11 is indirect.

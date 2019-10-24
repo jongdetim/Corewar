@@ -55,6 +55,15 @@ void		check_dead_cursor_or_players(t_vm *vm)
 	return ;
 }
 
+void		increase_cycles(int *cycles_to_die, t_vm *vm)
+{
+	*cycles_to_die -= 1;
+	vm->game.cycles += 1;
+	if (vm->dump_flag > 0)
+		vm->dump_flag -= 1;
+	return ;
+}
+
 int			alive_champ_and_cursor(t_vm *vm)
 {
 	t_cursor	*cursor;
@@ -67,15 +76,6 @@ int			alive_champ_and_cursor(t_vm *vm)
 		cursor = cursor->next;
 	}
 	return (0);
-}
-
-void		increase_cycles(int *cycles_to_die, t_vm *vm)
-{
-	*cycles_to_die -= 1;
-	vm->game.cycles += 1;
-	if (vm->dump_flag > 0)
-		vm->dump_flag -= 1;
-	return ;
 }
 
 void		game(t_vm *vm, t_game *game)

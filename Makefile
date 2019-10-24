@@ -15,9 +15,9 @@ CW_NAME =		corewar
 OP_FILES =		fork lfork zjmp add aff and ld ldi \
 				live lld lldi or st sti sub xor
 
-CW_FILES =		main check_arguments input_error init_champion
+CW_FILES =		main check_arguments input_error init_champion \
 				exec_cursor_list read_operation save_arguments init_cursors \
-				load_champs endianness dump_flag game \
+				load_champs endianness dump_flag game reset_operation\
 				$(OP_FILES:%=operations/%)
 
 CW_SRC =		$(CW_FILES:%=%.c)

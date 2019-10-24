@@ -127,33 +127,35 @@ int					calc_starting_position(t_vm *vm, int player_id);
 void				init_cursors(t_vm *vm);
 
 /*
-** exec_cursor.c
+** exec_cursor_list.c
 */
-void				reset_operation(t_cursor *cursor);
 void				exec_cursor_list(t_vm *vm, t_cursor *cursor);
 
 /*
 ** read_operation.c
 */
 int					read_operation(t_vm *vm, t_cursor *cursor);
-
 void				load_champs(t_vm *vm);
 short				reverse16(short value);
 int					reverse32(int value);
 int					ft_modulo(int a, int b);
+int					is_single_arg_op(t_cursor *cursor);
 
 /*
 ** save_arguments.c
 */
-int					get_value_at_address(t_vm *vm, int pos);
 int					save_arguments(t_vm *vm, t_cursor *cursor);
-int					is_single_arg_op(t_cursor *cursor);
 
 /*
 ** dump.c
 */
 int					dump_check(t_vm vm);
 void				dump_flag(unsigned char *mem);
+
+/*
+** reset_operation
+*/
+void				reset_operation(t_cursor *cursor);
 
 /*
 ** operations

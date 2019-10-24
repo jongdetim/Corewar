@@ -13,54 +13,6 @@
 #include "corewar.h"
 
 /*
-** IS_SINGLE_ARG_OP
-** determines if the operation has a single argument or not.
-** Unfortuntly this did not fit in a #define.
-*/
-
-int			is_single_arg_op(t_cursor *cursor)
-{
-	if (cursor->opcode == 1 || cursor->opcode == 9 ||
-	cursor->opcode == 12 || cursor->opcode == 15 || cursor->opcode == 16)
-		return (1);
-	return (0);
-}
-
-/*
-** SAVE_SINGLE_ARGUMENT
-** If the operation has only 1 argument, we save the correct code in check[0].
-** This will register (1) for opcode 16 and the rest is direct (2).
-*/
-
-void		save_single_arg(t_cursor *cursor)
-{
-	if (cursor->opcode == 1 || cursor->opcode == 9 || cursor->opcode == 12 |
-		cursor->opcode == 15)
-		cursor->operation.check[0] = 2;
-	if (cursor->opcode == 16)
-		cursor->operation.check[0] = 1;
-	return ;
-}
-
-/*
-** GET_READSIZE
-** Find the proper readsize in the operation.check.
-** Returns (1) for register, returns (size of t_dir) for direct,
-** returns (2) for indirect.
-*/
-
-int			get_readsize(t_vm *vm, t_cursor *cursor, int n_arg)
-{
-	if (cursor->operation.check[n_arg] == 1)
-		return (1);
-	if (cursor->operation.check[n_arg] == 2)
-		return (vm->t_dir[cursor->opcode - 1]);
-	if (cursor->operation.check[n_arg] == 3)
-		return (2);
-	return (0);
-}
-
-/*
 ** GET_VALUE_OF_ARG
 ** This function will read the bytes into a short or integer using
 ** the order of BIG-endian
@@ -93,19 +45,21 @@ int			get_value_of_arg(t_vm *vm, int pos, int read_size)
 }
 
 /*
-** GET_VALUE_AT_ADDRESS
-** Reads 4 bytes from a certain position in memory.
-** Stores these 4 bytes into an integer.
-** The bytes are read as big endian and stored in little endian.
+** GET_READSIZE
+** Find the proper readsize in the operation.check.
+** Returns (1) for register, returns (size of t_dir) for direct,
+** returns (2) for indirect.
 */
 
-int			get_value_at_address(t_vm *vm, int pos)
+int			get_readsize(t_vm *vm, t_cursor *cursor, int n_arg)
 {
-	int			value;
-
-	value = (int)(vm->memory[MOD(pos)] << 24 | vm->memory[MOD(pos + 1)] << 16 |
-				vm->memory[MOD(pos + 2)] << 8 | vm->memory[MOD(pos + 3)]);
-	return (value);
+	if (cursor->operation.check[n_arg] == 1)
+		return (1);
+	if (cursor->operation.check[n_arg] == 2)
+		return (vm->t_dir[cursor->opcode - 1]);
+	if (cursor->operation.check[n_arg] == 3)
+		return (2);
+	return (0);
 }
 
 /*
@@ -137,6 +91,24 @@ int			get_argument(t_vm *vm, t_cursor *cursor, int *jump, int n)
 		return (0);
 	*jump += read_size;
 	return (1);
+}
+
+/*
+** SAVE_SINGLE_ARGUMENT
+** If the operation has only 1 argument, we save the correct code in check[0].
+** This will register (1) for opcode 16 and the rest is direct (2).
+*/
+
+void		save_single_arg(t_cursor *cursor)
+{
+	if (cursor->opcode == 1 || cursor->opcode == 9 || cursor->opcode == 12 |
+		cursor->opcode == 15)
+		cursor->operation.check[0] = 2;
+	else if (cursor->opcode == 16)
+		cursor->operation.check[0] = 1;
+	else
+		ft_error("single arg check error");
+	return ;
 }
 
 /*
