@@ -1,11 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-<<<<<<< HEAD:srcs/operations/operation_help.c
-/*   operation_help.c      	             	            :+:    :+:            */
-=======
-/*   indirect_help.c                                    :+:    :+:            */
->>>>>>> c7f765ce4afe1fd3c5a95e1241bff73cb3f1b1fe:srcs/operations/indirect_help.c
+/*   operation_help.c                                    :+:    :+:           */
 /*                                                     +:+                    */
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -40,16 +36,11 @@ void			get_indirect_arg_idx_mod(t_vm *vm, t_cursor *cursor)
 	i = 0;
 	while (i < 3)
 	{
-		if (cursor->operation.check[i] == IND_CODE)
+		if (ARGUMENT_TYPE == IND_CODE)
 		{
-<<<<<<< HEAD:srcs/operations/operation_help.c
-			position = cursor->position + (cursor->operation.arg[i] % IDX_MOD);
-			position = modulo(position, MEM_SIZE);
-=======
-			position = cursor->position += cursor->operation.arg[i] % IDX_MOD;
+			position = cursor->position + ARGUMENT % IDX_MOD;
 			position = ft_modulo(position, MEM_SIZE);
->>>>>>> c7f765ce4afe1fd3c5a95e1241bff73cb3f1b1fe:srcs/operations/indirect_help.c
-			cursor->operation.arg[i] = get_value_at_address(vm, position);
+			ARGUMENT = get_value_at_address(vm, position);
 		}
 		i++;
 	}
@@ -64,16 +55,11 @@ void			get_indirect_arg_mem_size(t_vm *vm, t_cursor *cursor)
 	i = 0;
 	while (i < 3)
 	{
-		if (cursor->operation.check[i] == IND_CODE)
+		if (ARGUMENT_TYPE == IND_CODE)
 		{
-<<<<<<< HEAD:srcs/operations/operation_help.c
-			position = cursor->position + (cursor->operation.arg[i] % IDX_MOD);
-			position = modulo(position, MEM_SIZE);
-=======
-			position = cursor->position += cursor->operation.arg[i] % IDX_MOD;
+			position = cursor->position + ARGUMENT % IDX_MOD;
 			position = ft_modulo(position, MEM_SIZE);
->>>>>>> c7f765ce4afe1fd3c5a95e1241bff73cb3f1b1fe:srcs/operations/indirect_help.c
-			cursor->operation.arg[i] = get_value_at_address(vm, position);
+			ARGUMENT = get_value_at_address(vm, position);
 		}
 		i++;
 	}
@@ -87,9 +73,8 @@ void			get_registry_argument(t_cursor *cursor)
 	i = 0;
 	while (i < 3)
 	{
-		if (cursor->operation.check[i] == REG_CODE)
-			cursor->operation.arg[i] =
-					cursor->reg[cursor->operation.arg[i] - 1];
+		if (ARGUMENT_TYPE == REG_CODE)
+			ARGUMENT = cursor->reg[ARGUMENT - 1];
 		i++;
 	}
 	return ;

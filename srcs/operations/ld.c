@@ -17,9 +17,9 @@ void		ld_op(t_vm *vm, t_cursor *cursor)
 	int value;
 
 	get_indirect_arg_idx_mod(vm, cursor);
-	value = cursor->operation.arg[0];
-	cursor->reg[cursor->operation.arg[1] - 1] = value;
-	printf("value at registry[%d]: [%d]\n", cursor->operation.arg[1], cursor->reg[cursor->operation.arg[1] - 1]);
+	value = FIRST_ARG;
+	cursor->reg[SECOND_ARG - 1] = value;
+	printf("value at registry[%d]: [%d]\n", SECOND_ARG, cursor->reg[SECOND_ARG - 1]);
 	if (value == 0)
 		cursor->carry = 1;
 	else

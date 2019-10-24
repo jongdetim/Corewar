@@ -41,7 +41,7 @@ void	live_op(t_vm *vm, t_cursor *cursor)
 	i = 0;
 	while (i < 4)
 	{
-		if (cursor->operation.arg[0] == vm->champions[i].id)
+		if (FIRST_ARG == vm->champions[i].id)
 		{
 			vm->game.last_alive_champ = vm->champions[i].id;
 			

@@ -19,8 +19,8 @@ void		st_op(t_vm *vm, t_cursor *cursor)
 	int	i;
 	int buff;
 
-	first_arg = cursor->operation.arg[0];
-	second_arg = cursor->operation.arg[1];
+	first_arg = FIRST_ARG;
+	second_arg = SECOND_ARG;
 	if (cursor->operation.check[1] == REG_CODE)
 		cursor->reg[second_arg - 1] = cursor->reg[first_arg - 1];
 	else if (cursor->operation.check[1] == IND_CODE)

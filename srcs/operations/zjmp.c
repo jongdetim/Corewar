@@ -30,12 +30,7 @@ void		zjmp_op(t_vm *vm, t_cursor *cursor)
 		return ;
 	}
 	printf("position before jump = %d\n", cursor->position);
-	position = (cursor->operation.arg[0] % IDX_MOD) + cursor->position;
-<<<<<<< HEAD:operations/zjmp.c
-	cursor->position = modulo(position, MEM_SIZE);
-	printf("position after jump = %d\n", cursor->position);
-=======
+	position = (FIRST_ARG % IDX_MOD) + cursor->position;
 	cursor->position = ft_modulo(position, MEM_SIZE);
->>>>>>> c7f765ce4afe1fd3c5a95e1241bff73cb3f1b1fe:srcs/operations/zjmp.c
 	return ;
 }

@@ -149,7 +149,7 @@ int			save_arguments(t_vm *vm, t_cursor *cursor)
 	i = 0;
 	while (i < 3)
 	{
-		if (cursor->operation.check[i] != 0)
+		if (ARGUMENT_TYPE != 0)
 		{
 			if (!get_argument(vm, cursor, &jump, i))
 				return (0);

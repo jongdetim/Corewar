@@ -24,10 +24,9 @@ void			sub_op(t_cursor *cursor)
 {
 	int			registry;
 
-	registry = cursor->operation.arg[2] - 1;
+	registry = THIRD_ARG - 1;
 	get_registry_argument(cursor);
-	cursor->reg[registry] =
-			cursor->operation.arg[0] - cursor->operation.arg[1];
+	cursor->reg[registry] = FIRST_ARG - SECOND_ARG;
 	printf("value at registry[%d] after SUB = [%d]\n", registry + 1, cursor->reg[registry]);
 	if (cursor->reg[registry] == 0)
 		cursor->carry = 1;

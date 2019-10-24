@@ -30,13 +30,10 @@ void			and_op(t_vm *vm, t_cursor *cursor)
 {
 	int			registry;
 
-	registry = cursor->operation.arg[2] - 1;
+	registry = THIRD_ARG - 1;
 	get_registry_argument(cursor);
 	get_indirect_arg_idx_mod(vm, cursor);
-	cursor->reg[registry] =
-		cursor->operation.arg[0] & cursor->operation.arg[1];
-	printf("argument[1] = %d, argument[2] = %d\n", cursor->operation.arg[0], cursor->operation.arg[1]);
-	printf("value at registry[%d] after AND = [%d]\n", registry + 1, cursor->reg[registry]);
+	cursor->reg[registry] = FIRST_ARG & SECOND_ARG;
 	if (cursor->reg[registry] == 0)
 		cursor->carry = 1;
 	else

@@ -12,18 +12,8 @@
 
 CW_NAME =		corewar
 
-<<<<<<< HEAD
-CW_FILES =		main check_arguments input_error init_champion exec_cursor_list \
-				read_operation save_arguments init_cursors load_champs \
-				endianness dump_flag operations/fork operations/lfork \
-				operations/zjmp operations/add operations/aff operations/and \
-				operations/ld operations/ldi operations/live operations/lld \
-				operations/lldi operations/or operations/st operations/sti \
-				operations/sub operations/xor operations/operation_help
-=======
 OP_FILES =		fork lfork zjmp add aff and ld ldi \
-				live lld lldi or st sti sub xor
->>>>>>> c7f765ce4afe1fd3c5a95e1241bff73cb3f1b1fe
+				live lld lldi or st sti sub xor operation_help
 
 CW_FILES =		main check_arguments input_error init_champion \
 				exec_cursor_list read_operation save_arguments init_cursors \

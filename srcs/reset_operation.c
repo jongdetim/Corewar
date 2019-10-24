@@ -14,9 +14,9 @@
 
 void		reset_operation(t_cursor *cursor)
 {
-	cursor->operation.arg[0] = 0;
-	cursor->operation.arg[1] = 0;
-	cursor->operation.arg[2] = 0;
+	FIRST_ARG = 0;
+	SECOND_ARG = 0;
+	THIRD_ARG = 0;
 	cursor->operation.check[0] = 0;
 	cursor->operation.check[1] = 0;
 	cursor->operation.check[2] = 0;

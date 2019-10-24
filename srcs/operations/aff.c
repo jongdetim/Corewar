@@ -14,5 +14,5 @@
 
 void		aff(t_cursor *cursor)
 {
-	ft_printf("%c", (char)(cursor->reg[cursor->operation.arg[0] - 1]));
+	ft_printf("%c", (char)(cursor->reg[FIRST_ARG - 1]));
 }

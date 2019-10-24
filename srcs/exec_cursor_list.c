@@ -10,52 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-<<<<<<< HEAD:exec_cursor_list.c
-#include "corewar.h"
-
-/*
-** SET_OPCODE
-** If the cursor already has an opcode and it's still the same, it returns (1) and exec_cursor will continue.
-** If the opcode read from memory is not valid it will set waitcycles to 0 and save value.
-** Also it will increase cursor position by 1 and return (0). This ends exec_cursor.
-** If opcode is correct it will set the opcode and set wait_cycles according to opcode
-** vm->wait[opcode - 1] is because opcode 1 is wait[0] and so on.
-*/
-
-int			set_opcode(t_vm *vm, t_cursor *cursor)
-{
-	int			opcode;
-
-	opcode = vm->memory[cursor->position];
-	if (cursor->opcode == opcode && VALID_OPCODE(opcode))
-		return (1);
-	if (!VALID_OPCODE(opcode))
-	{
-		cursor->opcode = opcode;
-		cursor->wait_cycles = 0;
-		cursor->position = modulo(cursor->position + 1, MEM_SIZE);
-		return (0);
-	}
-	cursor->opcode = opcode;
-	cursor->wait_cycles = vm->wait[opcode - 1];
-	printf("-------------------\ncursor_id = %d, new opcode = %d, wait cycles = %d\n", cursor->id, cursor->opcode, cursor->wait_cycles);
-	return (1);
-}
-
-void		reset_operation(t_cursor *cursor)
-{
-	cursor->operation.arg[0] = 0;
-	cursor->operation.arg[1] = 0;
-	cursor->operation.arg[2] = 0;
-	cursor->operation.check[0] = 0;
-	cursor->operation.check[1] = 0;
-	cursor->operation.check[2] = 0;
-	cursor->operation.check[3] = 0;
-	return ;
-}
-=======
 #include "../includes/corewar.h"
->>>>>>> c7f765ce4afe1fd3c5a95e1241bff73cb3f1b1fe:srcs/exec_cursor_list.c
 
 /*
 ** MOVE_TO_NEXT_OPERATION (This might be good only if operation is succesfull)
@@ -76,11 +31,11 @@ void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
 	i = 0;
 	while (i < 4)
 	{
-		if (cursor->operation.check[i] == 1)
+		if (ARGUMENT_TYPE == 1)
 			jump += REG_CODE;
-		if (cursor->operation.check[i] == 2)
+		if (ARGUMENT_TYPE == 2)
 			jump += vm->t_dir[cursor->opcode - 1];
-		if (cursor->operation.check[i] == 3)
+		if (ARGUMENT_TYPE == 3)
 			jump += IND_SIZE;
 		if (is_single_arg_op(cursor))
 		{
@@ -175,7 +130,7 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 		if (read_operation(vm, cursor))
 		{
 			//ft_printf("exec operation = [%d]\n", cursor->opcode);
-			//ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", cursor->operation.arg[0], cursor->operation.arg[1], cursor->operation.arg[2]);
+			//ft_printf("arg1 = %d, arg2 = %d, arg3 = %d\n", FIRST_ARG, SECOND_ARG, THIRD_ARG);
 			exec_operation(vm, cursor);
 		}
 		// else = operation, argument of encoding byte was wrong.

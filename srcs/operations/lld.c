@@ -16,8 +16,8 @@ void		lld(t_cursor *cursor)
 {
 	int value;
 
-	value = cursor->operation.arg[0];
-	cursor->reg[cursor->operation.arg[1] - 1] = value;
+	value = FIRST_ARG;
+	cursor->reg[SECOND_ARG - 1] = value;
 	if (value == 0)
 		cursor->carry = 1;
 	else

@@ -17,7 +17,7 @@ void		lfork_op(t_vm *vm, t_cursor *cursor)
 	t_cursor		*fork;
 	int				position;
 
-	position = cursor->operation.arg[0] + cursor->position;
+	position = FIRST_ARG + cursor->position;
 	position = ft_modulo(position, MEM_SIZE);
 	fork = duplicate_cursor(cursor, position);
 	add_to_cursor_list(vm, fork);

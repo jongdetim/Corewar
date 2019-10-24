@@ -21,7 +21,7 @@ jump1:
 	zjmp %:jump2
 
 jump2:
-	live %-1
+	fork %:jump
 	zjmp %:jump
 	
 

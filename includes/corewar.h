@@ -45,6 +45,12 @@
 # define CHECK_LFORK(x) (x[0] == 2 && !x[1] && !x[2])
 # define CHECK_AFF(x) (x[0] == 1 && !x[1] && !x[2])
 
+# define FIRST_ARG cursor->operation.arg[0]
+# define SECOND_ARG cursor->operation.arg[1]
+# define THIRD_ARG cursor->operation.arg[2]
+# define ARGUMENT cursor->operation.arg[i]
+# define ARGUMENT_TYPE cursor->operation.check[i]
+
 typedef struct		s_champion
 {
 	char			*filename;
@@ -129,11 +135,8 @@ void				init_cursors(t_vm *vm);
 /*
 ** exec_cursor_list.c
 */
-<<<<<<< HEAD:corewar.h
 void				reset_operation(t_cursor *cursor);
 void				move_to_next_operation(t_vm *vm, t_cursor *cursor);
-=======
->>>>>>> c7f765ce4afe1fd3c5a95e1241bff73cb3f1b1fe:includes/corewar.h
 void				exec_cursor_list(t_vm *vm, t_cursor *cursor);
 
 /*
@@ -165,13 +168,8 @@ void				reset_operation(t_cursor *cursor);
 /*
 ** operations
 */
-<<<<<<< HEAD:corewar.h
 void				ld_op(t_vm *vm, t_cursor *cursor);
-void   				live_op(t_vm *vm, t_cursor *cursor);
-=======
-void				ld_op(t_cursor *cursor);
 void				live_op(t_vm *vm, t_cursor *cursor);
->>>>>>> c7f765ce4afe1fd3c5a95e1241bff73cb3f1b1fe:includes/corewar.h
 void				copy_cursor_variables(t_cursor *cursor, t_cursor *fork);
 t_cursor			*duplicate_cursor(t_cursor *cursor, int position);
 void				fork_op(t_vm *vm, t_cursor *cursor);

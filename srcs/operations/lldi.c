@@ -19,15 +19,15 @@ void		lldi(t_vm *vm, t_cursor *cursor)
 	int	third_arg;
 	int	pos;
 
-	third_arg = cursor->operation.arg[2];
+	third_arg = THIRD_ARG;
 	if (cursor->operation.check[0] == REG_CODE)
-		first_arg = cursor->reg[cursor->operation.arg[0] - 1];
+		first_arg = cursor->reg[FIRST_ARG - 1];
 	else
-		first_arg = cursor->operation.arg[0];
+		first_arg = FIRST_ARG;
 	if (cursor->operation.check[1] == REG_CODE)
-		second_arg = cursor->reg[cursor->operation.arg[1] - 1];
+		second_arg = cursor->reg[SECOND_ARG - 1];
 	else
-		second_arg = cursor->operation.arg[1];
+		second_arg = SECOND_ARG;
 	pos = cursor->position + first_arg + second_arg;
 	(cursor->reg[third_arg - 1]) =
 	vm->memory[ft_modulo(pos, MEM_SIZE)] << 24 |
