@@ -31,7 +31,7 @@ void		sti(t_vm *vm, t_cursor *cursor)
 	i = 0;
 	while (i < 4)
 	{
-		vm->memory[modulo(cursor->position +
+		vm->memory[ft_modulo(cursor->position +
 		((second_arg + third_arg) % IDX_MOD) + i, MEM_SIZE)] =
 													(char)first_arg;
 		first_arg = first_arg >> 8;

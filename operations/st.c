@@ -30,7 +30,7 @@ void		st_op(t_vm *vm, t_cursor *cursor)
 		while (i < 4)
 		{
 			ft_printf("%i\n\n", second_arg);
-			vm->memory[modulo(cursor->position + (second_arg % IDX_MOD)
+			vm->memory[ft_modulo(cursor->position + (second_arg % IDX_MOD)
 											+ i, MEM_SIZE)] = (char)buff;
 			buff = buff << 8;
 			i++;

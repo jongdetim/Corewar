@@ -30,8 +30,8 @@ void		ldi(t_vm *vm, t_cursor *cursor)
 		second_arg = cursor->operation.arg[1];
 	pos = cursor->position + ((first_arg + second_arg) % IDX_MOD);
 	(cursor->reg[third_arg - 1]) =
-	vm->memory[modulo(pos, MEM_SIZE)] << 24 |
-	vm->memory[modulo(pos + 1, MEM_SIZE)] << 16 |
-	vm->memory[modulo(pos + 2, MEM_SIZE)] << 8 |
-	vm->memory[modulo(pos + 3, MEM_SIZE)];
+	vm->memory[ft_modulo(pos, MEM_SIZE)] << 24 |
+	vm->memory[ft_modulo(pos + 1, MEM_SIZE)] << 16 |
+	vm->memory[ft_modulo(pos + 2, MEM_SIZE)] << 8 |
+	vm->memory[ft_modulo(pos + 3, MEM_SIZE)];
 }

@@ -23,7 +23,7 @@ void			get_indirect_arg_idx_mod(t_vm *vm, t_cursor *cursor)
 		if (cursor->operation.check[i] == 3)
 		{
 			position = cursor->position += cursor->operation.arg[i] % IDX_MOD;
-			position = modulo(position, MEM_SIZE);
+			position = ft_modulo(position, MEM_SIZE);
 			cursor->operation.arg[i] = get_value_at_address(vm, position);
 		}
 		i++;
@@ -42,7 +42,7 @@ void			get_indirect_arg_mem_size(t_vm *vm, t_cursor *cursor)
 		if (cursor->operation.check[i] == 3)
 		{
 			position = cursor->position += cursor->operation.arg[i] % IDX_MOD;
-			position = modulo(position, MEM_SIZE);
+			position = ft_modulo(position, MEM_SIZE);
 			cursor->operation.arg[i] = get_value_at_address(vm, position);
 		}
 		i++;

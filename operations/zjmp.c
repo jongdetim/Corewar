@@ -26,6 +26,6 @@ void		zjmp(t_cursor *cursor)
 	if (!cursor->carry)
 		return ;
 	position = (cursor->operation.arg[0] % IDX_MOD) + cursor->position;
-	cursor->position = modulo(position, MEM_SIZE);
+	cursor->position = ft_modulo(position, MEM_SIZE);
 	return ;
 }

@@ -36,7 +36,7 @@ int			set_opcode(t_vm *vm, t_cursor *cursor)
 	{
 		cursor->opcode = opcode;
 		cursor->wait_cycles = 0;
-		cursor->position = modulo(cursor->position + 1, MEM_SIZE);
+		cursor->position = ft_modulo(cursor->position + 1, MEM_SIZE);
 		return (0);
 	}
 	cursor->opcode = opcode;
@@ -88,7 +88,7 @@ void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
 		}
 		i++;
 	}
-	cursor->position = modulo(cursor->position + jump, MEM_SIZE);
+	cursor->position = ft_modulo(cursor->position + jump, MEM_SIZE);
 	return ;
 }
 

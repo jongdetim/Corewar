@@ -26,7 +26,7 @@
 # define BYTE(byte, i) !!((byte << i) & 0x80)
 # define VALID_OPCODE(x) (x >= 1 && x <= 16)
 # define VALID_REG(x) (x >= 1 && x <= REG_NUMBER)
-# define MOD(x) modulo(x, MEM_SIZE)
+# define MOD(x) ft_modulo(x, MEM_SIZE)
 
 # define CHECK_LIVE(x) (x[0] == 2 && !x[1] && !x[2])
 # define CHECK_LD(x) (x[0] > 1 && x[1] == 1 && !x[2])
@@ -99,6 +99,11 @@ typedef struct		s_vm
 }					t_vm;
 
 /*
+** game.c
+*/
+void				game(t_vm *vm, t_game *game);
+
+/*
 ** error.c
 */
 void				display_help(void);
@@ -135,7 +140,7 @@ int					read_operation(t_vm *vm, t_cursor *cursor);
 void				load_champs(t_vm *vm);
 short				reverse16(short value);
 int					reverse32(int value);
-int					modulo(int a, int b);
+int					ft_modulo(int a, int b);
 
 /*
 ** save_arguments.c

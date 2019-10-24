@@ -88,35 +88,6 @@ void		init_vm(t_vm *vm, int argc, char **argv)
 }
 
 /*
-** DECREASE_CYCLES_TO_DIE
-** If the amount of lives exected is >= 21. We decrease cycles to die by 50.
-** Everytime the amount of lives is < 21, we increment check by 1.
-** If check = 10, we decrease cycles to die by 50 and set check back to 0.
-** If after decreasing cycles to die, it becomes less than 0, we set it to 1.
-** This means there will be just 1 cycle before death.
-*/
-
-void		decrease_cycles_to_die(t_game *game, int *cycles)
-{
-	if (game->nbr_live >= NBR_LIVE)
-		game->cycles_to_die -= CYCLE_DELTA;
-	else
-	{
-		if (game->check == 10)
-		{
-			game->cycles_to_die -= CYCLE_DELTA;
-			game->check = 0;
-			return ;
-		}
-		game->check += 1;
-	}
-	if (game->cycles_to_die < 0)
-		game->cycles_to_die = 1;
-	*cycles = game->cycles_to_die;
-	return ;
-}
-
-/*
 ** can a player die? (?:AYU)
 **	while (cursor)
 **	{
@@ -126,73 +97,6 @@ void		decrease_cycles_to_die(t_game *game, int *cycles)
 **		}
 **	}
 */
-
-void		check_dead_cursor_or_players(t_vm *vm)
-{
-	t_cursor	*cursor;
-
-	cursor = vm->cursors;
-	while (cursor)
-	{
-		if (cursor->last_live <= vm->game.cycles - vm->game.cycles_to_die)
-			cursor->last_live = -1;
-		cursor = cursor->next;
-	}
-	return ;
-}
-
-int			alive_champ_and_cursor(t_vm *vm)
-{
-	t_cursor	*cursor;
-
-	cursor = vm->cursors;
-	while (cursor)
-	{
-		if (cursor->last_live > (vm->game.cycles - vm->game.cycles_to_die))
-			return (1);
-		cursor = cursor->next;
-	}
-	return (0);
-}
-
-void		increase_cycles(int *cycles_to_die, t_vm *vm)
-{
-	*cycles_to_die -= 1;
-	vm->game.cycles += 1;
-	if (vm->dump_flag > 0)
-		vm->dump_flag -= 1;
-	return ;
-}
-
-void		game(t_vm *vm, t_game *game)
-{
-	int			cycles_to_die;
-
-	cycles_to_die = game->cycles_to_die;
-	while (cycles_to_die && !dump_check(*vm) && alive_champ_and_cursor(vm))
-	{
-		exec_cursor_list(vm, vm->cursors);
-		increase_cycles(&cycles_to_die, vm);
-		if (cycles_to_die == 0)
-		{
-			check_dead_cursor_or_players(vm);
-			decrease_cycles_to_die(game, &cycles_to_die);
-		}
-	}
-	return ;
-}
-
-int			modulo(int a, int b)
-{
-	int		result;
-
-	if (b < 0)
-		return (modulo(-a, -b));
-	result = a % b;
-	if (result >= 0)
-		return (result);
-	return (result + b);
-}
 
 int			main(int argc, char **argv)
 {
