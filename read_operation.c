@@ -88,7 +88,7 @@ int			right_encoding_for_op(int operation, int *check)
 
 int			read_and_check_encoding(t_cursor *cursor, unsigned char byte)
 {
-	if (SINGLE_ARG_OP)
+	if (is_single_arg_op(cursor))
 		return (1);
 	read_encodingbyte(cursor, byte);
 	if (!right_encoding_for_op(cursor->opcode, cursor->operation.check))

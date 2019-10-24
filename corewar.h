@@ -13,20 +13,17 @@
 #ifndef COREWAR_H
 # define COREWAR_H
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <errno.h>
-#include "op.h"
-#include "libft/libft.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <errno.h>
+# include "op.h"
+# include "libft/libft.h"
 
 # define NO_CHAMP_AFTER_N_FLAG i + 2 == vm->argc
 # define NO_NUMBER_AFTER_FLAG i + 1 == vm->argc
 
 # define BYTE(byte, i) !!((byte << i) & 0x80)
-# define SINGLE_ARG_OP cursor->opcode == 1 || cursor->opcode == 9 || \
-					cursor->opcode == 12 || cursor->opcode == 15 || \
-					cursor->opcode == 16
 # define VALID_OPCODE(x) (x >= 1 && x <= 16)
 # define VALID_REG(x) (x >= 1 && x <= REG_NUMBER)
 # define MOD(x) modulo(x, MEM_SIZE)
@@ -48,8 +45,7 @@
 # define CHECK_LFORK(x) (x[0] == 2 && !x[1] && !x[2])
 # define CHECK_AFF(x) (x[0] == 1 && !x[1] && !x[2])
 
-
-typedef struct 		s_champion
+typedef struct		s_champion
 {
 	char			*filename;
 	char			*name;
@@ -59,13 +55,13 @@ typedef struct 		s_champion
 	int				last_live;
 }					t_champion;
 
-typedef struct 		s_operation
+typedef struct		s_operation
 {
 	int				check[4];
 	int				arg[3];
 }					t_operation;
 
-typedef struct 		s_cursor
+typedef struct		s_cursor
 {
 	int				id;
 	int				carry;
@@ -78,7 +74,7 @@ typedef struct 		s_cursor
 	void			*next;
 }					t_cursor;
 
-typedef struct 		s_game
+typedef struct		s_game
 {
 	int				cycles;
 	int				cycles_to_die;
@@ -87,14 +83,14 @@ typedef struct 		s_game
 	int				last_alive_champ;
 }					t_game;
 
-typedef struct 		s_vm
+typedef struct		s_vm
 {
 	int				argc;
 	char			**argv;
 	t_champion		*champions;
 	t_game			game;
 	t_cursor		*cursors;
-	unsigned char 	*memory;
+	unsigned char	*memory;
 	int				champion_count;
 	int				dump_flag;
 	int				n_flag[4];
@@ -146,6 +142,7 @@ int					modulo(int a, int b);
 */
 int					get_value_at_address(t_vm *vm, int pos);
 int					save_arguments(t_vm *vm, t_cursor *cursor);
+int					is_single_arg_op(t_cursor *cursor);
 
 /*
 ** dump.c
@@ -157,7 +154,7 @@ void				dump_flag(unsigned char *mem);
 ** operations
 */
 void				ld_op(t_cursor *cursor);
-void   				live_op(t_vm *vm, t_cursor *cursor);
+void				live_op(t_vm *vm, t_cursor *cursor);
 void				copy_cursor_variables(t_cursor *cursor, t_cursor *fork);
 t_cursor			*duplicate_cursor(t_cursor *cursor, int position);
 void				fork_op(t_vm *vm, t_cursor *cursor);

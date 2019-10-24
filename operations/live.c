@@ -34,9 +34,9 @@
 **	//at the end of each cycle nmbr_live will be reset to zero
 */
 
-void    live_op(t_vm *vm, t_cursor *cursor)
+void	live_op(t_vm *vm, t_cursor *cursor)
 {
-    int i;
+	int i;
 
 	i = 0;
 	while (i < 4)

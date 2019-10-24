@@ -13,6 +13,20 @@
 #include "corewar.h"
 
 /*
+** IS_SINGLE_ARG_OP
+** determines if the operation has a single argument or not.
+** Unfortuntly this did not fit in a #define.
+*/
+
+int			is_single_arg_op(t_cursor *cursor)
+{
+	if (cursor->opcode == 1 || cursor->opcode == 9 ||
+	cursor->opcode == 12 || cursor->opcode == 15 || cursor->opcode == 16)
+		return (1);
+	return (0);
+}
+
+/*
 ** SAVE_SINGLE_ARGUMENT
 ** If the operation has only 1 argument, we save the corresponding code in check[0].
 ** This will register (1) for opcode 16 and the rest is direct (2).
@@ -124,14 +138,14 @@ int			get_argument(t_vm *vm, t_cursor *cursor, int *jump, int n)
 ** More information on this in the comments of function: get_argument.
 ** Jump is initialize at 2 (opcode + encoding byte). If the argument has no encoding byte, jump will be 1 (just opcode).
 ** 
-** If the opcode is SINGLE_ARG_OP (only one argument) we save it's argument code (1: reg, 2: dir, 3:ind) to check[0].
+** If the opcode is is_single_arg_op(cursor) (only one argument) we save it's argument code (1: reg, 2: dir, 3:ind) to check[0].
 ** This is needed for the get_argument function.
 **
 ** If check[i] != 0, we check and save the value of the argument in get_argument. 
 ** If get_argument returns (0) this means the argument type was register but the value was incorrect (not VALID_REG (1 - 16))
 ** This will stop the saving of arguments: return (0).
 **
-** The last if (SINGLE_ARG_OP) just breaks the loop because we only have to get 1 argument.
+** The last if (is_single_arg_op(cursor)) just breaks the loop because we only have to get 1 argument.
 **
 ** Return (1) means we succesfully got a argument.
 */
@@ -142,7 +156,7 @@ int			save_arguments(t_vm *vm, t_cursor *cursor)
 	int			i;
 
 	jump = 2;
-	if (SINGLE_ARG_OP)
+	if (is_single_arg_op(cursor))
 	{
 		save_single_arg(cursor);
 		jump = 1;
@@ -155,7 +169,7 @@ int			save_arguments(t_vm *vm, t_cursor *cursor)
 			if (!get_argument(vm, cursor, &jump, i))
 				return (0);
 		}
-		if (SINGLE_ARG_OP)
+		if (is_single_arg_op(cursor))
 			return (1);
 		i++;
 	}

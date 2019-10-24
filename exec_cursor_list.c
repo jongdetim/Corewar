@@ -77,7 +77,7 @@ void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
 			jump += vm->t_dir[cursor->opcode - 1];
 		if (cursor->operation.check[i] == 3)
 			jump += IND_SIZE;
-		if (SINGLE_ARG_OP)
+		if (is_single_arg_op(cursor))
 		{
 			jump -= 1;
 			break ;
