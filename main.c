@@ -128,17 +128,9 @@ void		decrease_cycles_to_die(t_game *game, int *cycles)
 */
 void		check_dead_cursor_or_players(t_vm *vm)
 {
-	int			i;
 	t_cursor 	*cursor;
 
-	i = 0;
 	cursor = vm->cursors;
-	while (i < vm->champion_count)
-	{
-		if (vm->champions[i].last_live <= vm->game.cycles - vm->game.cycles_to_die)
-			vm->champions[i].last_live = -1;
-		i++;
-	}
 	while (cursor)
 	{
 		if (cursor->last_live <= vm->game.cycles - vm->game.cycles_to_die)
@@ -147,37 +139,28 @@ void		check_dead_cursor_or_players(t_vm *vm)
 	}
 	return ;
 }
-
-/*
- ** remove champ check
- */
  
 int			alive_champ_and_cursor(t_vm *vm)
 {
-	int			i;
-	int			champ;
-	int			n_cursor;
 	t_cursor	*cursor;
 
-	i = 0;
-	n_cursor = 0;
-	champ = 0;
 	cursor = vm->cursors;
-	while (i < vm->champion_count)
-	{
-		if (vm->champions[i].last_live != -1)
-			champ += 1;
-		i++;
-	}
 	while (cursor)
 	{
-		if (cursor->last_live > vm->game.cycles - vm->game.cycles_to_die)
-			n_cursor += 1;
+		if (cursor->last_live > (vm->game.cycles - vm->game.cycles_to_die))
+			return (1);
 		cursor = cursor->next;
 	}
-	if (!champ || !n_cursor)
-		return (0);
-	return (1);
+	return (0);
+}
+
+void		increase_cycles(int *cycles_to_die, t_vm *vm)
+{
+	*cycles_to_die -= 1;
+	vm->game.cycles += 1;
+	if (vm->dump_flag > 0)
+			vm->dump_flag -= 1;
+	return ;
 }
 
 void		game(t_vm *vm, t_game *game)
@@ -188,10 +171,7 @@ void		game(t_vm *vm, t_game *game)
 	while (cycles_to_die && !dump_check(*vm) && alive_champ_and_cursor(vm))
 	{
 		exec_cursor_list(vm, vm->cursors);
-		cycles_to_die -= 1;
-		game->cycles += 1;
-		if (vm->dump_flag > 0)
-			vm->dump_flag -= 1;
+		increase_cycles(&cycles_to_die, vm);
 		if (cycles_to_die == 0)
 		{
 			check_dead_cursor_or_players(vm);

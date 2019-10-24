@@ -92,11 +92,17 @@ int			get_value_of_arg(t_vm *vm, int pos, int read_size)
 	return (value);
 }
 
+/*
+** GET_VALUE_AT_ADDRESS
+** Reads 4 bytes from a certain position in memory. 
+** Stores these 4 bytes into an integer. The bytes are read as big endian and stored in little endian.
+*/
+
 int			get_value_at_address(t_vm *vm, int pos)
 {
 	int			value;
 
-	value = vm->memory[MOD(pos)] << 24 | vm->memory[MOD(pos + 1)] << 16 |
+	value = (int) vm->memory[MOD(pos)] << 24 | vm->memory[MOD(pos + 1)] << 16 |
 				vm->memory[MOD(pos + 2)] << 8 | vm->memory[MOD(pos + 3)];
 	return (value);
 }
@@ -128,12 +134,6 @@ int			get_argument(t_vm *vm, t_cursor *cursor, int *jump, int n)
 		return (0);
 	if (cursor->operation.check[3] != 0)
 		return (0);
-	if (cursor->operation.check[n] == 3)
-	{
-		pos += (cursor->operation.arg[n] % IDX_MOD);
-		pos = modulo(pos, MEM_SIZE);
-		cursor->operation.arg[n] = get_value_at_address(vm, pos);
-	}	
 	*jump += read_size;
 	return (1);
 }
