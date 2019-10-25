@@ -33,3 +33,5 @@ do
 done
 
 printf '\033[0;32mperfect! memory is the same at all cycles until %s\n\033[0m' "$CYCLES"
+rm temp_output1
+rm temp_output2
