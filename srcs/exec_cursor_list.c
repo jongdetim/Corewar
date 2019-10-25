@@ -6,7 +6,7 @@
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/10/24 21:18:19 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/10/25 18:12:38 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 		return ;
 	if (cursor->wait_cycles > 0)
 		cursor->wait_cycles -= 1;
-	else if (cursor->wait_cycles == 0)
+	if (cursor->wait_cycles == 0)
 	{
 		if (read_operation(vm, cursor))
 		{
