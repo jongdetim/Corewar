@@ -25,11 +25,9 @@
 
 int			get_value_of_arg(t_vm *vm, int pos, int read_size)
 {
-	int				i;
 	signed int		value;
 	signed short	shorty;
 
-	i = 0;
 	value = 0;
 	if (read_size == 1)
 		value = vm->memory[MOD(pos)];
@@ -101,7 +99,7 @@ int			get_argument(t_vm *vm, t_cursor *cursor, int *jump, int n)
 
 void		save_single_arg(t_cursor *cursor)
 {
-	if (cursor->opcode == 1 || cursor->opcode == 9 || cursor->opcode == 12 |
+	if (cursor->opcode == 1 || cursor->opcode == 9 || cursor->opcode == 12 ||
 		cursor->opcode == 15)
 		cursor->operation.check[0] = 2;
 	else if (cursor->opcode == 16)
