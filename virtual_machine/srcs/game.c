@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/24 13:05:13 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/10/24 13:05:13 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/10/24 13:05:13 by jheeresm       #+#    #+#                */
+/*   Updated: 2019/11/04 21:58:39 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void		game(t_vm *vm, t_game *game)
 		}
 		if (dump_check(*vm))
 			return ;
+		visualizer(vm);
 	}
 	return ;
 }
