@@ -83,8 +83,8 @@ void					get_null(int fd);
 **						get_champion_exec_code.c
 */
 
-void					get_champion_exec_code(int fd, char *filename,
-												t_exec *exec);
+void					get_champion_exec_code(int fd, t_exec *exec);
+
 /*
 **						create_file_dot_s.c
 */

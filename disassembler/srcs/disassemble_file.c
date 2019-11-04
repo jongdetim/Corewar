@@ -76,7 +76,7 @@ void		disassemble_file(char *filename)
 	get_champion_exec_size(fd, &exec.header);
 	get_champion_comment(fd, &exec.header);
 	get_null(fd);
-	get_champion_exec_code(fd, filename, &exec);
+	get_champion_exec_code(fd, &exec);
 	close(fd);
 	fd = create_file_dot_s(filename);
 	disassemble_exec_code(fd, &exec);

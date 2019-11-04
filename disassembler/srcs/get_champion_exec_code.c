@@ -22,7 +22,7 @@ static void	check_for_end_of_file(int fd)
 	return ;
 }
 
-void		get_champion_exec_code(int fd, char *filename, t_exec *exec)
+void		get_champion_exec_code(int fd, t_exec *exec)
 {
 	int				ret;
 

@@ -36,13 +36,13 @@ all : $(CW_NAME)
 
 $(CW_NAME) : 	$(LIBFT) $(CW_OBJ) 
 				@ gcc $(FLAGS) -o $@ $(CW_OBJ) $(LIBFT)
-				@ cp dis_asm ../.
+				@ cp ./dis_asm ../.
 				@ echo "\033[32mDIS_ASM READY\033[0m"
 
 $(LIBFT) :
 	 			@ make -C ./libft/
 
-srcs/%.o : srcs/%.c includes/corewar.h
+srcs/%.o : srcs/%.c includes/disassembler.h
 				@ gcc $(FLAGS) $< -c -o $@
 
 clean :

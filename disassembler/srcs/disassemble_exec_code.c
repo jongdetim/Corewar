@@ -53,7 +53,7 @@ static void	set_octal_code_to_null(int *args)
 	return ;
 }
 
-static void	get_octal_code(int fd, t_exec *exec, int *pos)
+static void	get_octal_code(t_exec *exec, int *pos)
 {
 	int	args_code;
 
@@ -77,11 +77,11 @@ void		disassemble_exec_code(int fd, t_exec *exec)
 	pos = 0;
 	ft_dprintf(fd, ".name\t\t\"%s\"\n.comment\t\"%s\"\n\n", \
 				exec->header.prog_name, exec->header.comment);
-	while (pos < exec->header.prog_size)
+	while ((unsigned)pos < exec->header.prog_size)
 	{
 		get_operation(fd, exec, &pos);
 		set_octal_code_to_null(exec->arg);
-		get_octal_code(fd, exec, &pos);
+		get_octal_code(exec, &pos);
 		get_arguments(fd, exec, &pos);
 	}
 	return ;
