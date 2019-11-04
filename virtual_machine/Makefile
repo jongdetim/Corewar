@@ -6,7 +6,7 @@
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/04 13:29:01 by jheeresm       #+#    #+#                 #
-#    Updated: 2019/10/23 19:08:32 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/11/04 19:49:14 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OP_FILES =		fork lfork zjmp add aff and ld ldi \
 CW_FILES =		main check_arguments input_error init_champion \
 				exec_cursor_list read_operation save_arguments init_cursors \
 				load_champs endianness dump_flag game reset_operation \
-				introduce_champions init_vm verbose \
+				introduce_champions init_vm verbose timing\
 				$(OP_FILES:%=operations/%)
 
 CW_SRC =		$(CW_FILES:%=srcs/%.c)

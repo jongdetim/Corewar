@@ -6,7 +6,7 @@
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/24 11:55:05 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/10/24 21:18:25 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/04 19:47:50 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <sys/time.h>
 # include "op.h"
 # include "../libft/libft.h"
+
+# define TIME_INTERVAL_MILISEC 10
 
 # define NO_CHAMP_AFTER_N_FLAG i + 2 == vm->argc
 # define NO_NUMBER_AFTER_FLAG i + 1 == vm->argc
@@ -271,5 +274,10 @@ void				get_indirect_arg_idx_mod(t_vm *vm, t_cursor *cursor);
 void				get_indirect_arg_mem_size(t_vm *vm, t_cursor *cursor);
 void				get_registry_argument(t_cursor *cursor);
 void				write_value_in_memory(t_vm *vm, int value, int pos);
+
+/*
+**	timing.c
+*/
+void				iwait(void);
 
 #endif

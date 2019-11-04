@@ -6,7 +6,7 @@
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/04 13:29:01 by jheeresm       #+#    #+#                 #
-#    Updated: 2019/10/23 19:08:32 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/11/04 19:59:45 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,21 +47,19 @@ srcs/%.o : srcs/%.c includes/disassembler.h
 
 clean :
 				@ if [ `ls -1 srcs/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
-				[ `ls -1 srcs/operations/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
 				[ `ls -1 libft/*.o 2>/dev/null | wc -l ` -gt 0 ]; then \
 				make clean -C ./libft/; \
 				rm -f $(CW_OBJ); \
-				echo "\033[33mDELETED CW OBJECT FILES\033[0m"; else \
+				echo "\033[33mCLEAN COMPLETED\033[0m"; else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 
-fclean : clean
+fclean :
 				@ if [ `ls -1 srcs/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
-				[ `ls -1 srcs/operations/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
 				[ `ls -1 libft/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
 				[ -f $(CW_NAME) ] || [ -f libft/libft.a ]; then \
 				make fclean -C ./libft/ && rm -f $(CW_NAME) && \
 				rm -f $(CW_OBJ); \
-				echo "\033[33mDELETED CW EXE AND OBJECT FILES\033[0m"; else \
+				echo "\033[33mCLEAN COMPLETED\033[0m"; else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 
 re : clean fclean all

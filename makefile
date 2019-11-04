@@ -1,26 +1,25 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
 #    makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: tmeulenb <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/11/04 15:06:49 by tmeulenb      #+#    #+#                  #
-#    Updated: 2019/11/04 15:06:50 by tmeulenb      ########   odam.nl          #
+#    Created: 2019/11/04 15:06:49 by tmeulenb       #+#    #+#                 #
+#    Updated: 2019/11/04 20:07:07 by tide-jon      ########   odam.nl          #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
-CW_NAME =		corewar
+VM_NAME =		vm
 
 ASM_NAME = 		asm
 
 DIS_ASM_NAME =	dis_asm
 
 
-all :
-				@ make dis_asm && make asm && make corewar
+all : $(VM_NAME) $(ASM_NAME) $(DIS_ASM_NAME)
 
-corewar :
+vm :
 				@ make -C ./virtual_machine
 
 asm :
@@ -34,16 +33,22 @@ test :
 				@ cp -r ./resources/test_dis_asm ./disassembler
 				
 clean :
+				@ echo "virtual machine"
 				@ make clean -C ./virtual_machine
+				@ echo "assembler"
 				@ make clean -C ./assembler
+				@ echo "disassembler"
 				@ make clean -C ./disassembler
 
 fclean :
 				@ rm -f dis_asm
 				@ rm -f asm
 				@ rm -f corewar
+				@ echo "virtual machine"
 				@ make fclean -C ./virtual_machine
+				@ echo "assembler"
 				@ make fclean -C ./assembler
+				@ echo "disassembler"
 				@ make fclean -C ./disassembler
 
 re : fclean all
