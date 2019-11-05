@@ -32,10 +32,23 @@ static void		fill_corewar_header(WINDOW *corewar_header)
 	return ;
 }
 
-static void		fill_game_variables(WINDOW *game_variables)
+static void		fill_game_variables(WINDOW *game_variables, t_vm *vm)
 {
-	mvwprintw(game_variables, 2, 2, "total cycles:");
-	mvwprintw(game_variables, 4, 2, "cycles to die:");
+	int	i;
+
+	i = 0;
+	mvwprintw(game_variables, 2, 4, "total cycles:");
+	mvwprintw(game_variables, 4, 4, "cycles to die:");
+
+	while (i < vm->champion_count)
+	{
+		mvwprintw(game_variables, 7 + i * 4, 4, "player");
+		mvwprintw(game_variables, 7 + i * 4, 11, ft_itoa(vm->champions[i].id));
+		mvwprintw(game_variables, 7 + i * 4, 17, vm->champions[i].name);
+		mvwprintw(game_variables, 8 + i * 4, 4, vm->champions[i].comment);
+		i++;
+	}
+
 	
 }
 
@@ -59,7 +72,7 @@ void			visualizer(t_vm *vm)
 		game_variables = newwin(56, 50, 10, 196);
 
 		fill_corewar_header(corewar_header);
-		fill_game_variables(game_variables);
+		fill_game_variables(game_variables, vm);
 
 		box(memory_display, 0, 0);
 	
@@ -84,7 +97,7 @@ void			visualizer(t_vm *vm)
 	}
 	wrefresh(memory_display);
 
-	mvwprintw(game_variables, 2, 17, ft_itoa(vm->game.cycles));
-	mvwprintw(game_variables, 4, 18, ft_itoa(vm->game.cycles_to_die));
+	mvwprintw(game_variables, 2, 24, ft_itoa(vm->game.cycles));
+	mvwprintw(game_variables, 4, 24, ft_itoa(vm->game.cycles_to_die));
 	wrefresh(game_variables);
 }
