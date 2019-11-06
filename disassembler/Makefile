@@ -54,7 +54,7 @@ clean :
 				echo "\033[33mDELETED CW OBJECT FILES\033[0m"; else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 
-fclean : clean
+fclean :
 				@ if [ `ls -1 srcs/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
 				[ `ls -1 srcs/operations/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
 				[ `ls -1 libft/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
