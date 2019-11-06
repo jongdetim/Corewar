@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/assembler.h"
-#include <stdio.h>
 
 static void	write_warrior(t_corewar data, int fd)
 {

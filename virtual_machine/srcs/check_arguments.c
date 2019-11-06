@@ -12,8 +12,6 @@
 
 #include "../includes/corewar.h"
 
-#include "../includes/corewar.h"
-
 /*
 ** CHECK_NUMBER_FOR_FLAG
 ** Parses and validates flags.
