@@ -6,7 +6,7 @@
 #    By: tmeulenb <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/04 15:06:49 by tmeulenb       #+#    #+#                 #
-#    Updated: 2019/11/04 20:07:07 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/11/06 23:18:31 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,18 @@ all : $(VM_NAME) $(ASM_NAME) $(DIS_ASM_NAME)
 
 vm :
 				@ make -C ./virtual_machine
+				@ if [ ! -f ./corewar ]; then \
+				ln -s ./virtual_machine/corewar ./corewar; fi
 
 asm :
 				@ make -C ./assembler
+				@ if [ ! -f ./asm ]; then \
+				ln -s ./assembler/asm ./asm; fi
 
 dis_asm :
 				@ make -C ./disassembler
+				@ if [ ! -f ./dis_asm ]; then \
+				ln -s ./disassembler/dis_asm ./dis_asm; fi
 
 test :
 				@ cp -r ./resources/test_asm ./assembler

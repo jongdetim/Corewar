@@ -6,7 +6,7 @@
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/04 13:29:01 by jheeresm       #+#    #+#                 #
-#    Updated: 2019/11/04 19:59:45 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/11/06 23:18:48 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ all : $(CW_NAME)
 
 $(CW_NAME) : 	$(LIBFT) $(CW_OBJ) 
 				@ gcc $(FLAGS) -o $@ $(CW_OBJ) $(LIBFT)
-				@ cp ./dis_asm ../.
 				@ echo "\033[32mDIS_ASM READY\033[0m"
 
 $(LIBFT) :

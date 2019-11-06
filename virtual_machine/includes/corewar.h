@@ -6,7 +6,7 @@
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/24 11:55:05 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/11/04 21:59:47 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/06 21:33:03 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include <sys/time.h>
 # include <ncurses.h>
 # include "op.h"
-# include "../libft.h"
+# include "../libft/libft.h"
+# include "bass.h"
 
 # define TIME_INTERVAL_MILISEC 1
 
@@ -286,8 +287,9 @@ void				write_value_in_memory(t_vm *vm, int value, int pos,
 void				iwait(void);
 
 /*
-**	visualizer.c
+**	visualizer.c  &&  audio.c
 */
 void				visualizer(t_vm *vm);
+int					play_audio(void);
 
 #endif

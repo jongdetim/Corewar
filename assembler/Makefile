@@ -6,7 +6,7 @@
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/04 13:29:01 by jheeresm       #+#    #+#                 #
-#    Updated: 2019/11/04 20:05:03 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/11/06 23:18:55 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ all : $(ASM_NAME)
 
 $(ASM_NAME) : $(ASM_OBJ) $(LIBFT)
 				@ gcc $(FLAGS) -o $@ $(ASM_OBJ) -L ./libft/ -lft
-				@ cp -r ./asm ../.
 				@ echo "\033[32mASSEMBLER READY\033[0m"
 
 $(LIBFT) :
