@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   corewar.h                                          :+:    :+:            */
+/*   assembler.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#ifndef ASSEMBLER_H
+# define ASSEMBLER_H
 
 # include "../libft/libft.h"
 # include "op.h"

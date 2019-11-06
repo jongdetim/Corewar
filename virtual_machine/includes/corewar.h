@@ -20,7 +20,7 @@
 # include <sys/time.h>
 # include <ncurses.h>
 # include "op.h"
-# include "../libft/libft.h"
+# include "../libft.h"
 
 # define TIME_INTERVAL_MILISEC 1
 
@@ -54,6 +54,8 @@
 # define THIRD_ARG cursor->operation.arg[2]
 # define ARGUMENT cursor->operation.arg[i]
 # define ARGUMENT_TYPE cursor->operation.check[i]
+
+# define CURRENT_COLOR vm->color_mask[cursor->position]
 
 typedef enum		e_op_index
 {
@@ -162,6 +164,7 @@ typedef struct		s_vm
 	t_game			game;
 	t_cursor		*cursors;
 	unsigned char	*memory;
+	unsigned char	*color_mask;
 	int				champion_count;
 	int				dump_flag;
 	int				verbose;
@@ -274,7 +277,8 @@ int					get_value_at_address(unsigned char *memory, int pos);
 void				get_indirect_arg_idx_mod(t_vm *vm, t_cursor *cursor);
 void				get_indirect_arg_mem_size(t_vm *vm, t_cursor *cursor);
 void				get_registry_argument(t_cursor *cursor);
-void				write_value_in_memory(t_vm *vm, int value, int pos);
+void				write_value_in_memory(t_vm *vm, int value, int pos,
+														unsigned char color);
 
 /*
 **	timing.c

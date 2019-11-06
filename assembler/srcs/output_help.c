@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/assembler.h"
-#include <stdio.h>
 
 void	write_instr(t_tokens *token, int fd)
 {

@@ -96,6 +96,9 @@ void		init_t_dir_and_n_flag(t_vm *vm)
 void		init_vm(t_vm *vm, int argc, char **argv)
 {
 	vm->memory = malloc(sizeof(unsigned char) * MEM_SIZE + 1);
+	ft_bzero(vm->memory, MEM_SIZE + 1);
+	vm->color_mask = malloc(sizeof(unsigned char) * MEM_SIZE + 1);
+	ft_bzero(vm->color_mask, MEM_SIZE + 1);
 	vm->champion_count = 0;
 	vm->champions = NULL;
 	vm->dump_flag = -1;

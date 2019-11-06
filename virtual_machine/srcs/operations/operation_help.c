@@ -35,7 +35,8 @@ int				get_value_at_address(unsigned char *memory, int pos)
 ** Starts at position (pos) and will write 4 bytes total.
 */
 
-void			write_value_in_memory(t_vm *vm, int value, int pos)
+void			write_value_in_memory(t_vm *vm, int value, int pos,
+														unsigned char color)
 {
 	int			i;
 
@@ -43,6 +44,7 @@ void			write_value_in_memory(t_vm *vm, int value, int pos)
 	while (i >= 0)
 	{
 		vm->memory[MOD(pos + i)] = (char)value;
+		vm->color_mask[MOD(pos + i)] = color;
 		value = value >> 8;
 		i--;
 	}
