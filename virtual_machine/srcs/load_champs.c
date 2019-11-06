@@ -72,7 +72,7 @@ static void	copy_champ_into_mem(t_vm *vm,
 	while (i < champ.size)
 	{
 		mem[pos] = champ_code[i];
-		vm->color_mask[pos] = champ.id;
+		vm->color_mask[pos] = -1 * champ.id;
 		pos = (pos + 1) % MEM_SIZE;
 		i++;
 	}
