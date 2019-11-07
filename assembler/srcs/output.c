@@ -55,7 +55,7 @@ static int	create_file(char *filename)
 	fd = open(out_name, O_CREAT | O_RDWR | O_EXCL | O_APPEND, 0777);
 	if (fd < 0)
 	{
-		ft_printf("file: %s already exists", out_name);
+		ft_printf("file: %s already exists\n", out_name);
 		exit(0);
 	}
 	return (fd);
