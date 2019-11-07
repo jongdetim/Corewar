@@ -64,7 +64,7 @@ static t_tokens	*args_cycle(t_tokens *t, t_instruction inst,
 	while (t && i < n_arg)
 	{
 		if (t->linenum != line_n)
-			ft_error("argument not on same line as instruction");
+			ft_error("argument not found on same line as instruction");
 		if (i > 0)
 		{
 			if (t->type != seperator)
