@@ -81,7 +81,7 @@ static void	find_label(t_corewar *data, t_tokens *token,
 		free(trimmed);
 		current = current->next;
 	}
-	ft_printf("Error: label %s not found", token->content + 1 + dir);
+	ft_printf("Error: label %s not found\n", token->content + 1 + dir);
 	exit(0);
 }
 

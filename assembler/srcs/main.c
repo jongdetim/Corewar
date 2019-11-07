@@ -16,10 +16,15 @@
 **	TEST-FUNCTION to print the tokens
 */
 
-static void	test_tokenlist(t_corewar *data)
+static void	test_tokenlist(t_corewar *data, int on_off)
 {
 	t_tokens	*current;
+	static char	on = 0;
 
+	if (on_off == 1)
+		on = 1;
+	if (!on || !data)
+		return ;
 	current = data->tokens;
 	while (current != NULL)
 	{
@@ -39,20 +44,41 @@ static void	check_descriptives(t_corewar *data)
 		ft_error("error: no comment found");
 }
 
+static void	usage(void)
+{
+	ft_error("usage: ./asm [-v] filename.s");
+}
+
+static int	flag_and_input_check(int argc, char **argv)
+{
+	int			fd;
+	int			len;
+	int			filename_ind;
+
+	filename_ind = 1;
+	if (argc == 3 && ft_strcmp(argv[1], "-v") == 0)
+	{
+		test_tokenlist(NULL, 1);
+		filename_ind = 2;
+	}
+	else if (argc != 2)
+		usage();
+	len = ft_strlen(argv[1]);
+	if (len < 2 || argv[filename_ind][len - 1] != 's' || \
+										argv[filename_ind][len - 2] != '.')
+		usage();
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		ft_error("error: can't open file");
+	return (fd);
+}
+
 int			main(int argc, char **argv)
 {
 	int			fd;
 	t_corewar	data;
-	int			len;
 
-	if (argc != 2)
-		ft_error("usage: ./asm filename.s");
-	len = ft_strlen(argv[1]);
-	if (len < 2 || argv[1][len - 1] != 's' || argv[1][len - 2] != '.')
-		ft_error("usage: ./asm filename.s");
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		ft_error("error: can't open file");
+	fd = flag_and_input_check(argc, argv);
 	data.name = (char*)ft_memalloc(sizeof(char) * PROG_NAME_LENGTH);
 	data.comment = (char*)ft_memalloc(sizeof(char) * COMMENT_LENGTH);
 	data.got_name = 0;
@@ -64,6 +90,6 @@ int			main(int argc, char **argv)
 	check_arguments(data.tokens);
 	replace_labels(&data);
 	write_output(data, argv[1]);
-	test_tokenlist(&data);
+	test_tokenlist(&data, 0);
 	return (0);
 }

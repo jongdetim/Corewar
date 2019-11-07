@@ -23,7 +23,7 @@ static void	check_label(t_tokens *current)
 		i++;
 	if (i == 0 || content[i] != ':' || content[i + 1] != '\0')
 	{
-		ft_printf("incorrect label: '%s'", current->content);
+		ft_printf("incorrect label: '%s'\n", current->content);
 		exit(0);
 	}
 	else
