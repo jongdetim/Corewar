@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/28 13:38:26 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/10/28 13:38:27 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/10/28 13:38:26 by jheeresm       #+#    #+#                */
+/*   Updated: 2019/11/07 18:20:20 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void		init_vm(t_vm *vm, int argc, char **argv)
 	vm->game.cycles_to_die = CYCLE_TO_DIE;
 	vm->game.nbr_live = 0;
 	vm->game.last_alive_champ = 0;
+	vm->game.total_cursors = 0;
 	vm->verbose = 0;
 	init_wait_cycles(vm);
 	init_t_dir_and_n_flag(vm);

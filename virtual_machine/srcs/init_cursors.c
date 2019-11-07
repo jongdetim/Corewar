@@ -6,7 +6,7 @@
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/10/24 21:58:17 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/07 18:18:28 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		add_to_cursor_list(t_vm *vm, t_cursor *new)
 		new->next = temp;
 		vm->cursors = new;
 	}
+	vm->game.total_cursors++;
 	return ;
 }
 

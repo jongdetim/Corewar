@@ -6,7 +6,7 @@
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/24 11:55:05 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/11/06 21:33:03 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/07 18:18:14 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ typedef struct		s_game
 	int				cycles_to_die;
 	int				check;
 	int				nbr_live;
+	int				total_cursors;
 	int				last_alive_champ;
 }					t_game;
 

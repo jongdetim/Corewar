@@ -6,7 +6,7 @@
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/24 13:05:13 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/11/04 21:58:39 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/07 18:49:38 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ void		check_dead_cursor_or_players(t_vm *vm)
 	cursor = vm->cursors;
 	while (cursor)
 	{
-		if (cursor->last_live <= vm->game.cycles - vm->game.cycles_to_die)
+		if (cursor->last_live <= vm->game.cycles - vm->game.cycles_to_die &&
+													cursor->last_live != -1)
 		{
 			if (vm->verbose)
 				verbose_cursor_died(vm, cursor);
 			cursor->last_live = -1;
+			vm->game.total_cursors--;
 		}
 		cursor = cursor->next;
 	}
