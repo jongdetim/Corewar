@@ -48,7 +48,7 @@ void		check_instruction(t_tokens *token, t_corewar *data)
 	t_instruction	instr;
 	static char		names[16][6] =
 	{"live", "ld", "st", "add", "sub", "and", "or", "xor",
-	"zjmp", "ldi", "sti", "fork", "lld", "lldi", "lfork", "add"};
+	"zjmp", "ldi", "sti", "fork", "lld", "lldi", "lfork", "aff"};
 
 	token->type = instruction;
 	instr = live;

@@ -15,8 +15,10 @@
 void		declare_winner(t_vm *vm)
 {
 	int			i;
+	int			winner;
 
 	i = 0;
+	winner = 0;
 	while (i < vm->champion_count)
 	{
 		if (vm->champions[i].id == vm->game.last_alive_champ)
@@ -27,9 +29,12 @@ void		declare_winner(t_vm *vm)
 			ft_printf("comment: \"%s\"\n", vm->champions[i].comment);
 			ft_putstr("*                ");
 			ft_printf("id:      %d\n", vm->champions[i].id);
+			winner = 1;
 		}
 		i++;
 	}
+	if (!winner)
+		ft_printf("\n* There was no winner!\n");
 	return ;
 }
 
