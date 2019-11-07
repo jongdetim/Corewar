@@ -21,8 +21,7 @@
 int			is_single_arg_op(t_cursor *cursor)
 {
 	if (cursor->opcode == live_code || cursor->opcode == zjmp_code ||
-		cursor->opcode == fork_code || cursor->opcode == lfork_code ||
-		cursor->opcode == aff_code)
+		cursor->opcode == fork_code || cursor->opcode == lfork_code)
 		return (1);
 	return (0);
 }

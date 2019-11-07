@@ -37,7 +37,7 @@ all : $(CW_NAME)
 $(CW_NAME) : 	$(LIBFT) $(CW_OBJ) 
 				@ gcc $(FLAGS) -o $@ $(CW_OBJ) $(LIBFT)
 				@ cp ./dis_asm ../.
-				@ echo "\033[32mDIS_ASM READY\033[0m"
+				@ echo "\033[32mDISASSEMBLER READY\033[0m"
 
 $(LIBFT) :
 	 			@ make -C ./libft/
