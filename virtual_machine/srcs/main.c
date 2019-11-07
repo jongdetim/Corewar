@@ -6,7 +6,7 @@
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/11/04 22:03:03 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/06 22:11:53 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int			main(int argc, char **argv)
 	init_cursors(&vm);
 	introduce_champions(&vm, vm.champions);
 	game(&vm, &vm.game);
+	visualizer(NULL);
+	BASS_Free();
 	declare_winner(&vm);
-	endwin();
 	return (1);
 }
