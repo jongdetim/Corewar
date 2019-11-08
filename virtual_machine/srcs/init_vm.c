@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/28 13:38:26 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/10/28 13:38:27 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/10/28 13:38:26 by jheeresm       #+#    #+#                */
+/*   Updated: 2019/11/07 18:20:20 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ void		init_t_dir_and_n_flag(t_vm *vm)
 void		init_vm(t_vm *vm, int argc, char **argv)
 {
 	vm->memory = malloc(sizeof(unsigned char) * MEM_SIZE + 1);
+	ft_bzero(vm->memory, MEM_SIZE + 1);
+	vm->color_mask = malloc(sizeof(unsigned char) * MEM_SIZE + 1);
+	ft_bzero(vm->color_mask, MEM_SIZE + 1);
 	vm->champion_count = 0;
 	vm->champions = NULL;
 	vm->dump_flag = -1;
@@ -107,6 +110,7 @@ void		init_vm(t_vm *vm, int argc, char **argv)
 	vm->game.cycles_to_die = CYCLE_TO_DIE;
 	vm->game.nbr_live = 0;
 	vm->game.last_alive_champ = 0;
+	vm->game.total_cursors = 0;
 	vm->verbose = 0;
 	init_wait_cycles(vm);
 	init_t_dir_and_n_flag(vm);

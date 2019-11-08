@@ -6,7 +6,7 @@
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/04 13:29:01 by jheeresm       #+#    #+#                 #
-#    Updated: 2019/10/23 19:08:32 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/11/08 22:22:53 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ CW_NAME =		corewar
 OP_FILES =		fork lfork zjmp add aff and ld ldi \
 				live lld lldi or st sti sub xor operation_help
 
-CW_FILES =		main check_arguments input_error init_champion \
+CW_FILES =		main check_arguments input_error init_champion audio \
 				exec_cursor_list read_operation save_arguments init_cursors \
 				load_champs endianness dump_flag game reset_operation \
-				introduce_champions init_vm verbose \
+				introduce_champions init_vm verbose timing visualizer \
 				$(OP_FILES:%=operations/%)
 
 CW_SRC =		$(CW_FILES:%=srcs/%.c)
@@ -32,8 +32,7 @@ FLAGS =			-g -Wall -Wextra -Werror
 all : $(CW_NAME)
 
 $(CW_NAME) : $(CW_OBJ) $(LIBFT)
-				@ gcc $(FLAGS) -o $@ $(CW_OBJ) -L ./libft/ -lft
-				@ cp -r ./corewar ../.
+				@ gcc $(FLAGS) -o $@ $(CW_OBJ) -L . -lbass -lncurses -L ./libft/ -lft
 				@ echo "\033[32mCOREWAR READY\033[0m"
 
 $(LIBFT) :

@@ -21,10 +21,8 @@
 
 static void	check_number_for_flag(t_vm *vm, int i, t_flag flag)
 {
-	int			j;
 	static int	n_flag = 0;
 
-	j = 0;
 	if (NO_NUMBER_AFTER_FLAG)
 		input_error(vm->argv[i], flag_nmbr);
 	if (!ft_isint(vm->argv[i + 1], -1))
@@ -75,9 +73,6 @@ static void	check_duplicate_n_flags(t_vm *vm)
 
 static int	check_for_flag(t_vm *vm, int i)
 {
-	int			j;
-
-	j = 0;
 	if (vm->argv[i][0] != '-')
 		input_error(vm->argv[i], bad_arg);
 	if (!ft_strcmp("-n", vm->argv[i]))

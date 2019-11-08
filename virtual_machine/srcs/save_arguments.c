@@ -25,10 +25,8 @@
 
 int			get_value_of_arg(t_vm *vm, int pos, int read_size)
 {
-	int				i;
 	int				value;
 
-	i = 0;
 	value = 0;
 	if (read_size == 1)
 		value = vm->memory[MOD(pos)];

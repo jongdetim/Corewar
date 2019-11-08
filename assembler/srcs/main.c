@@ -6,7 +6,7 @@
 /*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/02 19:06:00 by tide-jon       #+#    #+#                */
-/*   Updated: 2019/10/30 21:43:46 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/08 22:29:49 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int			main(int argc, char **argv)
 	analyze_tokens(&data);
 	check_arguments(data.tokens);
 	replace_labels(&data);
-	write_output(data, argv[argc - 1]);
+	write_output(data, argv[1]);
 	test_tokenlist(&data, 0);
 	return (0);
 }

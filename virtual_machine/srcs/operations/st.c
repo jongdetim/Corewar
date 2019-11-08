@@ -23,7 +23,7 @@ void		st_op(t_vm *vm, t_cursor *cursor)
 		get_registry_argument(cursor);
 		position = cursor->position + (SECOND_ARG % IDX_MOD);
 		position = ft_modulo(position, MEM_SIZE);
-		write_value_in_memory(vm, FIRST_ARG, position);
+		write_value_in_memory(vm, FIRST_ARG, position, CURRENT_COLOR);
 	}
 	return ;
 }

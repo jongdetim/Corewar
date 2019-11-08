@@ -6,7 +6,7 @@
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/24 11:55:05 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/10/24 21:18:25 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/08 22:22:45 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <sys/time.h>
+# include <ncurses.h>
 # include "op.h"
 # include "../libft/libft.h"
+# include "bass.h"
+
+# define TIME_INTERVAL_MILISEC 1
 
 # define NO_CHAMP_AFTER_N_FLAG i + 2 == vm->argc
 # define NO_NUMBER_AFTER_FLAG i + 1 == vm->argc
@@ -50,6 +55,8 @@
 # define THIRD_ARG cursor->operation.arg[2]
 # define ARGUMENT cursor->operation.arg[i]
 # define ARGUMENT_TYPE cursor->operation.check[i]
+
+# define CURRENT_COLOR vm->color_mask[cursor->position]
 
 typedef enum		e_op_index
 {
@@ -147,6 +154,7 @@ typedef struct		s_game
 	int				cycles_to_die;
 	int				check;
 	int				nbr_live;
+	int				total_cursors;
 	int				last_alive_champ;
 }					t_game;
 
@@ -158,6 +166,7 @@ typedef struct		s_vm
 	t_game			game;
 	t_cursor		*cursors;
 	unsigned char	*memory;
+	unsigned char	*color_mask;
 	int				champion_count;
 	int				dump_flag;
 	int				verbose;
@@ -270,6 +279,18 @@ int					get_value_at_address(unsigned char *memory, int pos);
 void				get_indirect_arg_idx_mod(t_vm *vm, t_cursor *cursor);
 void				get_indirect_arg_mem_size(t_vm *vm, t_cursor *cursor);
 void				get_registry_argument(t_cursor *cursor);
-void				write_value_in_memory(t_vm *vm, int value, int pos);
+void				write_value_in_memory(t_vm *vm, int value, int pos,
+														unsigned char color);
+
+/*
+**	timing.c
+*/
+void				iwait(void);
+
+/*
+**	visualizer.c  &&  audio.c
+*/
+void				visualizer(t_vm *vm);
+int					play_audio(void);
 
 #endif
