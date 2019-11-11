@@ -128,7 +128,10 @@ int			read_and_check_encoding(t_cursor *cursor, unsigned char byte)
 
 int			read_operation(t_vm *vm, t_cursor *cursor)
 {
-	if (!read_and_check_encoding(cursor, cursor->encoding))
+	unsigned char	encoding;
+
+	encoding = vm->memory[ft_modulo(cursor->position + 1, MEM_SIZE)];
+	if (!read_and_check_encoding(cursor, encoding))
 		return (0);
 	if (!save_arguments(vm, cursor))
 		return (0);

@@ -44,8 +44,15 @@ void		decrease_cycles_to_die(t_game *game, int *cycles)
 void		check_dead_cursor_or_players(t_vm *vm)
 {
 	t_cursor	*cursor;
+	int			i;
 
 	cursor = vm->cursors;
+	i = 0;
+	while (i < vm->champion_count)
+	{
+		vm->champions[i].amount_of_lives = 0;
+		i++;
+	}
 	while (cursor)
 	{
 		if (cursor->last_live <= vm->game.cycles - vm->game.cycles_to_die &&
@@ -98,9 +105,11 @@ void		game(t_vm *vm, t_game *game)
 			check_dead_cursor_or_players(vm);
 			decrease_cycles_to_die(game, &cycles_to_die);
 		}
+		update_game_variables(vm->v.game_variables, vm);
 		if (dump_check(*vm))
 			return ;
-		visualizer(vm);
 	}
+	if (vm->visualizer) // verbose mode is on
+		endwin();
 	return ;
 }

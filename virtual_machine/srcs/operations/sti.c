@@ -21,5 +21,7 @@ void		sti_op(t_vm *vm, t_cursor *cursor)
 	position = cursor->position + ((SECOND_ARG + THIRD_ARG) % IDX_MOD);
 	position = ft_modulo(position, MEM_SIZE);
 	write_value_in_memory(vm, FIRST_ARG, position, CURRENT_COLOR);
+	if (vm->visualizer)
+		change_color(vm, CURRENT_COLOR, position, 4);
 	return ;
 }

@@ -112,6 +112,7 @@ void		init_vm(t_vm *vm, int argc, char **argv)
 	vm->game.last_alive_champ = 0;
 	vm->game.total_cursors = 0;
 	vm->verbose = 0;
+	vm->visualizer = 0;
 	init_wait_cycles(vm);
 	init_t_dir_and_n_flag(vm);
 	init_op_functions(vm);

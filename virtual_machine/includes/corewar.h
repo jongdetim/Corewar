@@ -56,7 +56,7 @@
 # define ARGUMENT cursor->operation.arg[i]
 # define ARGUMENT_TYPE cursor->operation.check[i]
 
-# define CURRENT_COLOR vm->color_mask[cursor->position]
+# define CURRENT_COLOR vm->color_mask[cursor->position + 1]
 
 typedef enum		e_op_index
 {
@@ -126,6 +126,7 @@ typedef struct		s_champion
 	int				id;
 	int				size;
 	int				last_live;
+	int				amount_of_lives;
 }					t_champion;
 
 typedef struct		s_operation
@@ -139,7 +140,6 @@ typedef struct		s_cursor
 	int				id;
 	int				carry;
 	int				opcode;
-	char			encoding;
 	int				last_live;
 	int				wait_cycles;
 	int				position;
@@ -158,6 +158,21 @@ typedef struct		s_game
 	int				last_alive_champ;
 }					t_game;
 
+typedef struct 		s_color
+{
+	int				pos;
+	int				size;
+	int				color;
+}					t_color;
+
+typedef struct 		s_visual
+{
+	WINDOW			*memory_display;
+	WINDOW			*game_variables;
+	WINDOW			*corewar_header;
+
+}					t_visual;
+
 typedef struct		s_vm
 {
 	int				argc;
@@ -166,15 +181,27 @@ typedef struct		s_vm
 	t_game			game;
 	t_cursor		*cursors;
 	unsigned char	*memory;
-	unsigned char	*color_mask;
+	unsigned char 	*color_mask;
 	int				champion_count;
 	int				dump_flag;
 	int				verbose;
+	int				visualizer;
 	int				n_flag[4];
 	int				wait[16];
 	int				t_dir[16];
 	void			*op_functions[16];
+	t_visual		v;
 }					t_vm;
+
+void				init_visuals(t_vm *vm);
+void				update_game_variables(WINDOW *game_variables, t_vm *vm);
+void				change_color(t_vm *vm, int color, int position, int size);
+void				init_memory_colors(t_vm *vm);
+void				update_cursor(t_vm *vm, t_cursor *cursor, int jump);
+void				fill_corewar_header(WINDOW *corewar_header);
+void				fill_game_variables_help(WINDOW *game_variables);
+void				fill_game_variables(WINDOW *game_variables, t_vm *vm);
+void				update_memory(WINDOW *memory_display, t_vm *vm);
 
 /*
 ** verbose.c

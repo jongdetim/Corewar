@@ -61,8 +61,7 @@ static void	validate_champ(int fd, t_champion *champ)
 		faulty_warrior(champ, 0);
 }
 
-static void	copy_champ_into_mem(t_vm *vm,
-			unsigned char *mem, unsigned char *champ_code, t_champion champ)
+void		cpy_champ_into_mem(t_vm *vm, unsigned char *code, t_champion champ)
 {
 	int i;
 	int pos;
@@ -71,11 +70,12 @@ static void	copy_champ_into_mem(t_vm *vm,
 	i = 0;
 	while (i < champ.size)
 	{
-		mem[pos] = champ_code[i];
+		vm->memory[pos] = code[i];
 		vm->color_mask[pos] = -1 * champ.id;
 		pos = (pos + 1) % MEM_SIZE;
 		i++;
 	}
+	return ;
 }
 
 void		load_champs(t_vm *vm)
@@ -92,7 +92,7 @@ void		load_champs(t_vm *vm)
 		buff = (unsigned char*)ft_memalloc(vm->champions[i].size);
 		if (read(fd, buff, vm->champions[i].size) < vm->champions[i].size)
 			faulty_warrior(&(vm->champions[i]), 0);
-		copy_champ_into_mem(vm, vm->memory, buff, vm->champions[i]);
+		cpy_champ_into_mem(vm, buff, vm->champions[i]);
 		if (read(fd, buff, 1) > 0)
 			faulty_warrior(&(vm->champions[i]), 1);
 		free(buff);

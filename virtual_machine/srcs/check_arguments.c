@@ -116,6 +116,8 @@ void		check_arguments(t_vm *vm)
 			display_help();
 		else if (!ft_strcmp("-v", vm->argv[i]))
 			vm->verbose = 1;
+		else if (!ft_strcmp("-n", vm->argv[i]))
+			vm->visualizer = 1;
 		else if (check_for_champion(vm->argv[i]))
 			vm->champion_count++;
 		else if (check_for_flag(vm, i))
@@ -127,5 +129,4 @@ void		check_arguments(t_vm *vm)
 	check_duplicate_n_flags(vm);
 	if (vm->champion_count < 1 || vm->champion_count > 4)
 		input_error(NULL, champ_nmbr);
-	return ;
 }

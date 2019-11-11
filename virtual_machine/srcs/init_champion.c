@@ -90,6 +90,7 @@ void		init_champions(t_vm *vm)
 	while (i < vm->champion_count)
 	{
 		vm->champions[i].last_live = 0;
+		vm->champions[i].amount_of_lives = 0;
 		i++;
 	}
 	return ;

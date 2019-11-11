@@ -22,6 +22,5 @@ void		reset_operation(t_cursor *cursor)
 	cursor->operation.check[2] = 0;
 	cursor->operation.check[3] = 0;
 	cursor->opcode = 0;
-	cursor->encoding = 0;
 	return ;
 }

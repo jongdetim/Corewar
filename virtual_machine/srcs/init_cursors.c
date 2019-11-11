@@ -47,7 +47,6 @@ t_cursor	*malloc_cursor(void)
 	cursor->id = id;
 	cursor->carry = 0;
 	cursor->opcode = 0;
-	cursor->encoding = 0;
 	cursor->last_live = 0;
 	cursor->wait_cycles = 0;
 	cursor->next = NULL;

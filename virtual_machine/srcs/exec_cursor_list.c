@@ -44,6 +44,7 @@ void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
 		}
 		i++;
 	}
+	update_cursor(vm, cursor, jump);
 	cursor->position = ft_modulo(cursor->position + jump, MEM_SIZE);
 	return ;
 }
@@ -92,10 +93,7 @@ void		set_opcode(t_vm *vm, t_cursor *cursor)
 	{
 		cursor->opcode = opcode;
 		if (VALID_OPCODE(opcode))
-		{
 			cursor->wait_cycles = vm->wait[opcode - 1];
-			cursor->encoding = vm->memory[cursor->position + 1];
-		}
 		else
 			cursor->wait_cycles = 0;
 	}
@@ -117,7 +115,10 @@ void		exec_cursor(t_vm *vm, t_cursor *cursor)
 	if (cursor->wait_cycles > 0)
 		cursor->wait_cycles -= 1;
 	if (!VALID_OPCODE(cursor->opcode) && !cursor->wait_cycles)
+	{
+		update_cursor(vm, cursor, 1);
 		cursor->position = ft_modulo(cursor->position + 1, MEM_SIZE);
+	}
 	else if (cursor->wait_cycles == 0 && VALID_OPCODE(cursor->opcode))
 	{
 		if (read_operation(vm, cursor))

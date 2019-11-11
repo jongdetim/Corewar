@@ -15,7 +15,9 @@
 void		st_op(t_vm *vm, t_cursor *cursor)
 {
 	int			position;
+	int			color;
 
+	color = vm->color_mask[cursor->position];
 	if (cursor->operation.check[1] == REG_CODE)
 		cursor->reg[SECOND_ARG - 1] = cursor->reg[FIRST_ARG - 1];
 	else if (cursor->operation.check[1] == IND_CODE)
@@ -24,6 +26,8 @@ void		st_op(t_vm *vm, t_cursor *cursor)
 		position = cursor->position + (SECOND_ARG % IDX_MOD);
 		position = ft_modulo(position, MEM_SIZE);
 		write_value_in_memory(vm, FIRST_ARG, position, CURRENT_COLOR);
+		if (vm->visualizer)
+			change_color(vm, CURRENT_COLOR, position, 4);
 	}
 	return ;
 }

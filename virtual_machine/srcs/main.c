@@ -48,8 +48,9 @@ int			main(int argc, char **argv)
 	load_champs(&vm);
 	init_cursors(&vm);
 	introduce_champions(&vm, vm.champions);
+	if (vm.visualizer)
+		init_visuals(&vm);
 	game(&vm, &vm.game);
-	visualizer(NULL);
 	BASS_Free();
 	declare_winner(&vm);
 	return (1);
