@@ -31,7 +31,8 @@ void		write_in_color(WINDOW *window, t_color var, unsigned char *memory)
 	while (i < var.size)
 	{
 		calculate_position(&x, &y, var.pos, i);
-		mvwprintw(window, y, x, "%02x ", memory[ft_modulo(var.pos + i, MEM_SIZE)]);
+		mvwprintw(window, y, x, "%02x ",
+									memory[ft_modulo(var.pos + i, MEM_SIZE)]);
 		i++;
 	}
 	wattroff(window, COLOR_PAIR(var.color));
@@ -41,8 +42,8 @@ void		write_in_color(WINDOW *window, t_color var, unsigned char *memory)
 
 void		change_color(t_vm *vm, int color, int position, int size)
 {
-	t_color 	var;
-	WINDOW 		*window;
+	t_color	var;
+	WINDOW	*window;
 
 	var.pos = position;
 	var.size = size;
@@ -52,12 +53,12 @@ void		change_color(t_vm *vm, int color, int position, int size)
 	return ;
 }
 
-void			init_memory_colors(t_vm *vm)
+void		init_memory_colors(t_vm *vm)
 {
-	int 		i;
-	int			start_pos;
-	int			len;
-	int			color;
+	int	i;
+	int	start_pos;
+	int	len;
+	int	color;
 
 	i = 0;
 	while (i < vm->champion_count)

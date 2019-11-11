@@ -158,14 +158,14 @@ typedef struct		s_game
 	int				last_alive_champ;
 }					t_game;
 
-typedef struct 		s_color
+typedef struct		s_color
 {
 	int				pos;
 	int				size;
 	int				color;
 }					t_color;
 
-typedef struct 		s_visual
+typedef struct		s_visual
 {
 	WINDOW			*memory_display;
 	WINDOW			*game_variables;
@@ -181,7 +181,7 @@ typedef struct		s_vm
 	t_game			game;
 	t_cursor		*cursors;
 	unsigned char	*memory;
-	unsigned char 	*color_mask;
+	unsigned char	*color_mask;
 	int				champion_count;
 	int				dump_flag;
 	int				verbose;

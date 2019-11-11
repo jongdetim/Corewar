@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-void			fill_corewar_header(WINDOW *corewar_header)
+void	fill_corewar_header(WINDOW *corewar_header)
 {
 	mvwprintw(corewar_header, 1, 5,
 	"   ___                                  ");
@@ -30,7 +30,7 @@ void			fill_corewar_header(WINDOW *corewar_header)
 	return ;
 }
 
-void			fill_game_variables_help(WINDOW *game_variables)
+void	fill_game_variables_help(WINDOW *game_variables)
 {
 	mvwprintw(game_variables, 2, 17, "*** PLAYING ***");
 	mvwchgat(game_variables, 3, 12, 25, A_UNDERLINE, 0, NULL);
@@ -41,7 +41,7 @@ void			fill_game_variables_help(WINDOW *game_variables)
 	return ;
 }
 
-	void		fill_game_variables(WINDOW *game_variables, t_vm *vm)
+void	fill_game_variables(WINDOW *game_variables, t_vm *vm)
 {
 	int	i;
 
@@ -52,9 +52,11 @@ void			fill_game_variables_help(WINDOW *game_variables)
 		init_pair(i + 1, i + 1, -1);
 		wattron(game_variables, COLOR_PAIR(i + 1));
 		mvwprintw(game_variables, 12 + i * 11, 4, "player");
-		mvwprintw(game_variables, 12 + i * 11, 11, ft_itoa(vm->champions[i].id));
+		mvwprintw(game_variables, 12 + i * 11, 11,
+												ft_itoa(vm->champions[i].id));
 		wattroff(game_variables, COLOR_PAIR(i + 1));
-		mvwprintw(game_variables, 12 + i * 11, 17, "%.75s", vm->champions[i].name);
+		mvwprintw(game_variables, 12 + i * 11, 17, "%.75s",
+														vm->champions[i].name);
 		wattron(game_variables, A_DIM);
 		mvwprintw(game_variables, 14 + i * 11, 4, "\"");
 		wprintw(game_variables, "%.268s", vm->champions[i].comment);

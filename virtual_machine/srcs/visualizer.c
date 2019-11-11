@@ -53,7 +53,7 @@ void	update_cursor(t_vm *vm, t_cursor *cursor, int jump)
 	return ;
 }
 
-void			init_visuals(t_vm *vm)
+void	init_visuals(t_vm *vm)
 {
 	play_audio();
 	initscr();
