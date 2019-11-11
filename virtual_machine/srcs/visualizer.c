@@ -47,8 +47,8 @@ void	update_cursor(t_vm *vm, t_cursor *cursor, int jump)
 		return ;
 	color = vm->color_mask[cursor->position + 1];
 	change_color(vm, color, cursor->position, 1);
-	y = ((cursor->position + jump) / 64) + 1;
-	x = (((cursor->position + jump) * 3) % 192) + 2;
+	y = ((ft_modulo(cursor->position + jump, MEM_SIZE)) / 64) + 1;
+	x = (((ft_modulo(cursor->position + jump, MEM_SIZE)) * 3) % 192) + 2;
 	mvwchgat(vm->v.memory_display, y, x, 2, A_STANDOUT, color, NULL);
 	return ;
 }
