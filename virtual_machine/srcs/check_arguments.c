@@ -116,7 +116,7 @@ void		check_arguments(t_vm *vm)
 			display_help();
 		else if (!ft_strcmp("-v", vm->argv[i]))
 			vm->verbose = 1;
-		else if (!ft_strcmp("-n", vm->argv[i]))
+		else if (!ft_strcmp("-ncurses", vm->argv[i]))
 			vm->visualizer = 1;
 		else if (check_for_champion(vm->argv[i]))
 			vm->champion_count++;
