@@ -109,7 +109,7 @@ void		game(t_vm *vm, t_game *game)
 		if (dump_check(*vm))
 			return ;
 	}
-	if (vm->visualizer) // verbose mode is on
+	if (vm->visualizer)
 		endwin();
 	return ;
 }

@@ -12,16 +12,18 @@
 
 #include "../includes/corewar.h"
 
-// Display help should be rewritten when we are done with the project.
-// We need the flags
-// We need the usage more explicitly.
-
 void		display_help(void)
 {
-	ft_printf("Usage: 	./corewar champion1.cor ");
-	ft_printf("champion2.cor champion3.cor \n");
-	ft_printf("	--help for flags.\n");
-	return ;
+	ft_printf("Usage:	./corewar [-v | -n | -d N | -help] [-n N] ");
+	ft_printf("champion1.cor [-n N] champion2.cor [-n N] ");
+	ft_printf("champion3.cor [-n N] champion4.cor\n");
+	ft_printf("	-v:	verbose mode. Shows cursor's execution details\n");
+	ft_printf("	-n:	visual mode. Visualizes the game\n");
+	ft_printf("	-d N:	dump flag. Dumps memory after N cycles and exits\n");
+	ft_printf("	-help:	help flag. Shows usage details\n");
+	ft_printf("	-n N:	player's order. Sets N's ID number of the next player");
+	ft_printf(". N is min. 1 and max. 4 \n");
+	exit(1);
 }
 
 void		input_error(char *arg, t_input_error choice)
