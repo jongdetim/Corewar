@@ -6,7 +6,7 @@
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/11/12 22:27:36 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/12 22:34:57 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ int			main(int argc, char **argv)
 	if (vm.visualizer)
 		init_visuals(&vm);
 	game(&vm, &vm.game);
-	end_of_game(&vm);
-	BASS_Free();
+	if (vm.visualizer)
+	{
+		end_of_game(&vm);
+		BASS_Free();
+	}
 	declare_winner(&vm);
 	return (1);
 }
