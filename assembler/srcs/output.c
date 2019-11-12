@@ -6,7 +6,7 @@
 /*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/10 17:32:13 by tide-jon       #+#    #+#                */
-/*   Updated: 2019/10/30 21:46:55 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/12 21:44:17 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static int	create_file(char *filename)
 		ft_printf("file: %s already exists\n", out_name);
 		exit(0);
 	}
+	ft_printf("created warrior file %s\n", out_name);
 	return (fd);
 }
 
