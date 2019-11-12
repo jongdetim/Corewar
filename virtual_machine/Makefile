@@ -6,7 +6,7 @@
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/04 13:29:01 by jheeresm       #+#    #+#                 #
-#    Updated: 2019/11/08 22:22:53 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/11/12 21:14:25 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CW_FILES =		main check_arguments input_error init_champion audio \
 
 CW_SRC =		$(CW_FILES:%=srcs/%.c)
 
-LIBFT =			../libft/libftprintf.a
+LIBFT =			../libft/libft.a
 
 CW_OBJ =		$(CW_SRC:.c=.o)
 
@@ -33,7 +33,8 @@ FLAGS =			-g -Wall -Wextra -Werror
 all : $(CW_NAME)
 
 $(CW_NAME) : $(CW_OBJ) $(LIBFT)
-				@ gcc $(FLAGS) -o $@ $(CW_OBJ) -L . -lbass -lncurses $(LIBFT)
+				@ gcc $(FLAGS) -o $@ $(CW_OBJ) -L . -lbass -lncurses -L \
+				../libft -lft
 				@ echo "\033[32mCOREWAR READY\033[0m"
 
 $(LIBFT) :
@@ -47,7 +48,8 @@ clean :
 				[ `ls -1 srcs/operations/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
 				[ `ls -1 ../libft/*.o 2>/dev/null | wc -l ` -gt 0 ]; then \
 				make clean -C ../libft/; \
-				rm -f $(CW_OBJ); else \
+				rm -f $(CW_OBJ); \
+				echo "\033[33mCLEAN COMPLETED\033[0m"; else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 
 fclean :
@@ -56,7 +58,8 @@ fclean :
 				[ `ls -1 ../libft/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
 				[ -f $(CW_NAME) ] || [ -f ../libft/libft.a ]; then \
 				make fclean -C ../libft/ && rm -f $(CW_NAME) && \
-				rm -f $(CW_OBJ); else \
+				rm -f $(CW_OBJ); \
+				echo "\033[33mCLEAN COMPLETED\033[0m"; else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 
 re : fclean all

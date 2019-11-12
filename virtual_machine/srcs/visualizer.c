@@ -6,7 +6,7 @@
 /*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 20:11:11 by tide-jon       #+#    #+#                */
-/*   Updated: 2019/11/08 22:22:38 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/12 14:39:38 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	update_game_variables(WINDOW *game_variables, t_vm *vm)
 
 	if (!vm->visualizer)
 		return ;
+	iwait();
 	mvwprintw(game_variables, 5, 33, "%6s", ft_itoa(vm->game.cycles));
 	mvwprintw(game_variables, 7, 33, "%6s", ft_itoa(vm->game.cycles_to_die));
 	wprintw(game_variables, "    ");
