@@ -25,7 +25,7 @@ void	fill_corewar_header(WINDOW *corewar_header)
 	mvwprintw(corewar_header, 5, 5,
 	"\\____/\\___/|_|  \\___| \\_/\\_/ \\__,_|_|   ");
 	mvwprintw(corewar_header, 7, 0,
-	"\tAna Yundina\tJim heeresma\n\tTim de Jong\tThijs Meulenbelt");
+	"\tAnna Yundina\tJim heeresma\n\tTim de Jong\tThijs Meulenbelt");
 	wrefresh(corewar_header);
 	return ;
 }
