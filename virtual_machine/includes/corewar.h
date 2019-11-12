@@ -6,7 +6,7 @@
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/24 11:55:05 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/11/08 22:22:45 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/12 14:40:03 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "../libft/libft.h"
 # include "bass.h"
 
-# define TIME_INTERVAL_MILISEC 1
+# define TIME_INTERVAL_MILISEC 0.5
 
 # define NO_CHAMP_AFTER_N_FLAG i + 2 == vm->argc
 # define NO_NUMBER_AFTER_FLAG i + 1 == vm->argc
