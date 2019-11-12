@@ -29,6 +29,7 @@ void		zjmp_op(t_vm *vm, t_cursor *cursor)
 		return ;
 	}
 	position = (FIRST_ARG % IDX_MOD) + cursor->position;
+	update_cursor(vm, cursor, (FIRST_ARG % IDX_MOD));
 	cursor->position = ft_modulo(position, MEM_SIZE);
 	return ;
 }
