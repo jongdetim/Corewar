@@ -77,6 +77,10 @@ SRCS_LIB = ft_atoi.c \
 	   ft_countwords.c \
 	   ft_beg_sp.c ft_end_sp.c \
 	   get_next_line.c \
+	   ft_isint.c \
+	   ft_error.c \
+	   ft_modulo.c \
+	   ft_iswhitespace.c
 
 SRCS_PRINTF = ft_printf.c \
 	   ft_read_flags.c \
@@ -99,7 +103,8 @@ SRCS_PRINTF = ft_printf.c \
 	   ft_fl_width.c \
 	   ft_ulltoa_base.c \
 	   ft_dtoa.c \
-	   ft_arandomtoi.c
+	   ft_arandomtoi.c 
+	  
 
 OBJ_LIB = ${SRCS_LIB:c=o}
 

@@ -13,8 +13,13 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <unistd.h>
+# include <string.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <float.h>
+# include <stdarg.h>
+# include <fcntl.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 
@@ -69,12 +74,16 @@ int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 void				ft_putnbr(long long n);
 void				ft_putchar(char c);
-void				ft_putstr(unsigned char const *s);
+void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+int					ft_isint(char *s, int len);
+void				ft_error(char *str);
+int					ft_modulo(int x, int mod);
+int					ft_iswhitespace(char c);
 
 typedef struct		s_list
 {

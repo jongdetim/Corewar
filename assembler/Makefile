@@ -17,7 +17,7 @@ ASM_FILES =		main parser tools tokens analyze analyze_help check_arguments \
 
 ASM_SRC =		$(ASM_FILES:%=srcs/%.c)
 
-LIBFT =			libft/libft.a
+LIBFT =			../libft/libftprintf.a
 
 ASM_OBJ =		$(ASM_SRC:.c=.o)
 
@@ -26,26 +26,26 @@ FLAGS =			-g -Wall -Wextra -Werror
 all : $(ASM_NAME)
 
 $(ASM_NAME) : $(ASM_OBJ) $(LIBFT)
-				@ gcc $(FLAGS) -o $@ $(ASM_OBJ) -L ./libft/ -lft
+				@ gcc $(FLAGS) -o $@ $(ASM_OBJ) $(LIBFT)
 				@ echo "\033[32mASSEMBLER READY\033[0m"
 
 $(LIBFT) :
-	 			@ make -C ./libft/
+	 			@ make -C ../libft/
 
 srcs/%.o : srcs/%.c includes/assembler.h includes/op.h
 				@ gcc $(FLAGS) $< -c -o $@
 
 clean :
 				@ if [ `ls -1 srcs/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
-				[ `ls -1 libft/*.o 2>/dev/null | wc -l ` -gt 0 ]; then \
-				make clean -C ./libft/ && rm -f $(ASM_OBJ); else \
+				[ `ls -1 ../libft/*.o 2>/dev/null | wc -l ` -gt 0 ]; then \
+				make clean -C ../libft/ && rm -f $(ASM_OBJ); else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 
 fclean :
 				@ if [ `ls -1 srcs/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
-				[ `ls -1 libft/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
-				[ -f $(ASM_NAME) ] || [ -f libft/libft.a ]; then \
-				make fclean -C ./libft/ && rm -f $(ASM_NAME) && \
+				[ `ls -1 ../libft/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
+				[ -f $(ASM_NAME) ] || [ -f ../libft/libftprintf.a ]; then \
+				make fclean -C ../libft/ && rm -f $(ASM_NAME) && \
 				rm -f $(ASM_OBJ); else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 

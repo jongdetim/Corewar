@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include "op.h"
-# include "../libft/libft.h"
+# include "../../libft/libft.h"
 
 typedef enum		e_operation
 {

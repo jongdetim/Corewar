@@ -20,7 +20,7 @@
 # include <sys/time.h>
 # include <ncurses.h>
 # include "op.h"
-# include "../libft/libft.h"
+# include "../../libft/libft.h"
 # include "bass.h"
 
 # define TIME_INTERVAL_MILISEC 1
