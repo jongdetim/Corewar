@@ -43,7 +43,7 @@ void		read_encodingbyte(t_cursor *cursor, unsigned char byte)
 
 	i = 1;
 	x = 0;
-	while (i < 8)
+	while (i < 8 && x < cursor->operation.n_args)
 	{
 		if (BYTE(byte, (i - 1)) == 0 && BYTE(byte, i) == 0)
 			cursor->operation.check[x] = 0;
@@ -131,6 +131,7 @@ int			read_operation(t_vm *vm, t_cursor *cursor)
 	unsigned char	encoding;
 
 	encoding = vm->memory[ft_modulo(cursor->position + 1, MEM_SIZE)];
+	cursor->operation.n_args = vm->n_arg[cursor->opcode - 1];
 	if (!read_and_check_encoding(cursor, encoding))
 		return (0);
 	if (!save_arguments(vm, cursor))

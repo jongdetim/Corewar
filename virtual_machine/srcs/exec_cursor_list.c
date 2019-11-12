@@ -29,15 +29,15 @@ void		move_to_next_operation(t_vm *vm, t_cursor *cursor)
 
 	jump = 2;
 	i = 0;
-	while (i < 4)
+	while (i < 3)
 	{
-		if (ARGUMENT_TYPE == 1)
+		if (ARGUMENT_TYPE == REG_CODE)
 			jump += REG_CODE;
-		if (ARGUMENT_TYPE == 2)
+		else if (ARGUMENT_TYPE == DIR_CODE)
 			jump += vm->t_dir[cursor->opcode - 1];
-		if (ARGUMENT_TYPE == 3)
+		else if (ARGUMENT_TYPE == IND_CODE)
 			jump += IND_SIZE;
-		if (is_single_arg_op(cursor))
+		else if (is_single_arg_op(cursor))
 		{
 			jump -= 1;
 			break ;

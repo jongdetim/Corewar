@@ -18,17 +18,19 @@ static int		calc_read_size(t_vm *vm, t_cursor *cursor)
 	int			i;
 
 	i = 0;
-	read_size = 0;
+	read_size = 2;
 	while (i < 3)
 	{
-		if (cursor->operation.check[i] == 1)
+		if (cursor->operation.check[i] == REG_CODE)
 			read_size += 1;
-		if (cursor->operation.check[i] == 2)
+		if (cursor->operation.check[i] == DIR_CODE)
 			read_size += vm->t_dir[cursor->opcode - 1];
-		if (cursor->operation.check[i] == 3)
+		if (cursor->operation.check[i] == IND_CODE)
 			read_size += 2;
 		i++;
 	}
+	if (is_single_arg_op(cursor))
+		read_size -= 1;
 	return (read_size);
 }
 

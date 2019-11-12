@@ -21,6 +21,7 @@ void		reset_operation(t_cursor *cursor)
 	cursor->operation.check[1] = 0;
 	cursor->operation.check[2] = 0;
 	cursor->operation.check[3] = 0;
+	cursor->operation.n_args = 0;
 	cursor->opcode = 0;
 	return ;
 }

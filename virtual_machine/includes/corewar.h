@@ -133,6 +133,7 @@ typedef struct		s_operation
 {
 	int				check[4];
 	int				arg[3];
+	int				n_args;
 }					t_operation;
 
 typedef struct		s_cursor
@@ -189,6 +190,7 @@ typedef struct		s_vm
 	int				n_flag[4];
 	int				wait[16];
 	int				t_dir[16];
+	int				n_arg[16];
 	void			*op_functions[16];
 	t_visual		v;
 }					t_vm;
@@ -260,6 +262,7 @@ short				reverse16(short value);
 int					reverse32(int value);
 int					ft_modulo(int a, int b);
 int					is_single_arg_op(t_cursor *cursor);
+int					right_encoding_for_op(t_opcode op_code, int *check);
 
 /*
 ** save_arguments.c

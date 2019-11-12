@@ -12,6 +12,27 @@
 
 #include "../includes/corewar.h"
 
+void		init_n_args(t_vm *vm)
+{
+	vm->n_arg[live_index] = 1;
+	vm->n_arg[ld_index] = 2;
+	vm->n_arg[st_index] = 2;
+	vm->n_arg[add_index] = 3;
+	vm->n_arg[sub_index] = 3;
+	vm->n_arg[and_index] = 3;
+	vm->n_arg[or_index] = 3;
+	vm->n_arg[xor_index] = 3;
+	vm->n_arg[zjmp_index] = 1;
+	vm->n_arg[ldi_index] = 3;
+	vm->n_arg[sti_index] = 3;
+	vm->n_arg[fork_index] = 1;
+	vm->n_arg[lld_index] = 2;
+	vm->n_arg[lldi_index] = 3;
+	vm->n_arg[lfork_index] = 1;
+	vm->n_arg[aff_index] = 1;
+	return ;
+}
+
 /*
 ** INIT_OP_FUNCTIONS
 ** Set all the functions for corresponding operations.
@@ -116,5 +137,6 @@ void		init_vm(t_vm *vm, int argc, char **argv)
 	init_wait_cycles(vm);
 	init_t_dir_and_n_flag(vm);
 	init_op_functions(vm);
+	init_n_args(vm);
 	return ;
 }
