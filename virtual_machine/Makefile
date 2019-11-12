@@ -24,7 +24,7 @@ CW_FILES =		main check_arguments input_error init_champion audio \
 
 CW_SRC =		$(CW_FILES:%=srcs/%.c)
 
-LIBFT =			libft/libft.a
+LIBFT =			../libft/libftprintf.a
 
 CW_OBJ =		$(CW_SRC:.c=.o)
 
@@ -33,11 +33,11 @@ FLAGS =			-g -Wall -Wextra -Werror
 all : $(CW_NAME)
 
 $(CW_NAME) : $(CW_OBJ) $(LIBFT)
-				@ gcc $(FLAGS) -o $@ $(CW_OBJ) -L . -lbass -lncurses -L ./libft/ -lft
+				@ gcc $(FLAGS) -o $@ $(CW_OBJ) -L . -lbass -lncurses $(LIBFT)
 				@ echo "\033[32mCOREWAR READY\033[0m"
 
 $(LIBFT) :
-	 			@ make -C ./libft/
+	 			@ make -C ../libft/
 
 srcs/%.o : srcs/%.c includes/corewar.h
 				@ gcc $(FLAGS) $< -c -o $@
@@ -45,17 +45,17 @@ srcs/%.o : srcs/%.c includes/corewar.h
 clean :
 				@ if [ `ls -1 srcs/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
 				[ `ls -1 srcs/operations/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
-				[ `ls -1 libft/*.o 2>/dev/null | wc -l ` -gt 0 ]; then \
-				make clean -C ./libft/; \
+				[ `ls -1 ../libft/*.o 2>/dev/null | wc -l ` -gt 0 ]; then \
+				make clean -C ../libft/; \
 				rm -f $(CW_OBJ); else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 
 fclean :
 				@ if [ `ls -1 srcs/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
 				[ `ls -1 srcs/operations/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
-				[ `ls -1 libft/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
-				[ -f $(CW_NAME) ] || [ -f libft/libft.a ]; then \
-				make fclean -C ./libft/ && rm -f $(CW_NAME) && \
+				[ `ls -1 ../libft/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
+				[ -f $(CW_NAME) ] || [ -f ../libft/libft.a ]; then \
+				make fclean -C ../libft/ && rm -f $(CW_NAME) && \
 				rm -f $(CW_OBJ); else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
 

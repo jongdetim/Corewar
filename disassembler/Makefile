@@ -26,7 +26,7 @@ CW_FILES =		main \
 
 CW_SRC =		$(CW_FILES:%=srcs/%.c)
 
-LIBFT =			libft/libftprintf.a
+LIBFT =			../libft/libftprintf.a
 
 CW_OBJ =		$(CW_SRC:.c=.o)
 
@@ -39,15 +39,15 @@ $(CW_NAME) : 	$(LIBFT) $(CW_OBJ)
 				@ echo "\033[32mDISASSEMBLER READY\033[0m"
 
 $(LIBFT) :
-	 			@ make -C ./libft/
+	 			@ make -C ../libft/
 
 srcs/%.o : srcs/%.c includes/disassembler.h
 				@ gcc $(FLAGS) $< -c -o $@
 
 clean :
 				@ if [ `ls -1 srcs/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
-				[ `ls -1 libft/*.o 2>/dev/null | wc -l ` -gt 0 ]; then \
-				make clean -C ./libft/; \
+				[ `ls -1 ../libft/*.o 2>/dev/null | wc -l ` -gt 0 ]; then \
+				make clean -C ../libft/; \
 				rm -f $(CW_OBJ); \
 				echo "\033[33mCLEAN COMPLETED\033[0m"; else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
@@ -55,8 +55,8 @@ clean :
 fclean :
 				@ if [ `ls -1 srcs/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
 				[ `ls -1 libft/*.o 2>/dev/null | wc -l ` -gt 0 ] || \
-				[ -f $(CW_NAME) ] || [ -f libft/libft.a ]; then \
-				make fclean -C ./libft/ && rm -f $(CW_NAME) && \
+				[ -f $(CW_NAME) ] || [ -f ../libft/libft.a ]; then \
+				make fclean -C ../libft/ && rm -f $(CW_NAME) && \
 				rm -f $(CW_OBJ); \
 				echo "\033[33mCLEAN COMPLETED\033[0m"; else \
 				echo "\033[33mNOTHING TO CLEAN\033[0m"; fi
