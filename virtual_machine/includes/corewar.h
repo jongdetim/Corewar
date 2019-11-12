@@ -6,7 +6,7 @@
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/24 11:55:05 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/11/12 14:40:03 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/12 22:31:49 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ typedef struct		s_visual
 	WINDOW			*memory_display;
 	WINDOW			*game_variables;
 	WINDOW			*corewar_header;
-
 }					t_visual;
 
 typedef struct		s_vm
@@ -204,6 +203,8 @@ void				fill_corewar_header(WINDOW *corewar_header);
 void				fill_game_variables_help(WINDOW *game_variables);
 void				fill_game_variables(WINDOW *game_variables, t_vm *vm);
 void				update_memory(WINDOW *memory_display, t_vm *vm);
+void				end_of_game(t_vm *vm);
+void				pauze_visualizer(WINDOW *game_variables);
 
 /*
 ** verbose.c

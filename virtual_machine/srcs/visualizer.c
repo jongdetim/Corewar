@@ -6,11 +6,36 @@
 /*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 20:11:11 by tide-jon       #+#    #+#                */
-/*   Updated: 2019/11/12 14:39:38 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/12 22:32:09 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
+
+void	end_of_game(t_vm *vm)
+{
+	int	key;
+
+	while (1)
+	{
+		nodelay(vm->v.memory_display, 0);
+		key = wgetch(vm->v.memory_display);
+		if (key == 113)
+		{
+			endwin();
+			return ;
+		}
+	}
+}
+
+void	pauze_visualizer(WINDOW *game_variables)
+{
+	mvwprintw(game_variables, 2, 17, "*** PAUSED *** ");
+	wrefresh(game_variables);
+	while (wgetch(game_variables) != 32)
+		;
+	mvwprintw(game_variables, 2, 17, "*** RUNNING ***");
+}
 
 void	update_game_variables(WINDOW *game_variables, t_vm *vm)
 {
@@ -19,6 +44,9 @@ void	update_game_variables(WINDOW *game_variables, t_vm *vm)
 	if (!vm->visualizer)
 		return ;
 	iwait();
+	nodelay(game_variables, 1);
+	if (wgetch(game_variables) == 32)
+		pauze_visualizer(game_variables);
 	mvwprintw(game_variables, 5, 33, "%6s", ft_itoa(vm->game.cycles));
 	mvwprintw(game_variables, 7, 33, "%6s", ft_itoa(vm->game.cycles_to_die));
 	wprintw(game_variables, "    ");
