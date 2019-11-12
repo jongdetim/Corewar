@@ -1,6 +1,8 @@
 .name		"the destructor"
 .comment	"A lesson of how to be a man"
 
+# Anna's champ attempt
+
 fork_it:
 	fork	%:clone_it
 
