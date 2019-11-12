@@ -14,15 +14,16 @@
 
 void		display_help(void)
 {
-	ft_printf("Usage:	./corewar [-v | -ncurses | -d N | -help] [-n N] ");
-	ft_printf("champion1.cor [-n N] champion2.cor [-n N] ");
-	ft_printf("champion3.cor [-n N] champion4.cor\n");
-	ft_printf("	-v	: verbose mode. Shows cursor's execution details\n");
-	ft_printf("	-ncurses: visual mode. Visualizes the game\n");
-	ft_printf("	-d N	: dump flag. Dumps memory after N cycles and exits\n");
-	ft_printf("	-help	: help flag. Shows usage details\n");
-	ft_printf("	-n N	: player's order. Sets N's ID number of the next player");
-	ft_printf(". N is min. 1 and max. 4 \n");
+	ft_putstr("Usage:	./corewar [-v | -ncurses | -d N | -help] [-n N] ");
+	ft_putstr("champion1.cor [-n N] champion2.cor [-n N] ");
+	ft_putstr("champion3.cor [-n N] champion4.cor\n");
+	ft_putstr("	-v	: verbose mode. Shows cursor's execution details\n");
+	ft_putstr("	-ncurses: visual mode. Visualizes the game\n");
+	ft_putstr("	-d N	: dump flag. Dumps memory after N cycles and exits\n");
+	ft_putstr("	-help	: help flag. Shows usage details\n");
+	ft_putstr("	-n N	: player's order.");
+	ft_putstr(" Sets N's ID number of the next player");
+	ft_putstr(". N is min. 1 and max. 4 \n");
 	exit(1);
 }
 
