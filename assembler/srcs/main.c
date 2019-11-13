@@ -53,21 +53,16 @@ static int	flag_and_input_check(int argc, char **argv)
 {
 	int			fd;
 	int			len;
-	int			filename_ind;
 
-	filename_ind = 1;
-	if (argc == 3 && ft_strcmp(argv[1], "-v") == 0)
-	{
+	if (argc == 3 && ft_strequ(argv[1], "-v"))
 		test_tokenlist(NULL, 1);
-		filename_ind = 2;
-	}
 	else if (argc != 2)
 		usage();
-	len = ft_strlen(argv[1]);
-	if (len < 2 || argv[filename_ind][len - 1] != 's' || \
-										argv[filename_ind][len - 2] != '.')
+	len = ft_strlen(argv[argc - 1]);
+	if (len < 2 || argv[argc - 1][len - 1] != 's' || \
+										argv[argc - 1][len - 2] != '.')
 		usage();
-	fd = open(argv[1], O_RDONLY);
+	fd = open(argv[argc - 1], O_RDONLY);
 	if (fd == -1)
 		ft_error("error: can't open file");
 	return (fd);
