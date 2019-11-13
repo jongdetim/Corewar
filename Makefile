@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    makefile                                           :+:    :+:             #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: tmeulenb <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/04 15:06:49 by tmeulenb       #+#    #+#                 #
-#    Updated: 2019/11/07 17:09:41 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/11/12 21:12:26 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,15 @@ DIS_ASM_NAME =	dis_asm
 all : $(VM_NAME) $(ASM_NAME) $(DIS_ASM_NAME)
 
 vm :
+				@ echo "virtual machine"
 				@ make -C ./virtual_machine
 
 asm :
+				@ echo "assembler"
 				@ make -C ./assembler
 
 dis_asm :
+				@ echo "disassembler"
 				@ make -C ./disassembler
 
 test :
@@ -41,9 +44,6 @@ clean :
 				@ make clean -C ./disassembler
 
 fclean :
-				@ rm -f dis_asm
-				@ rm -f asm
-				@ rm -f corewar
 				@ echo "virtual machine"
 				@ make fclean -C ./virtual_machine
 				@ echo "assembler"

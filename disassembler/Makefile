@@ -6,7 +6,7 @@
 #    By: jheeresm <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/04 13:29:01 by jheeresm       #+#    #+#                 #
-#    Updated: 2019/11/08 22:29:18 by tide-jon      ########   odam.nl          #
+#    Updated: 2019/11/12 21:11:18 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CW_FILES =		main \
 
 CW_SRC =		$(CW_FILES:%=srcs/%.c)
 
-LIBFT =			../libft/libftprintf.a
+LIBFT =			../libft/libft.a
 
 CW_OBJ =		$(CW_SRC:.c=.o)
 
@@ -35,7 +35,7 @@ FLAGS =			-g -Wall -Wextra -Werror
 all : $(CW_NAME)
 
 $(CW_NAME) : 	$(LIBFT) $(CW_OBJ) 
-				@ gcc $(FLAGS) -o $@ $(CW_OBJ) $(LIBFT)
+				@ gcc $(FLAGS) -o $@ $(CW_OBJ) -L ../libft -lft
 				@ echo "\033[32mDISASSEMBLER READY\033[0m"
 
 $(LIBFT) :

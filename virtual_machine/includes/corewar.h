@@ -6,7 +6,7 @@
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/24 11:55:05 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/11/08 22:22:45 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/12 22:31:49 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "../../libft/libft.h"
 # include "bass.h"
 
-# define TIME_INTERVAL_MILISEC 1
+# define TIME_INTERVAL_MILISEC 0.5
 
 # define NO_CHAMP_AFTER_N_FLAG i + 2 == vm->argc
 # define NO_NUMBER_AFTER_FLAG i + 1 == vm->argc
@@ -171,7 +171,6 @@ typedef struct		s_visual
 	WINDOW			*memory_display;
 	WINDOW			*game_variables;
 	WINDOW			*corewar_header;
-
 }					t_visual;
 
 typedef struct		s_vm
@@ -204,6 +203,8 @@ void				fill_corewar_header(WINDOW *corewar_header);
 void				fill_game_variables_help(WINDOW *game_variables);
 void				fill_game_variables(WINDOW *game_variables, t_vm *vm);
 void				update_memory(WINDOW *memory_display, t_vm *vm);
+void				end_of_game(t_vm *vm);
+void				pauze_visualizer(WINDOW *game_variables);
 
 /*
 ** verbose.c

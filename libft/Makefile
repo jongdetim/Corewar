@@ -5,12 +5,12 @@
 #                                                      +:+                     #
 #    By: ayundina <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/02/07 12:38:25 by ayundina      #+#    #+#                  #
-#    Updated: 2019/06/03 13:06:14 by ayundina      ########   odam.nl          #
+#    Created: 2019/02/07 12:38:25 by ayundina       #+#    #+#                 #
+#    Updated: 2019/11/12 21:06:27 by tide-jon      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libft.a
 
 SRCS_LIB = ft_atoi.c \
 	   ft_bzero.c \

@@ -6,7 +6,7 @@
 /*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/06 21:01:37 by tide-jon       #+#    #+#                */
-/*   Updated: 2019/11/07 16:50:31 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/12 21:53:32 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,7 @@ int	play_audio(void)
 
 	BASS_Init(1, 44100, 0, 0, NULL);
 	chan = BASS_StreamCreateFile(
-	FALSE, "./srcs/Chiptronical.ogg", 0, 0, BASS_SAMPLE_LOOP);
+	FALSE, "Chiptronical.ogg", 0, 0, BASS_SAMPLE_LOOP);
 	BASS_ChannelPlay(chan, FALSE);
-	// while (BASS_ChannelIsActive(chan))
-	// {
-	// 	usleep(50000);
-	// }
-	// BASS_Free();
 	return (0);
 }

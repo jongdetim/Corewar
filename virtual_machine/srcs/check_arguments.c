@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   input_check.c                                      :+:    :+:            */
+/*   check_arguments.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tmeulenb <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/07/21 12:25:51 by jheeresm      #+#    #+#                 */
-/*   Updated: 2019/07/21 12:25:52 by jheeresm      ########   odam.nl         */
+/*   Created: 2019/07/21 12:25:51 by jheeresm       #+#    #+#                */
+/*   Updated: 2019/11/12 21:36:27 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static int	check_for_flag(t_vm *vm, int i)
 	}
 	else if (!ft_strcmp("-dump", vm->argv[i]))
 		check_number_for_flag(vm, i, dump);
+	else
+		input_error(vm->argv[i], bad_arg);
 	return (1);
 }
 
