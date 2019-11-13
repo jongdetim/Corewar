@@ -84,7 +84,7 @@ int			main(int argc, char **argv)
 	analyze_tokens(&data);
 	check_arguments(data.tokens);
 	replace_labels(&data);
-	write_output(data, argv[1]);
+	write_output(data, argv[argc - 1]);
 	test_tokenlist(&data, 0);
 	return (0);
 }
