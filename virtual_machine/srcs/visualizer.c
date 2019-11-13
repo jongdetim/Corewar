@@ -6,7 +6,7 @@
 /*   By: tide-jon <tide-jon@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 20:11:11 by tide-jon       #+#    #+#                */
-/*   Updated: 2019/11/12 22:32:09 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/13 17:17:35 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	update_cursor(t_vm *vm, t_cursor *cursor, int jump)
 
 void	init_visuals(t_vm *vm)
 {
-	play_audio();
 	initscr();
 	cbreak();
 	noecho();

@@ -6,7 +6,7 @@
 /*   By: jheeresm <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/24 11:55:05 by jheeresm       #+#    #+#                */
-/*   Updated: 2019/11/12 22:31:49 by tide-jon      ########   odam.nl         */
+/*   Updated: 2019/11/13 17:19:51 by tide-jon      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,6 +322,6 @@ void				iwait(void);
 **	visualizer.c  &&  audio.c
 */
 void				visualizer(t_vm *vm);
-int					play_audio(void);
+int					play_audio(char *exec_path);
 
 #endif
