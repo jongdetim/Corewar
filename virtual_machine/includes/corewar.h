@@ -304,7 +304,7 @@ void				fork_op(t_vm *vm, t_cursor *cursor);
 void				lld_op(t_vm *vm, t_cursor *cursor);
 void				lldi_op(t_vm *vm, t_cursor *cursor);
 void				lfork_op(t_vm *vm, t_cursor *cursor);
-void				aff_op(t_cursor *cursor);
+void				aff_op(t_vm *vm, t_cursor *cursor);
 
 /*
 ** operation help
