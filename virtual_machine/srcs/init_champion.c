@@ -52,7 +52,8 @@ void		give_champion_id(t_vm *vm, int id)
 	i = 1;
 	while (i < vm->argc)
 	{
-		if (vm->argv[i] && ft_strstr(vm->argv[i], ".cor"))
+		if (vm->argv[i] && ft_strstr(vm->argv[i], ".cor") &&
+			!(ft_isint(vm->argv[i - 1], ft_strlen(vm->argv[i - 1]))))
 		{
 			vm->champions[id - 1].filename = ft_strdup(vm->argv[i]);
 			vm->champions[id - 1].id = -id;
