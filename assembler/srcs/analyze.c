@@ -21,7 +21,7 @@ static void	check_label(t_tokens *current)
 	i = 0;
 	while (ft_strchr(LABEL_CHARS, content[i]))
 		i++;
-	if (i == 0 || content[i] != ':' || content[i + 1] != '\0')
+	if (i == 0 || content[i] != LABEL_CHAR || content[i + 1] != '\0')
 	{
 		ft_printf("incorrect label: '%s'\n", current->content);
 		exit(0);
@@ -38,8 +38,8 @@ static void	check_register(t_tokens *token)
 	len = ft_strlen(token->content);
 	if (len > 1)
 	{
-		if (token->content[1] >= '0' && token->content[1] <= '9' && (len == 2 ||
-		(len == 3 && token->content[1] >= '0' && token->content[1] <= '9')))
+		if (ft_isdigit(token->content[1]) && (len == 2 ||
+		(len == 3 && ft_isdigit(token->content[2]))))
 		{
 			token->type = regist;
 			value = ft_atoi(token->content + 1);
@@ -122,8 +122,8 @@ void		analyze_tokens(t_corewar *data)
 			check_register(current);
 		else if (current->content[0] == DIRECT_CHAR)
 			check_direct(current);
-		else if (current->content[0] == LABEL_CHAR || (current->content[0] >=
-		'0' && current->content[0] <= '9') || current->content[0] == '-')
+		else if (current->content[0] == LABEL_CHAR ||
+		ft_isdigit(current->content[0]) || current->content[0] == '-')
 			check_indirect(current);
 		else
 			check_instruction(current, data);
