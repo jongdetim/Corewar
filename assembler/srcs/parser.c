@@ -128,7 +128,7 @@ void		parser(t_corewar *data, int fd)
 	int		i;
 
 	data->linenum = 0;
-	while (get_next_line(fd, &line) != 0)
+	while (get_next_line(fd, &line) > 0)
 	{
 		i = skip_whitespace(line, 0);
 		if (line[i] == '\0' || line[i] == COMMENT_CHAR ||
