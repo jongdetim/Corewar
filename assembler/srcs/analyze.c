@@ -122,8 +122,8 @@ void		analyze_tokens(t_corewar *data)
 			check_register(current);
 		else if (current->content[0] == DIRECT_CHAR)
 			check_direct(current);
-		else if (current->content[0] == LABEL_CHAR || (current->content[0] >=
-		'0' && current->content[0] <= '9') || current->content[0] == '-')
+		else if (current->content[0] == LABEL_CHAR ||
+		ft_isdigit(current->content[0]) || current->content[0] == '-')
 			check_indirect(current);
 		else
 			check_instruction(current, data);
