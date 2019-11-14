@@ -44,12 +44,13 @@ ERROR_CHAMPS=./champs_error_test/*.s
 
 #_______________________________________Compiling champs with original assembler
 
+OR_ASM_PATH=../asm
 echo "\n${DIM}Compiling champs with original assembler to \
 /original_asm_cor and /original_err_cor${CLR_STYLE}"
 
 for champ in $COMPARE_CHAMPS
 do
-	./asm $champ >/dev/null
+	$OR_ASM_PATH $champ >/dev/null
 	if [ -f ${champ/.s/.cor} ]; then
 		xxd -b ${champ/.s/.cor} > ${champ/.s/.bin}
 		mv ${champ/.s/.bin} original_asm_cor/
@@ -59,7 +60,7 @@ done
 
 for champ in $ERROR_CHAMPS
 do
-	./asm $champ >/dev/null
+	$OR_ASM_PATH $champ >/dev/null
 	if [ -f ${champ/.s/.cor} ]; then
 		xxd -b ${champ/.s/.cor} > ${champ/.s/.bin}
 		mv ${champ/.s/.bin} ./original_err_cor
@@ -137,7 +138,7 @@ do
 		printf "File ${file/test_asm_cor/original_asm_cor} wasn't found\n"
 		LAUNCH=${file/test_asm_cor/champs_compare_test}
 		printf "Message from original_assembler about ${LAUNCH/.bin/.s}:\n"
-		./asm ${LAUNCH/.bin/.s}
+		$OR_ASM_PATH ${LAUNCH/.bin/.s}
         printf "\n"
 	fi
 done
@@ -178,7 +179,7 @@ do
 		printf "File ${file/test_err_cor/original_err_cor} wasn't found\n"
 		LAUNCH=${file/test_err_cor/champs_error_test}
 		printf "Message from original_assembler about ${LAUNCH/.bin/.s}:\n"
-		./asm ${LAUNCH/.bin/.s}
+		$OR_ASM_PATH ${LAUNCH/.bin/.s}
         printf "\n"
 	fi
 done
