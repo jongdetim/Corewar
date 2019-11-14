@@ -43,8 +43,8 @@ static void	check_register(t_tokens *token)
 		{
 			token->type = regist;
 			value = ft_atoi(token->content + 1);
-			if (value == 0)
-				ft_error("register 0 is invalid");
+			if (value == 0 || value > REG_NUMBER)
+				check_label(token);
 			else
 				token->value = value;
 		}
