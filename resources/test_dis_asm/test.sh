@@ -13,9 +13,10 @@ DIM="\033[2m"
 
 #_______________________________________________________________Norminette_check
 
-NRM_ERR=$(norminette .. | grep -v 'Not a valid file' | grep 'Error: ' | \
+DIS_ASM_PATH=../../disassembler
+NRM_ERR=$(norminette $DIS_ASM_PATH | grep -v 'Not a valid file' | grep 'Error: ' | \
 			wc -l | tr -d ' ')
-NRM_WARN=$(norminette .. | grep -v 'Not a valid file' | grep 'Warning: ' | \
+NRM_WARN=$(norminette $DIS_ASM_PATH | grep -v 'Not a valid file' | grep 'Warning: ' | \
 			wc -l | tr -d ' ')
 
 if [ $NRM_ERR -eq '0' ] && [ $NRM_WARN -eq '0' ]; then
@@ -30,8 +31,8 @@ fi
 
 echo "${DIM}Cleaning${CLR_STYLE}"
 
-make -C ../ clean >/dev/null
-make -C ../ fclean >/dev/null
+make -C $DIS_ASM_PATH/ clean >/dev/null
+make -C $DIS_ASM_PATH/ fclean >/dev/null
 rm -rf ./dis_asm*
 rm -rf ./2_dot_cor_champs/*
 rm -rf ./3_dot_s_made_by_disassembler/*
@@ -55,8 +56,8 @@ mv ${DOT_S_CHAMPS/.s/.cor} ./2_dot_cor_champs
 
 echo "${DIM}Compiling dis_asm${CLR_STYLE}"
 
-make -C ../ >/dev/null
-cp ../dis_asm ./dis_asm
+make -C $DIS_ASM_PATH/ >/dev/null
+cp $DIS_ASM_PATH/dis_asm ./dis_asm
 
 #___________________________________________________Disassemble_dot_cor_to_dot_s
 
