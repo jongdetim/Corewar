@@ -64,7 +64,8 @@ void	fill_game_variables(WINDOW *game_variables, t_vm *vm)
 		wattroff(game_variables, A_DIM);
 		mvwprintw(game_variables, 20 + i * 11, 4, "last live:");
 		mvwprintw(game_variables, 21 + i * 11, 4, "lives in current period:");
-		mvwprintw(game_variables, 22 + i * 11, 4, "-------------------------------------------");
+		mvwprintw(game_variables, 22 + i * 11, 4,
+							"-------------------------------------------");
 		i++;
 	}
 }
