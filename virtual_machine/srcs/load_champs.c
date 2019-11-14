@@ -43,8 +43,9 @@ static void	validate_champ(int fd, t_champion *champ)
 	read(fd, &header, 4);
 	if (header != reverse32(COREWAR_EXEC_MAGIC))
 		faulty_warrior(champ, 0);
-	champ->name = (char*)ft_memalloc(PROG_NAME_LENGTH);
+	champ->name = (char*)ft_memalloc(PROG_NAME_LENGTH + 1);
 	read(fd, champ->name, PROG_NAME_LENGTH);
+	champ->name[PROG_NAME_LENGTH] = '\0';
 	zero = INT_MAX;
 	read(fd, &zero, 4);
 	if (zero != 0)
@@ -53,8 +54,9 @@ static void	validate_champ(int fd, t_champion *champ)
 	champ->size = reverse32(champ->size);
 	if (champ->size >= CHAMP_MAX_SIZE)
 		faulty_warrior(champ, 0);
-	champ->comment = (char*)ft_memalloc(COMMENT_LENGTH);
+	champ->comment = (char*)ft_memalloc(COMMENT_LENGTH + 1);
 	read(fd, champ->comment, COMMENT_LENGTH);
+	champ->comment[COMMENT_LENGTH] = '\0';
 	zero = INT_MAX;
 	read(fd, &zero, 4);
 	if (zero != 0)

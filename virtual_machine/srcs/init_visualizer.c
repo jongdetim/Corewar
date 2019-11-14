@@ -51,19 +51,20 @@ void	fill_game_variables(WINDOW *game_variables, t_vm *vm)
 	{
 		init_pair(i + 1, i + 1, -1);
 		wattron(game_variables, COLOR_PAIR(i + 1));
-		mvwprintw(game_variables, 12 + i * 11, 4, "player");
+		mvwprintw(game_variables, 12 + i * 11, 4, "PLAYER");
 		mvwprintw(game_variables, 12 + i * 11, 11,
 												ft_itoa(vm->champions[i].id));
-		wattroff(game_variables, COLOR_PAIR(i + 1));
-		mvwprintw(game_variables, 12 + i * 11, 17, "%.75s",
+		mvwprintw(game_variables, 12 + i * 11, 17, "%.82s",
 														vm->champions[i].name);
+		wattroff(game_variables, COLOR_PAIR(i + 1));
 		wattron(game_variables, A_DIM);
 		mvwprintw(game_variables, 14 + i * 11, 4, "\"");
-		wprintw(game_variables, "%.268s", vm->champions[i].comment);
+		wprintw(game_variables, "%.293s", vm->champions[i].comment);
 		wprintw(game_variables, "\"");
 		wattroff(game_variables, A_DIM);
 		mvwprintw(game_variables, 20 + i * 11, 4, "last live:");
 		mvwprintw(game_variables, 21 + i * 11, 4, "lives in current period:");
+		mvwprintw(game_variables, 22 + i * 11, 4, "-------------------------------------------");
 		i++;
 	}
 }

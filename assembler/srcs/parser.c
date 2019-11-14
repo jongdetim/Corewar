@@ -25,17 +25,17 @@ static void	get_name(t_corewar *data, int fd, char *line, int i)
 	start_count[1] = 1;
 	while (1)
 	{
-		if (start_count[1] > PROG_NAME_LENGTH)
+		if (start_count[1] > PROG_NAME_LENGTH + 1)
 			ft_error("name is too long");
 		if (line[i] == '\0' || line[i] == '"')
 		{
 			str = ft_strsub(line, start_count[0], i - start_count[0]);
-			ft_strlcat(data->name, str, PROG_NAME_LENGTH);
+			ft_strlcat(data->name, str, PROG_NAME_LENGTH + 1);
 			free(str);
 			if (line[i] == '"')
 				return (free(line));
 			free(line);
-			ft_strlcat(data->name, "\n", PROG_NAME_LENGTH);
+			ft_strlcat(data->name, "\n", PROG_NAME_LENGTH + 1);
 			start_count[0] = 0;
 			i = -1;
 			get_next_line(fd, &line);
@@ -66,17 +66,17 @@ static void	get_comment(t_corewar *data, int fd, char *line, int i)
 	start_count[1] = 1;
 	while (1)
 	{
-		if (start_count[1] > COMMENT_LENGTH)
+		if (start_count[1] > COMMENT_LENGTH + 1)
 			ft_error("warrior comment (description) is too long");
 		if (line[i] == '\0' || line[i] == '"')
 		{
 			str = ft_strsub(line, start_count[0], i - start_count[0]);
-			ft_strlcat(data->comment, str, COMMENT_LENGTH);
+			ft_strlcat(data->comment, str, COMMENT_LENGTH + 1);
 			free(str);
 			if (line[i] == '"')
 				return (free(line));
 			free(line);
-			ft_strlcat(data->comment, "\n", COMMENT_LENGTH);
+			ft_strlcat(data->comment, "\n", COMMENT_LENGTH + 1);
 			start_count[0] = 0;
 			i = -1;
 			get_next_line(fd, &line);
