@@ -38,8 +38,8 @@ static void	check_register(t_tokens *token)
 	len = ft_strlen(token->content);
 	if (len > 1)
 	{
-		if (token->content[1] >= '0' && token->content[1] <= '9' && (len == 2 ||
-		(len == 3 && token->content[1] >= '0' && token->content[1] <= '9')))
+		if (ft_isdigit(token->content[1]) && (len == 2 ||
+		(len == 3 && ft_isdigit(token->content[2]))))
 		{
 			token->type = regist;
 			value = ft_atoi(token->content + 1);
