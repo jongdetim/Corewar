@@ -13,9 +13,10 @@ DIM="\033[2m"
 
 #_______________________________________________________________Norminette_check
 
-NRM_ERR=$(norminette .. | grep -v 'Not a valid file' | grep 'Error: ' | \
+ASM_PATH=../../assembler
+NRM_ERR=$(norminette $ASM_PATH | grep -v 'Not a valid file' | grep 'Error: ' | \
 			wc -l | tr -d ' ')
-NRM_WARN=$(norminette .. | grep -v 'Not a valid file' | grep 'Warning: ' | \
+NRM_WARN=$(norminette $ASM_PATH | grep -v 'Not a valid file' | grep 'Warning: ' | \
 			wc -l | tr -d ' ')
 
 if [ $NRM_ERR -eq '0' ] && [ $NRM_WARN -eq '0' ]; then
@@ -34,13 +35,14 @@ rm -rf ./original_asm_cor/*
 rm -rf ./test_asm_cor/*
 rm -rf ./original_err_cor/*
 rm -rf ./test_err_cor/*
+rm -rf test_asm
 
 #__________________________________________________________Variables_declaration
 
 COMPARE_CHAMPS=./champs_compare_test/*.s
 ERROR_CHAMPS=./champs_error_test/*.s
 
-#_____________________________________________________Compile_original_asm_otput
+#_______________________________________Compiling champs with original assembler
 
 echo "\n${DIM}Compiling champs with original assembler to \
 /original_asm_cor and /original_err_cor${CLR_STYLE}"
@@ -65,20 +67,22 @@ do
 	fi
 done
 
-#________________________________________________________Compile_test_asm_output
+#___________________________________________Compiling champs with test assembler
 
 echo "${DIM}Compiling champs with test assembler to \
 /test_asm_cor and /test_err_cor${CLR_STYLE}"
-make -C ../ fclean >/dev/null
-make -C ../ >/dev/null
-mv ../asm ./test_asm
+make -C $ASM_PATH fclean #>/dev/null
+make -C $ASM_PATH #>/dev/null
+mv $ASM_PATH/asm ./test_asm
 
 for champ in $COMPARE_CHAMPS
 do
-	./test_asm $champ >/dev/null
-	echo ${champ/.s/.cor}
+	echo $champ
+	./test_asm $champ #>/dev/null
+	printf "\n"
+	#echo ${champ/.s/.cor}
 	if [ -f ${champ/.s/.cor} ]; then
-		echo "hey"
+		#echo "hey"
 		xxd -b ${champ/.s/.cor} > ${champ/.s/.bin}
 		mv ${champ/.s/.bin} test_asm_cor/
 		rm ${champ/.s/.cor}
@@ -87,7 +91,9 @@ done
 
 for champ in $ERROR_CHAMPS
 do
-	./test_asm $champ >/dev/null
+	echo $champ
+	./test_asm $champ #>/dev/null
+	printf "\n"
 	if [ -f ${champ/.s/.cor} ]; then
 		xxd -b ${champ/.s/.cor} > ${champ/.s/.bin}
 		mv ${champ/.s/.bin} ./test_err_cor
