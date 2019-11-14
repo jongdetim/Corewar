@@ -66,6 +66,8 @@ int			ft_isint(char *s, int len)
 	int		ret;
 	char	*cpy;
 
+	if (!s)
+		return (0);
 	if (len == -1)
 		return (main_check(s));
 	cpy = (char*)malloc(sizeof(char) * (len + 1));
