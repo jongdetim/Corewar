@@ -61,6 +61,7 @@ void		check_arguments(t_vm *vm)
 			input_error(vm->argv[i], bad_arg);
 		i++;
 	}
-	if ((vm->verbose && vm->visualizer) || (vm->visualizer && vm->dump_flag != -1))
+	if ((vm->verbose && vm->visualizer) ||
+		(vm->visualizer && vm->dump_flag != -1))
 		ft_error("Verbose/dump and visualizer can't be used together.");
 }

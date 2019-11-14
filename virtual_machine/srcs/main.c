@@ -28,7 +28,7 @@ void		declare_winner(t_vm *vm)
 			ft_putstr("*                ");
 			ft_printf("comment: \"%s\"\n", vm->champions[i].comment);
 			ft_putstr("*                ");
-			ft_printf("id:      %d\n", vm->champions[i].id);
+			ft_printf("id:      %d\n", abs(vm->champions[i].id));
 			winner = 1;
 		}
 		i++;
