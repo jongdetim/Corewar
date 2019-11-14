@@ -105,7 +105,8 @@ void		game(t_vm *vm, t_game *game)
 			check_dead_cursor_or_players(vm);
 			decrease_cycles_to_die(game, &cycles_to_die);
 		}
-		update_game_variables(vm->v.game_variables, vm);
+		if (vm->visualizer)
+			update_game_variables(vm->v.game_variables, vm);
 		if (dump_check(*vm))
 			return ;
 	}

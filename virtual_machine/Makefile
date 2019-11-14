@@ -19,7 +19,7 @@ CW_FILES =		main check_arguments input_error init_champion audio \
 				exec_cursor_list read_operation save_arguments init_cursors \
 				load_champs endianness dump_flag game reset_operation \
 				introduce_champions init_vm verbose timing visualizer \
-				change_colors init_visualizer \
+				change_colors init_visualizer arguments_help \
 				$(OP_FILES:%=operations/%)
 
 CW_SRC =		$(CW_FILES:%=srcs/%.c)

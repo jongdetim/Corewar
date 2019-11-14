@@ -41,8 +41,6 @@ void	update_game_variables(WINDOW *game_variables, t_vm *vm)
 {
 	int	i;
 
-	if (!vm->visualizer)
-		return ;
 	iwait();
 	nodelay(game_variables, 1);
 	if (wgetch(game_variables) == 32)

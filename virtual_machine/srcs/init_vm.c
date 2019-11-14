@@ -121,7 +121,6 @@ void		init_vm(t_vm *vm, int argc, char **argv)
 	vm->color_mask = malloc(sizeof(unsigned char) * MEM_SIZE + 1);
 	ft_bzero(vm->color_mask, MEM_SIZE + 1);
 	vm->champion_count = 0;
-	vm->champions = NULL;
 	vm->dump_flag = -1;
 	vm->argc = argc;
 	vm->argv = argv;

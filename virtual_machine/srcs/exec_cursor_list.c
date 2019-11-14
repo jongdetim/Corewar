@@ -56,8 +56,7 @@ void		exec_operation(t_vm *vm, t_cursor *cursor)
 
 	if (vm->verbose)
 		verbose_operation(vm, cursor);
-	if (cursor->opcode == add_code || cursor->opcode == sub_code ||
-	cursor->opcode == aff_code)
+	if (cursor->opcode == add_code || cursor->opcode == sub_code)
 	{
 		small_op = vm->op_functions[cursor->opcode - 1];
 		small_op(cursor);

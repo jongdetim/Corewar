@@ -12,8 +12,9 @@
 
 #include "../../includes/corewar.h"
 
-void		aff_op(t_cursor *cursor)
+void		aff_op(t_vm *vm, t_cursor *cursor)
 {
-	ft_printf("%c", (char)(cursor->reg[FIRST_ARG - 1]));
+	if (!vm->visualizer)
+		ft_printf("%c", (char)(cursor->reg[FIRST_ARG - 1]));
 	return ;
 }
