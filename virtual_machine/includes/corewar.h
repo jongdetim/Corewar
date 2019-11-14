@@ -177,7 +177,7 @@ typedef struct		s_vm
 {
 	int				argc;
 	char			**argv;
-	t_champion		*champions;
+	t_champion		champions[4];
 	t_game			game;
 	t_cursor		*cursors;
 	unsigned char	*memory;
@@ -233,6 +233,11 @@ void				input_error(char *arg, t_input_error choice);
 /*
 ** input_check.c
 */
+int					check_for_champion(char *arg);
+int					check_for_flags(t_vm *vm, char *arg);
+void				save_dump_flag(t_vm *vm, int *i);
+void				check_duplicate_n_flag(int *n_flag, int n);
+void				save_n_flag(t_vm *vm, int *i);
 void				check_arguments(t_vm *vm);
 
 /*

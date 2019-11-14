@@ -85,7 +85,6 @@ void		init_champions(t_vm *vm)
 	int			i;
 
 	i = 0;
-	vm->champions = ft_memalloc(sizeof(t_champion) * vm->champion_count);
 	give_champion_id_and_set_filename(vm);
 	while (i < vm->champion_count)
 	{

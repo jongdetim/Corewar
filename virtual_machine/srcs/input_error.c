@@ -18,7 +18,8 @@ void		display_help(void)
 	ft_putstr("champion1.cor [-n N] champion2.cor [-n N] ");
 	ft_putstr("champion3.cor [-n N] champion4.cor\n");
 	ft_putstr("	-v	: verbose mode. Shows cursor's execution details\n");
-	ft_putstr("	-ncurses: visual mode. Visualizes the game\n");
+	ft_putstr("	-ncurses: visual mode. Visualizes the game ");
+	ft_putstr("| can't be used with -v or -dump together\n");
 	ft_putstr("	-d N	: dump flag. Dumps memory after N cycles and exits\n");
 	ft_putstr("	-help	: help flag. Shows usage details\n");
 	ft_putstr("	-n N	: player's order.");
