@@ -21,7 +21,7 @@ static void	check_label(t_tokens *current)
 	i = 0;
 	while (ft_strchr(LABEL_CHARS, content[i]))
 		i++;
-	if (i == 0 || content[i] != ':' || content[i + 1] != '\0')
+	if (i == 0 || content[i] != LABEL_CHAR || content[i + 1] != '\0')
 	{
 		ft_printf("incorrect label: '%s'\n", current->content);
 		exit(0);
