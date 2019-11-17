@@ -15,9 +15,7 @@
 void		st_op(t_vm *vm, t_cursor *cursor)
 {
 	int			position;
-	int			color;
 
-	color = vm->color_mask[cursor->position];
 	if (cursor->operation.check[1] == REG_CODE)
 		cursor->reg[SECOND_ARG - 1] = cursor->reg[FIRST_ARG - 1];
 	else if (cursor->operation.check[1] == IND_CODE)

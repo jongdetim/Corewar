@@ -23,9 +23,6 @@
 
 int	ft_conv_none(t_p *p)
 {
-	int	i;
-
-	i = 0;
 	if (!p->arg_str && !ft_strchr("cspdibouxXf", *(p->format)) \
 		&& *(p->format) != '\0')
 	{

@@ -26,11 +26,9 @@ int	ft_arandomtoi(const char *str)
 {
 	int	i;
 	int	nb;
-	int	sign;
 
 	i = 0;
 	nb = 0;
-	sign = 1;
 	while (str[i] != '\0' && (!ft_isdigit(str[i]) || str[i] == '0'))
 	{
 		if (str[i] == '%')
