@@ -18,7 +18,7 @@ See https://en.wikipedia.org/wiki/Core_War for more information.
 
 This is what is looks like in action:
 
-![corewar.gif](https://github.com/jongdetim/corewar/blob/master/resources/gif/191115_1702_corewar.gif)
+![corewar.gif](https://github.com/jongdetim/Corewar/blob/master/resources/191115_1702_corewar.gif)
 
 **1. Game board.**<br/>
 The memory of our virtual computer. It’s represented in a 64 X 64 grid of bytes. Every byte, the pairs of numbers or letters, are represented in hexadecimal. Each hexadecimal has the value of a digit, from 0 to 255. The values represent commands and command's arguments. There are 16 commands.<br/>
